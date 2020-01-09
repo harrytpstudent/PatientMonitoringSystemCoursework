@@ -43,11 +43,8 @@ As a consultant, I need to be able to log into the control system and subscribe 
 - Feature implemented as described
 - Both unit tests and integratation tests are written where necessary
 
-As a bedside system, I need to notify the control system when an alarm is raised, so that response time statistics can be generated and bed information can be shown on bay displays.
-- Feature implemented as described
-- Both unit tests and integratation tests are written where necessary
-
 As a control system, I need to store any information I receive about alarm raises/resets, so that reports can be generated later and I can feed it to the displays.
+As a control system, I need to store any information I receive about alarm raises/resets, so that reports can be generated later.
 - Feature implemented as described
 - Both unit tests and integratation tests are written where necessary
 
