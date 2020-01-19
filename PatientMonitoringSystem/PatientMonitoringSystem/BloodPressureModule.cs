@@ -19,7 +19,7 @@ namespace PatientMonitoringSystem
 			get => minValue;
 			set
 			{
-				ValidateMinMaxValues(value, maxValue);
+				ValidateMinValue(value, maxValue);
 
 				minValue = value;
 			}
@@ -30,7 +30,7 @@ namespace PatientMonitoringSystem
 			get => maxValue;
 			set
 			{
-				ValidateMinMaxValues(minValue, value);
+				ValidateMaxValue(minValue, value);
 
 				maxValue = value;
 			}
@@ -38,7 +38,7 @@ namespace PatientMonitoringSystem
 
 		public BloodPressureModule(int initialMinValue, int initialMaxValue)
 		{
-			ValidateMinMaxValues(initialMinValue, initialMaxValue);
+			ValidateMinValue(initialMinValue, initialMaxValue);
 
 			minValue = initialMinValue;
 			maxValue = initialMaxValue;
@@ -51,16 +51,19 @@ namespace PatientMonitoringSystem
 		// We want to simulate the min/max limits occasionally being breached.
 		public int GetCurrentReading() => randomNumberGenerator.Next(minValue - 1, maxValue + 2);
 
-		private void ValidateMinMaxValues(int minValue, int maxValue)
+		private void ValidateMinValue(int minValue, int maxValue)
 		{
-			if (minValue < 0)
+			if (minValue < 0 || minValue > maxValue)
 			{
-				throw new ArgumentOutOfRangeException(nameof(minValue), "is negative! You can't have a negative reading!");
+				throw new ArgumentOutOfRangeException(nameof(minValue), $"Invalid value. Value must range from 0 to {maxValue}.");
 			}
+		}
 
+		private void ValidateMaxValue(int minValue, int maxValue)
+		{
 			if (maxValue < minValue)
 			{
-				throw new ArgumentOutOfRangeException(nameof(maxValue), $"is less than {nameof(minValue)}!");
+				throw new ArgumentOutOfRangeException(nameof(maxValue), $"Invalid value. Value must be greater than or equal to {minValue}.");
 			}
 		}
 	}
