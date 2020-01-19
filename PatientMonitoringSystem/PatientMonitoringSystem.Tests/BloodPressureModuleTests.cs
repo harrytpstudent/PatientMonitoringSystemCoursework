@@ -43,14 +43,16 @@ namespace PatientMonitoringSystem.Tests
         }
 
         [Test]
-        public void NegativeMinValue_RaisesOutOfRangeException() {
+        public void NegativeMinValue_RaisesOutOfRangeException()
+        {
             const int minValue = -1;
             const int maxValue = 4;
             var exception = Assert.Throws<ArgumentOutOfRangeException>(() => new BloodPressureModule(minValue, maxValue));
         }
 
         [Test]
-        public void MaxValueLessThanMinValue_RaisesOutOfRangeException() {
+        public void MaxValueLessThanMinValue_RaisesOutOfRangeException()
+        {
             const int minValue = 3;
             const int maxValue = 2;
             var exception = Assert.Throws<ArgumentOutOfRangeException>(() => new BloodPressureModule(minValue, maxValue));
