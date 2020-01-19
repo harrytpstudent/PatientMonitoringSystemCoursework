@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace PatientMonitoringSystem.Tests
@@ -29,5 +30,30 @@ namespace PatientMonitoringSystem.Tests
 				Assert.That(valuesReceived.Contains(expectedValue));
 			}
 		}
+
+        [Test]
+        public void MinMaxValueSet()
+        {
+            const int minValue = 2;
+            const int maxValue = 4;
+
+            var module = new BloodPressureModule(minValue, maxValue);
+            Assert.That(module.MinValue == minValue);
+            Assert.That(module.MaxValue == maxValue);
+        }
+
+        [Test]
+        public void NegativeMinValue_RaisesOutOfRangeException() {
+            const int minValue = -1;
+            const int maxValue = 4;
+            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => new BloodPressureModule(minValue, maxValue));
+        }
+
+        [Test]
+        public void MaxValueLessThanMinValue_RaisesOutOfRangeException() {
+            const int minValue = 3;
+            const int maxValue = 2;
+            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => new BloodPressureModule(minValue, maxValue));
+        }
 	}
 }
