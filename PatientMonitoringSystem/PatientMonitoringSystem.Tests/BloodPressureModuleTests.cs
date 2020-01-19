@@ -7,7 +7,7 @@ namespace PatientMonitoringSystem.Tests
 	[TestFixture]
 	public class BloodPressureModuleTests
 	{
-		[Test, Explicit]
+		[Test, Explicit] // The behaviour is non-deterministic, hence why this test should only be run manually.
 		public void GetCurrentReading_ReturnsRandomValues()
 		{
 			const int initialMinValue = 2;
