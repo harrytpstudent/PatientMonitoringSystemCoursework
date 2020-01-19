@@ -10,7 +10,7 @@ namespace PatientMonitoringSystem
 	 * Factors considered:
 	 * 1. How much do the modules differ from each other?
 	 * 2. How often are new types of modules created?
-	 * 3. How much does it cost to write new classes as opposed to injecting modules in?
+	 * 3. How much does it cost to write new Module classes versus Strategy classes?
 	 * 4. Do any of the classes have too much responsibility?
 	 * 5. Do we want to reuse some of the behaviour?
 	 * 6. Is the end goal to make modules configuration-driven, so that we can delegate the responsibility of creating modules to the customer, or make it quicker and easier to implement features and fix mistakes?
