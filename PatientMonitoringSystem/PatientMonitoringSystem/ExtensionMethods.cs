@@ -8,19 +8,19 @@ namespace PatientMonitoringSystem
 		{
 			TSubcontrol foundSubcontrol = null;
 
-			foreach (Control subcontrol in parent.Controls)
+			foreach (Control control in parent.Controls)
 			{
-				if (subcontrol.Name == name)
+				if (control.Name == name)
 				{
-					foundSubcontrol = (TSubcontrol)subcontrol;
+					foundSubcontrol = (TSubcontrol)control;
 					break;
 				}
 
-				var subSubControl = subcontrol.FindSubcontrol<TSubcontrol>(name);
+				var subControl = control.FindSubcontrol<TSubcontrol>(name);
 
-				if (subSubControl != null)
+				if (subControl != null)
 				{
-					foundSubcontrol = subSubControl;
+					foundSubcontrol = subControl;
 				}
 			}
 
