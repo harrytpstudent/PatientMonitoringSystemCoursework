@@ -23,5 +23,10 @@ namespace PatientMonitoringSystem
 		{
 			Controller.UpdateCurrentReading();
 		}
+
+		private void AddButton_Click(object sender, EventArgs e)
+		{
+			Controller.AddModule();
+		}
 	}
 }

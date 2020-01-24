@@ -28,26 +28,26 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.MinValueDisplay = new System.Windows.Forms.NumericUpDown();
+			this.MinValueEntry = new System.Windows.Forms.NumericUpDown();
 			this.CurrentReadingDisplay = new System.Windows.Forms.NumericUpDown();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.MaxValueDisplay = new System.Windows.Forms.NumericUpDown();
+			this.MaxValueEntry = new System.Windows.Forms.NumericUpDown();
 			this.NameDisplay = new System.Windows.Forms.Label();
 			this.RemoveButton = new System.Windows.Forms.Button();
-			((System.ComponentModel.ISupportInitialize)(this.MinValueDisplay)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.MinValueEntry)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.CurrentReadingDisplay)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.MaxValueDisplay)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.MaxValueEntry)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// MinValueDisplay
+			// MinValueEntry
 			// 
-			this.MinValueDisplay.Location = new System.Drawing.Point(151, 57);
-			this.MinValueDisplay.Name = "MinValueDisplay";
-			this.MinValueDisplay.Size = new System.Drawing.Size(120, 31);
-			this.MinValueDisplay.TabIndex = 0;
-			this.MinValueDisplay.ValueChanged += new System.EventHandler(this.MinValueDisplay_ValueChanged);
+			this.MinValueEntry.Location = new System.Drawing.Point(151, 57);
+			this.MinValueEntry.Name = "MinValueEntry";
+			this.MinValueEntry.Size = new System.Drawing.Size(120, 31);
+			this.MinValueEntry.TabIndex = 0;
+			this.MinValueEntry.ValueChanged += new System.EventHandler(this.MinValueEntry_ValueChanged);
 			// 
 			// CurrentReadingDisplay
 			// 
@@ -99,13 +99,13 @@
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Max:";
 			// 
-			// MaxValueDisplay
+			// MaxValueEntry
 			// 
-			this.MaxValueDisplay.Location = new System.Drawing.Point(797, 59);
-			this.MaxValueDisplay.Name = "MaxValueDisplay";
-			this.MaxValueDisplay.Size = new System.Drawing.Size(120, 31);
-			this.MaxValueDisplay.TabIndex = 5;
-			this.MaxValueDisplay.ValueChanged += new System.EventHandler(this.MaxValueDisplay_ValueChanged);
+			this.MaxValueEntry.Location = new System.Drawing.Point(797, 59);
+			this.MaxValueEntry.Name = "MaxValueEntry";
+			this.MaxValueEntry.Size = new System.Drawing.Size(120, 31);
+			this.MaxValueEntry.TabIndex = 5;
+			this.MaxValueEntry.ValueChanged += new System.EventHandler(this.MaxValueEntry_ValueChanged);
 			// 
 			// NameDisplay
 			// 
@@ -132,18 +132,18 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.RemoveButton);
 			this.Controls.Add(this.NameDisplay);
-			this.Controls.Add(this.MaxValueDisplay);
+			this.Controls.Add(this.MaxValueEntry);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.CurrentReadingDisplay);
-			this.Controls.Add(this.MinValueDisplay);
+			this.Controls.Add(this.MinValueEntry);
 			this.Name = "ModuleRowView";
 			this.Size = new System.Drawing.Size(1371, 154);
 			this.Load += new System.EventHandler(this.ModuleRow_Load);
-			((System.ComponentModel.ISupportInitialize)(this.MinValueDisplay)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.MinValueEntry)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.CurrentReadingDisplay)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.MaxValueDisplay)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.MaxValueEntry)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -151,12 +151,12 @@
 
 		#endregion
 
-		private System.Windows.Forms.NumericUpDown MinValueDisplay;
+		private System.Windows.Forms.NumericUpDown MinValueEntry;
 		private System.Windows.Forms.NumericUpDown CurrentReadingDisplay;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.NumericUpDown MaxValueDisplay;
+		private System.Windows.Forms.NumericUpDown MaxValueEntry;
 		private System.Windows.Forms.Label NameDisplay;
 		private System.Windows.Forms.Button RemoveButton;
 	}

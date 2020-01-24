@@ -95,7 +95,7 @@
 			this.ResumeLayout(false);
 			// 
 			// label1
-			// 
+			//
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(0, 0);
 			this.label1.Name = "label1";
@@ -105,12 +105,16 @@
 			// 
 			// NameEntry
 			//
+			this.NameEntry.Name = "NameEntry";
 			this.NameEntry.Location = new System.Drawing.Point(100, 0);
 			// 
 			// AddButton
 			//
+			this.AddButton.Name = "AddButton";
 			this.AddButton.Location = new System.Drawing.Point(200, 0);
 			this.AddButton.Text = "Add";
+			this.AddButton.Size = new System.Drawing.Size(208, 71);
+			this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
 		}
 
 		#endregion

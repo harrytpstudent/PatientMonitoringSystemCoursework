@@ -7,13 +7,11 @@ namespace PatientMonitoringSystem
 	{
 		public ModuleRowController Controller { get; private set; }
 
-		public event EventHandler<ModuleRowView> OnRemoveModule;
-
-		public ModuleRowView(IModule module)
+		public ModuleRowView(IModule model)
 		{
 			InitializeComponent();
 
-			Controller = new ModuleRowController(this, module);
+			Controller = new ModuleRowController(this, model);
 		}
 
 		private void ModuleRow_Load(object sender, EventArgs e)
@@ -21,19 +19,19 @@ namespace PatientMonitoringSystem
 			Controller.Initialise();
 		}
 
-		private void MinValueDisplay_ValueChanged(object sender, EventArgs e)
+		private void MinValueEntry_ValueChanged(object sender, EventArgs e)
 		{
-			Controller.MinValueUpdated((int)MinValueDisplay.Value);
+			Controller.MinValueUpdated((int)MinValueEntry.Value);
 		}
 
-		private void MaxValueDisplay_ValueChanged(object sender, EventArgs e)
+		private void MaxValueEntry_ValueChanged(object sender, EventArgs e)
 		{
-			Controller.MaxValueUpdated((int)MaxValueDisplay.Value);
+			Controller.MaxValueUpdated((int)MaxValueEntry.Value);
 		}
 
 		private void RemoveButton_Click(object sender, EventArgs e)
 		{
-			OnRemoveModule(this, this);
+			Controller.RemoveModule();
 		}
 	}
 }

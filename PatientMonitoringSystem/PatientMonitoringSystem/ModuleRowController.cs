@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System;
 using System.Windows.Forms;
 
 namespace PatientMonitoringSystem
@@ -9,6 +9,8 @@ namespace PatientMonitoringSystem
 
 		private readonly IModule model;
 
+		public event EventHandler<OnRemoveModuleEventArgs> OnRemoveModule;
+
 		public ModuleRowController(ModuleRowView view, IModule model)
 		{
 			this.view = view;
@@ -17,18 +19,18 @@ namespace PatientMonitoringSystem
 
 		public void Initialise()
 		{
-			var minValueDisplay = view.FindSubcontrol<NumericUpDown>("MinValueDisplay");
+			var minValueEntry = view.FindSubcontrol<NumericUpDown>("MinValueEntry");
 			var currentReadingDisplay = view.FindSubcontrol<NumericUpDown>("CurrentReadingDisplay");
-			var maxValueDisplay = view.FindSubcontrol<NumericUpDown>("MaxValueDisplay");
+			var maxValueEntry = view.FindSubcontrol<NumericUpDown>("MaxValueEntry");
 			var nameDisplay = view.FindSubcontrol<Label>("NameDisplay");
 
-			minValueDisplay.Value = model.MinValue;
-			minValueDisplay.Minimum = -2147483648;
-			minValueDisplay.Maximum = model.MaxValue;
+			minValueEntry.Value = model.MinValue;
+			minValueEntry.Minimum = -2147483648;
+			minValueEntry.Maximum = model.MaxValue;
 			currentReadingDisplay.Value = model.GetCurrentReading();
-			maxValueDisplay.Value = model.MaxValue;
-			maxValueDisplay.Minimum = minValueDisplay.Value;
-			maxValueDisplay.Maximum = 2147483647;
+			maxValueEntry.Value = model.MaxValue;
+			maxValueEntry.Minimum = minValueEntry.Value;
+			maxValueEntry.Maximum = 2147483647;
 			nameDisplay.Text = model.Name;
 		}
 
@@ -36,18 +38,18 @@ namespace PatientMonitoringSystem
 		{
 			model.MinValue = newValue;
 
-			var maxValueDisplay = view.FindSubcontrol<NumericUpDown>("MaxValueDisplay");
+			var maxValueEntry = view.FindSubcontrol<NumericUpDown>("MaxValueEntry");
 
-			maxValueDisplay.Minimum = newValue;
+			maxValueEntry.Minimum = newValue;
 		}
 
 		public void MaxValueUpdated(int newValue)
 		{
 			model.MaxValue = newValue;
 
-			var minValueDisplay = view.FindSubcontrol<NumericUpDown>("MinValueDisplay");
+			var minValueEntry = view.FindSubcontrol<NumericUpDown>("MinValueEntry");
 
-			minValueDisplay.Maximum = newValue;
+			minValueEntry.Maximum = newValue;
 		}
 
 		public void UpdateCurrentReading()
@@ -56,5 +58,7 @@ namespace PatientMonitoringSystem
 
 			currentReadingDisplay.Value = model.GetCurrentReading();
 		}
+
+		public void RemoveModule() => OnRemoveModule(this, new OnRemoveModuleEventArgs(model, view));
 	}
 }
