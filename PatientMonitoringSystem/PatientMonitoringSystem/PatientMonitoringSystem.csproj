@@ -47,16 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BedsideSystem.cs" />
+    <Compile Include="BloodPressureStrategy.cs" />
     <Compile Include="IBedsideSystem.cs" />
-    <Compile Include="OxygenPressureModule.cs" />
-    <Compile Include="BloodPressureModule.cs" />
+    <Compile Include="Module.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="IModule.cs" />
+    <Compile Include="IModuleStrategy.cs" />
+    <Compile Include="OxygenStrategy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

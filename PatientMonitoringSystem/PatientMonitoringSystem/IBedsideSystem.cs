@@ -7,6 +7,6 @@ namespace PatientMonitoringSystem
 	{
 		Guid Id { get; }
 
-		List<IModule> Modules { get; }
+		List<Module> Modules { get; }
 	}
 }

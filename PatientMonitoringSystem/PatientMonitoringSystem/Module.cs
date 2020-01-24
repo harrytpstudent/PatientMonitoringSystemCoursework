@@ -13,6 +13,21 @@ namespace PatientMonitoringSystem
 		public Guid Id { get; }
 
 		public string Name { get; }
+		public int MinValue {
+			get => minValue;
+			set {
+				ValidateMinValue(value, maxValue);
+				minValue = value;
+			}
+		}
+
+		public int MaxValue {
+			get => maxValue;
+			set {
+				ValidateMaxValue(minValue, value);
+				maxValue = value;
+			}
+		}
 
 		private IModuleStrategy reading_strategy;
 

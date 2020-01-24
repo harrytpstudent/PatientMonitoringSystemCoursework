@@ -14,7 +14,8 @@ namespace PatientMonitoringSystem.Tests
 			const int initialMaxValue = 4;
 			const int numberOfRuns = 1000;
 
-			var module = new BloodPressureModule(initialMinValue, initialMaxValue);
+			BloodPressureStrategy strat = new BloodPressureStrategy();
+			var module = new Module(strat, initialMinValue, initialMaxValue);
 
 			var valuesReceived = new List<int>();
 
@@ -37,8 +38,9 @@ namespace PatientMonitoringSystem.Tests
             const int initialMinValue = 2;
             const int initialMaxValue = 4;
 
-            BloodPressureModule module = null;
-            Assert.DoesNotThrow(() => module = new BloodPressureModule(initialMinValue, initialMaxValue));
+			BloodPressureStrategy strat = new BloodPressureStrategy();
+			Module module = null;
+            Assert.DoesNotThrow(() => module = new Module(strat, initialMinValue, initialMaxValue));
 
             Assert.That(module.MinValue, Is.EqualTo(initialMinValue));
             Assert.That(module.MaxValue, Is.EqualTo(initialMaxValue));
@@ -49,8 +51,8 @@ namespace PatientMonitoringSystem.Tests
         {
             const int initialMinValue = -1;
             const int initialMaxValue = 4;
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => new BloodPressureModule(initialMinValue, initialMaxValue));
+			BloodPressureStrategy strat = new BloodPressureStrategy();
+			Assert.Throws<ArgumentOutOfRangeException>(() => new Module(strat, initialMinValue, initialMaxValue));
         }
 
         [Test]
@@ -58,8 +60,8 @@ namespace PatientMonitoringSystem.Tests
         {
             const int initialMinValue = 3;
             const int initialMaxValue = 2;
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => new BloodPressureModule(initialMinValue, initialMaxValue));
+			BloodPressureStrategy strat = new BloodPressureStrategy();
+			Assert.Throws<ArgumentOutOfRangeException>(() => new Module(strat, initialMinValue, initialMaxValue));
         }
 
         [Test]
@@ -69,7 +71,8 @@ namespace PatientMonitoringSystem.Tests
             const int initialMaxValue = 2;
             const int newMinValue = 0;
 
-            var module = new BloodPressureModule(initialMinValue, initialMaxValue);
+			BloodPressureStrategy strat = new BloodPressureStrategy();
+			var module = new Module(strat, initialMinValue, initialMaxValue);
 
             Assert.DoesNotThrow(() => module.MinValue = newMinValue);
 
@@ -82,9 +85,10 @@ namespace PatientMonitoringSystem.Tests
         {
             const int initialMinValue = 1;
             const int initialMaxValue = 2;
-            const int newMinValue = -1; 
+            const int newMinValue = -1;
 
-            var module = new BloodPressureModule(initialMinValue, initialMaxValue);
+			BloodPressureStrategy strat = new BloodPressureStrategy();
+			var module = new Module(strat, initialMinValue, initialMaxValue);
 
             Assert.Throws<ArgumentOutOfRangeException>(() => module.MinValue = newMinValue);
         }
@@ -96,7 +100,8 @@ namespace PatientMonitoringSystem.Tests
             const int initialMaxValue = 2;
             const int newMinValue = 3;
 
-            var module = new BloodPressureModule(initialMinValue, initialMaxValue);
+			BloodPressureStrategy strat = new BloodPressureStrategy();
+			var module = new Module(strat, initialMinValue, initialMaxValue);
 
             Assert.Throws<ArgumentOutOfRangeException>(() => module.MinValue = newMinValue);
         }
@@ -108,7 +113,8 @@ namespace PatientMonitoringSystem.Tests
             const int initialMaxValue = 2;
             const int newMaxValue = 3;
 
-            var module = new BloodPressureModule(initialMinValue, initialMaxValue);
+			BloodPressureStrategy strat = new BloodPressureStrategy();
+			var module = new Module(strat, initialMinValue, initialMaxValue);
 
             Assert.DoesNotThrow(() => module.MaxValue = newMaxValue);
 
@@ -123,7 +129,8 @@ namespace PatientMonitoringSystem.Tests
             const int initialMaxValue = 2;
             const int newMaxValue = 0;
 
-            var module = new BloodPressureModule(initialMinValue, initialMaxValue);
+			BloodPressureStrategy strat = new BloodPressureStrategy();
+			var module = new Module(strat, initialMinValue, initialMaxValue);
 
             Assert.Throws<ArgumentOutOfRangeException>(() => module.MaxValue = newMaxValue);
         }
