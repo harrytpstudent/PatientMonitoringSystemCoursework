@@ -1,33 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PatientMonitoringSystem
 {
-	public class Module
+	public class Module : IModule
 	{
-		private int minValue;
-		private int maxValue;
-		public Guid Id { get; }
-
-		public string Name { get; } // TODO: Make sure this is initialised.
-
 		private IModuleStrategy reading_strategy;
 
-		public Module(IModuleStrategy strategy, int initialMinValue, int initialMaxValue) {
+		public Guid Id { get; }
+
+		public string Name { get; }
+
+		public int MinValue { get; set; }
+
+		public int MaxValue { get; set; }
+
+		public Module(IModuleStrategy strategy, string name, int initialMinValue, int initialMaxValue) {
 
 			ValidateMinValue(initialMinValue, initialMaxValue);
-			minValue = initialMinValue;
-			maxValue = initialMaxValue;
+
+			reading_strategy = strategy;
+			Id = Guid.NewGuid();
+			Name = name;
+			MinValue = initialMinValue;
+			MaxValue = initialMaxValue;
 
 			SetReadingStrategy(strategy);
-
-			Id = Guid.NewGuid();
 		}
 		public int GetCurrentReading () {
-			int reading = this.reading_strategy.GetCurrentReading(minValue, maxValue);
+			int reading = this.reading_strategy.GetCurrentReading(MinValue, MaxValue);
 			return reading;
 		}
 
