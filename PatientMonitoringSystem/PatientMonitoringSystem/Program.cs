@@ -21,7 +21,7 @@ namespace PatientMonitoringSystem
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new ModulesView(bedsideSystem));
+			Application.Run(new BedsideSystemView(bedsideSystem));
 		}
 
 		public static List<IBedsideSystem> BedsideSystems;

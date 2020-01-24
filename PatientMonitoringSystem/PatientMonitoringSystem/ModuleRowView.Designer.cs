@@ -35,6 +35,7 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.MaxValueDisplay = new System.Windows.Forms.NumericUpDown();
 			this.NameDisplay = new System.Windows.Forms.Label();
+			this.RemoveButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.MinValueDisplay)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.CurrentReadingDisplay)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.MaxValueDisplay)).BeginInit();
@@ -115,10 +116,21 @@
 			this.NameDisplay.TabIndex = 6;
 			this.NameDisplay.Text = "label4";
 			// 
+			// RemoveButton
+			// 
+			this.RemoveButton.Location = new System.Drawing.Point(1130, 38);
+			this.RemoveButton.Name = "RemoveButton";
+			this.RemoveButton.Size = new System.Drawing.Size(208, 71);
+			this.RemoveButton.TabIndex = 7;
+			this.RemoveButton.Text = "Remove";
+			this.RemoveButton.UseVisualStyleBackColor = true;
+			this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
+			// 
 			// ModuleRowView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.RemoveButton);
 			this.Controls.Add(this.NameDisplay);
 			this.Controls.Add(this.MaxValueDisplay);
 			this.Controls.Add(this.label3);
@@ -127,7 +139,7 @@
 			this.Controls.Add(this.CurrentReadingDisplay);
 			this.Controls.Add(this.MinValueDisplay);
 			this.Name = "ModuleRowView";
-			this.Size = new System.Drawing.Size(1281, 131);
+			this.Size = new System.Drawing.Size(1371, 154);
 			this.Load += new System.EventHandler(this.ModuleRow_Load);
 			((System.ComponentModel.ISupportInitialize)(this.MinValueDisplay)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.CurrentReadingDisplay)).EndInit();
@@ -146,5 +158,6 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.NumericUpDown MaxValueDisplay;
 		private System.Windows.Forms.Label NameDisplay;
+		private System.Windows.Forms.Button RemoveButton;
 	}
 }

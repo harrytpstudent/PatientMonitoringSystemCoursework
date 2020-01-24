@@ -48,10 +48,11 @@
   <ItemGroup>
     <Compile Include="BedsideSystem.cs" />
     <Compile Include="BloodPressureStrategy.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="IBedsideSystem.cs" />
     <Compile Include="IModule.cs" />
     <Compile Include="Module.cs" />
-    <Compile Include="ModulesController.cs" />
+    <Compile Include="BedsideSystemController.cs" />
     <Compile Include="ModuleRowView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -59,11 +60,11 @@
       <DependentUpon>ModuleRowView.cs</DependentUpon>
     </Compile>
     <Compile Include="ModuleRowController.cs" />
-    <Compile Include="ModulesView.cs">
+    <Compile Include="BedsideSystemView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModulesView.Designer.cs">
-      <DependentUpon>ModulesView.cs</DependentUpon>
+    <Compile Include="BedsideSystemView.Designer.cs">
+      <DependentUpon>BedsideSystemView.cs</DependentUpon>
     </Compile>
     <Compile Include="IModuleStrategy.cs" />
     <Compile Include="OxygenStrategy.cs" />
@@ -72,8 +73,8 @@
     <EmbeddedResource Include="ModuleRowView.resx">
       <DependentUpon>ModuleRowView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModulesView.resx">
-      <DependentUpon>ModulesView.cs</DependentUpon>
+    <EmbeddedResource Include="BedsideSystemView.resx">
+      <DependentUpon>BedsideSystemView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
