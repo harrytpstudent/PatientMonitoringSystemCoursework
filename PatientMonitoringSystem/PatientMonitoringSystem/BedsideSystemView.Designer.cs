@@ -54,7 +54,7 @@
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(674, 360);
+            this.TopPanel.Size = new System.Drawing.Size(714, 359);
             this.TopPanel.TabIndex = 2;
             // 
             // Table
@@ -68,7 +68,7 @@
             this.Table.Name = "Table";
             this.Table.RowCount = 1;
             this.Table.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.Table.Size = new System.Drawing.Size(674, 360);
+            this.Table.Size = new System.Drawing.Size(714, 359);
             this.Table.TabIndex = 0;
             // 
             // BottomPanel
@@ -78,10 +78,10 @@
             this.BottomPanel.Controls.Add(this.NameEntry);
             this.BottomPanel.Controls.Add(this.AddButton);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomPanel.Location = new System.Drawing.Point(0, 360);
+            this.BottomPanel.Location = new System.Drawing.Point(0, 359);
             this.BottomPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(674, 52);
+            this.BottomPanel.Size = new System.Drawing.Size(714, 52);
             this.BottomPanel.TabIndex = 2;
             // 
             // label1
@@ -104,7 +104,7 @@
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(568, 7);
+            this.AddButton.Location = new System.Drawing.Point(599, 7);
             this.AddButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(104, 37);
@@ -116,7 +116,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(674, 412);
+            this.ClientSize = new System.Drawing.Size(714, 411);
             this.Controls.Add(this.TopPanel);
             this.Controls.Add(this.BottomPanel);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
