@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace PatientMonitoringSystem.Tests
 {
 	[TestFixture]
-	public class BloodPressureModuleTests2
+	public class BloodPressureStrategyTests
 	{
 		[Test]
 		public void TestStrategySet() { // TODO: Make this a unit test by mocking out the IModuleStrategy. I can show you how to use a cool library called Moq to do this.
