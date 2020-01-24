@@ -12,7 +12,6 @@ namespace PatientMonitoringSystem
 		private int maxValue;
 		public Guid Id { get; }
 
-		public string Name { get; }
 		public int MinValue {
 			get => minValue;
 			set {
@@ -28,6 +27,7 @@ namespace PatientMonitoringSystem
 				maxValue = value;
 			}
 		}
+		public string Name { get; } // TODO: Make sure this is initialised.
 
 		private IModuleStrategy reading_strategy;
 
