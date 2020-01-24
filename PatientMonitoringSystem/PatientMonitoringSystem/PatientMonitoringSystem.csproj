@@ -49,7 +49,7 @@
     <Compile Include="BedsideSystem.cs" />
     <Compile Include="BloodPressureStrategy.cs" />
     <Compile Include="IBedsideSystem.cs" />
-    <Compile Include="IModuleStrategy.cs" />
+    <Compile Include="IModule.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="ModulesController.cs" />
     <Compile Include="ModuleRowView.cs">
@@ -65,7 +65,7 @@
     <Compile Include="ModulesView.Designer.cs">
       <DependentUpon>ModulesView.cs</DependentUpon>
     </Compile>
-    <Compile Include="IModule.cs" />
+    <Compile Include="IModuleStrategy.cs" />
     <Compile Include="OxygenStrategy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
