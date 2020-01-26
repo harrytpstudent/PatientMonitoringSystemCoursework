@@ -52,9 +52,19 @@ namespace PatientMonitoringSystem
 
 		public void AddModule()
 		{
+			
 			var nameEntry = view.FindSubcontrol<TextBox>("NameEntry");
 
-			var module = new Module(new BloodPressureStrategy(), nameEntry.Text, 0, 0);
+			var moduleCombo = view.FindSubcontrol<ComboBox>("ModuleTypeCombo");
+			if (moduleCombo.SelectedIndex == -1) {
+				MessageBox.Show("Please select a module type from the drop down menu item!");
+				return;
+			}
+			string moduleType = moduleCombo.SelectedItem.ToString();
+
+			IModuleStrategy module_strategy = CreateModuleStrategy(moduleType);
+
+			var module = new Module(module_strategy, nameEntry.Text, 0, 0);
 
 			var table = view.FindSubcontrol<TableLayoutPanel>("Table");
 
@@ -92,6 +102,17 @@ namespace PatientMonitoringSystem
 			var addButton = view.FindSubcontrol<Button>("AddButton");
 
 			addButton.Enabled = true;
+		}
+
+		private IModuleStrategy CreateModuleStrategy(string module_name) {
+			switch (module_name) {
+				case "Blood Pressure":
+					return new BloodPressureStrategy();
+				case "Oxygen Level":
+					return new OxygenStrategy();
+				default:
+					return new BloodPressureStrategy();
+			}
 		}
 	}
 }
