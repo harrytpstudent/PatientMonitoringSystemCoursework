@@ -33,16 +33,6 @@ namespace PatientMonitoringSystem.Views
 			var moduleName = NameEntry.Text;
 			ModuleType moduleType = (ModuleType)ModuleCombo.SelectedItem;
 			controller.AddModule(moduleName, moduleType);
-			/*
-			if (ModuleCombo.SelectedIndex == -1)
-			{
-				MessageBox.Show("Please select a module type!");
-			}
-			else {
-				var strategyType = ModuleCombo.SelectedItem.ToString();
-				controller.AddModule(moduleName, strategyType);
-			}*/
-
 		}
 
 		public void OnRemoveModule(Guid moduleId)
