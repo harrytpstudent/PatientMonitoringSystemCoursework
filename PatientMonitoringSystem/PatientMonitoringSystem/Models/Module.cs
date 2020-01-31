@@ -30,24 +30,5 @@ namespace PatientMonitoringSystem.Models
 			int reading = this.reading_strategy.GetCurrentReading(MinValue, MaxValue);
 			return reading;
 		}
-
-		private void SetReadingStrategy(IModuleStrategy strategy) {
-			this.reading_strategy = strategy;
-		}
-		private void ValidateMinValue(int minValue, int maxValue)
-		{
-			if (minValue < 0 || minValue > maxValue)
-			{
-				throw new ArgumentOutOfRangeException(nameof(minValue), $"Invalid value. Value must range from 0 to {maxValue}.");
-			}
-		}
-
-		private void ValidateMaxValue(int minValue, int maxValue)
-		{
-			if (maxValue < minValue)
-			{
-				throw new ArgumentOutOfRangeException(nameof(maxValue), $"Invalid value. Value must be greater than or equal to {minValue}.");
-			}
-		}
 	}
 }
