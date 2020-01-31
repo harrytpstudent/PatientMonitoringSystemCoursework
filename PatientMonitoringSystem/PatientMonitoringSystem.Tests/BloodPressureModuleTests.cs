@@ -48,12 +48,12 @@ namespace PatientMonitoringSystem.Tests
         }
 
         [Test]
-        public void OnConstruction_WhenMinValueIsNegative_Throws()
+        public void OnConstruction_WhenMinValueIsNegative_DoesNotThrow()
         {
             const int initialMinValue = -1;
             const int initialMaxValue = 4;
 			BloodPressureStrategy strat = new BloodPressureStrategy();
-			Assert.Throws<ArgumentOutOfRangeException>(() => new Module(strat, "", initialMinValue, initialMaxValue));
+			Assert.DoesNotThrow(() => new Module(strat, "", initialMinValue, initialMaxValue));
         }
 
         [Test]
@@ -79,19 +79,6 @@ namespace PatientMonitoringSystem.Tests
 
             Assert.That(module.MinValue, Is.EqualTo(newMinValue));
             Assert.That(module.MaxValue, Is.EqualTo(initialMaxValue));
-        }
-
-        [Test]
-        public void OnMinValueSet_WhenMinValueIsSetNegative_Throws()
-        {
-            const int initialMinValue = 1;
-            const int initialMaxValue = 2;
-            const int newMinValue = -1;
-
-			BloodPressureStrategy strat = new BloodPressureStrategy();
-			var module = new Module(strat, "", initialMinValue, initialMaxValue);
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => module.MinValue = newMinValue);
         }
 
         [Test]

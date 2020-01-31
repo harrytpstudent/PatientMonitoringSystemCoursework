@@ -4,49 +4,66 @@ namespace PatientMonitoringSystem.Models
 {
 	public class Module : IModule
 	{
+		private int minValue;
+
+		private int maxValue;
+
 		private IModuleStrategy reading_strategy;
 
 		public Guid ModuleId { get; }
 
 		public string Name { get; }
 
-		public int MinValue { get; set; }
+		public int MinValue
+		{
+			get => minValue;
+			set
+			{
+				ValidateValues(value, maxValue);
 
-		public int MaxValue { get; set; }
+				minValue = value;
+			}
+		}
 
-		public Module(IModuleStrategy strategy, string name, int initialMinValue, int initialMaxValue) {
+		public int MaxValue
+		{
+			get => maxValue;
+			set
+			{
+				ValidateValues(minValue, value);
 
-			ValidateMinValue(initialMinValue, initialMaxValue);
+				maxValue = value;
+			}
+		}
+
+		public Module(IModuleStrategy strategy, string name, int initialMinValue, int initialMaxValue)
+		{
+
+			ValidateValues(initialMinValue, initialMaxValue);
 
 			reading_strategy = strategy;
 			ModuleId = Guid.NewGuid();
 			Name = name;
-			MinValue = initialMinValue;
 			MaxValue = initialMaxValue;
+			MinValue = initialMinValue;
 
 			SetReadingStrategy(strategy);
 		}
-		public int GetCurrentReading () {
+		public int GetCurrentReading()
+		{
 			int reading = this.reading_strategy.GetCurrentReading(MinValue, MaxValue);
 			return reading;
 		}
 
-		private void SetReadingStrategy(IModuleStrategy strategy) {
+		private void SetReadingStrategy(IModuleStrategy strategy)
+		{
 			this.reading_strategy = strategy;
 		}
-		private void ValidateMinValue(int minValue, int maxValue)
+		private void ValidateValues(int minValue, int maxValue)
 		{
-			if (minValue < 0 || minValue > maxValue)
+			if (minValue > maxValue)
 			{
-				throw new ArgumentOutOfRangeException(nameof(minValue), $"Invalid value. Value must range from 0 to {maxValue}.");
-			}
-		}
-
-		private void ValidateMaxValue(int minValue, int maxValue)
-		{
-			if (maxValue < minValue)
-			{
-				throw new ArgumentOutOfRangeException(nameof(maxValue), $"Invalid value. Value must be greater than or equal to {minValue}.");
+				throw new ArgumentOutOfRangeException(nameof(minValue), $"{nameof(minValue)} must not be greater than {nameof(maxValue)}!");
 			}
 		}
 	}
