@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using PatientMonitoringSystem.Models;
+using PatientMonitoringSystem.Views;
 
 namespace PatientMonitoringSystem
 {

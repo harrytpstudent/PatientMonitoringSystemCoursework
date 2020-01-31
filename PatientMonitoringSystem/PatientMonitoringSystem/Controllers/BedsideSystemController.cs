@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Linq;
 using PatientMonitoringSystem.Models;
 using PatientMonitoringSystem.ViewModels;
+using PatientMonitoringSystem.Views;
 
 namespace PatientMonitoringSystem.Controllers
 {

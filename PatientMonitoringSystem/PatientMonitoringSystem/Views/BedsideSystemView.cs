@@ -3,9 +3,8 @@ using System.Linq;
 using System.Windows.Forms;
 using PatientMonitoringSystem.Controllers;
 using PatientMonitoringSystem.ViewModels;
-using PatientMonitoringSystem.Views;
 
-namespace PatientMonitoringSystem
+namespace PatientMonitoringSystem.Views
 {
 	public partial class BedsideSystemView : Form
 	{
