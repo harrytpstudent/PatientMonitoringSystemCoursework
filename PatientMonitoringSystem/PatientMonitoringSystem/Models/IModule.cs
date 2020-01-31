@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PatientMonitoringSystem
+namespace PatientMonitoringSystem.Models
 {
 	/* Originally, we created multiple implementations of this interface to demonstrate that we know how interfaces work and that implementations can differ.
 	 * However, this wasn't scalable, and the classes were almost identical, so we opted for a single implementation which allows a name and behaviour to be injected.
@@ -32,7 +32,7 @@ namespace PatientMonitoringSystem
 	 * Currently, there are scenarios where you have to reduce MinValue before you can reduce MaxValue. */
 	public interface IModule
 	{
-		Guid Id { get; }
+		Guid ModuleId { get; }
 
 		string Name { get; }
 
