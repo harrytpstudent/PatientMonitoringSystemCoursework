@@ -40,9 +40,11 @@ namespace PatientMonitoringSystem.Controllers
 			bedsideSystemView.UpdateCurrentReading();
 		}
 
-		public void AddModule(string name)
+		public void AddModule(string name, string strategyType)
 		{
-			var module = new Module(new BloodPressureStrategy(), name, 0, 0);
+			// Create a factory for the strategy
+			IModuleStrategy strategy = CreateStrategy(strategyType);
+			var module = new Module(strategy, name, 0, 0);
 
 			Program.Modules.Add(module);
 
@@ -62,6 +64,17 @@ namespace PatientMonitoringSystem.Controllers
 			Program.Modules.Remove(module);
 
 			bedsideSystemView.RemoveModule(moduleId);
+		}
+
+		private IModuleStrategy CreateStrategy(string strategyName) {
+			switch (strategyName) {
+				case "Blood Pressure":
+					return new BloodPressureStrategy();
+				case "Oxygen Level":
+					return new OxygenStrategy();
+				default:
+					return new BloodPressureStrategy();
+			}
 		}
 	}
 }
