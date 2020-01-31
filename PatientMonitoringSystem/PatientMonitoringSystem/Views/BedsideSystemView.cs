@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using PatientMonitoringSystem.Controllers;
 using PatientMonitoringSystem.ViewModels;
+using PatientMonitoringSystem.Enums;
 
 namespace PatientMonitoringSystem.Views
 {
@@ -30,6 +31,9 @@ namespace PatientMonitoringSystem.Views
 		private void AddButton_Click(object sender, EventArgs e)
 		{
 			var moduleName = NameEntry.Text;
+			ModuleType moduleType = (ModuleType)ModuleCombo.SelectedItem;
+			controller.AddModule(moduleName, moduleType);
+			/*
 			if (ModuleCombo.SelectedIndex == -1)
 			{
 				MessageBox.Show("Please select a module type!");
@@ -37,7 +41,8 @@ namespace PatientMonitoringSystem.Views
 			else {
 				var strategyType = ModuleCombo.SelectedItem.ToString();
 				controller.AddModule(moduleName, strategyType);
-			}
+			}*/
+
 		}
 
 		public void OnRemoveModule(Guid moduleId)
@@ -57,6 +62,7 @@ namespace PatientMonitoringSystem.Views
 				AddModule(moduleId);
 			}
 
+			ModuleCombo.DataSource = Enum.GetValues(typeof(ModuleType));
 			AddButton.Enabled = canAddAnotherModule;
 		}
 

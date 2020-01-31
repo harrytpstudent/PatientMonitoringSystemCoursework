@@ -2,6 +2,8 @@
 
 namespace PatientMonitoringSystem.Models
 {
+
+
 	public class Module : IModule
 	{
 		private int minValue;
