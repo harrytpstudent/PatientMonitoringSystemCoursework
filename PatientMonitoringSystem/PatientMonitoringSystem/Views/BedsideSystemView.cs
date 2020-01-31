@@ -30,8 +30,14 @@ namespace PatientMonitoringSystem.Views
 		private void AddButton_Click(object sender, EventArgs e)
 		{
 			var moduleName = NameEntry.Text;
-
-			controller.AddModule(moduleName);
+			if (ModuleCombo.SelectedIndex == -1)
+			{
+				MessageBox.Show("Please select a module type!");
+			}
+			else {
+				var strategyType = ModuleCombo.SelectedItem.ToString();
+				controller.AddModule(moduleName, strategyType);
+			}
 		}
 
 		public void OnRemoveModule(Guid moduleId)

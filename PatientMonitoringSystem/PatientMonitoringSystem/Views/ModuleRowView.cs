@@ -30,6 +30,7 @@ namespace PatientMonitoringSystem.Views
 
 		private void MinValueEntry_ValueChanged(object sender, EventArgs e)
 		{
+
 			controller.UpdateMinValue((int)MinValueEntry.Value);
 		}
 
@@ -57,12 +58,14 @@ namespace PatientMonitoringSystem.Views
 
 		public void UpdateMinValue(int value)
 		{
-			MinValueEntry.Minimum = value;
+			MinValueEntry.Value = value;
+			MaxValueEntry.Minimum = value;
 		}
 
 		public void UpdateMaxValue(int value)
 		{
-			MaxValueEntry.Minimum = value;
+			MaxValueEntry.Value = value;
+			MinValueEntry.Maximum = value;
 		}
 
 		public void UpdateCurrentReading()
