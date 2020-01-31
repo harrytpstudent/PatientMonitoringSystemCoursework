@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace PatientMonitoringSystem
+namespace PatientMonitoringSystem.Models
 {
 	public class Module : IModule
 	{
 		private IModuleStrategy reading_strategy;
 
-		public Guid Id { get; }
+		public Guid ModuleId { get; }
 
 		public string Name { get; }
 
@@ -19,7 +19,7 @@ namespace PatientMonitoringSystem
 			ValidateMinValue(initialMinValue, initialMaxValue);
 
 			reading_strategy = strategy;
-			Id = Guid.NewGuid();
+			ModuleId = Guid.NewGuid();
 			Name = name;
 			MinValue = initialMinValue;
 			MaxValue = initialMaxValue;

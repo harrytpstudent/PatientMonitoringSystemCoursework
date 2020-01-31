@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PatientMonitoringSystem
+namespace PatientMonitoringSystem.Models
 {
 	public class BedsideSystem : IBedsideSystem
 	{
-		public Guid Id { get; }
+		public Guid BedsideSystemId { get; }
 
 		public List<IModule> Modules { get; }
 
 		public BedsideSystem()
 		{
-			Id = Guid.NewGuid();
+			BedsideSystemId = Guid.NewGuid();
 			Modules = new List<IModule>();
 		}
 	}

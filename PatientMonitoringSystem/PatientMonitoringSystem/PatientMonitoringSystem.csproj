@@ -47,35 +47,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BedsideSystem.cs" />
+    <Compile Include="Models\BedsideSystem.cs" />
     <Compile Include="BloodPressureStrategy.cs" />
-    <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="IBedsideSystem.cs" />
-    <Compile Include="IModule.cs" />
-    <Compile Include="Module.cs" />
-    <Compile Include="BedsideSystemController.cs" />
-    <Compile Include="ModuleRowView.cs">
+    <Compile Include="Models\IBedsideSystem.cs" />
+    <Compile Include="Models\IModule.cs" />
+    <Compile Include="Models\Module.cs" />
+    <Compile Include="Controllers\BedsideSystemController.cs" />
+    <Compile Include="ViewModels\BedsideSystemViewModel.cs" />
+    <Compile Include="ViewModels\ModuleViewModel.cs" />
+    <Compile Include="Views\ModuleRowView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ModuleRowView.Designer.cs">
+    <Compile Include="Views\ModuleRowView.Designer.cs">
       <DependentUpon>ModuleRowView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModuleRowController.cs" />
-    <Compile Include="BedsideSystemView.cs">
+    <Compile Include="Controllers\ModuleRowController.cs" />
+    <Compile Include="Views\BedsideSystemView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BedsideSystemView.Designer.cs">
+    <Compile Include="Views\BedsideSystemView.Designer.cs">
       <DependentUpon>BedsideSystemView.cs</DependentUpon>
     </Compile>
     <Compile Include="IModuleStrategy.cs" />
-    <Compile Include="OnRemoveModuleEventArgs.cs" />
     <Compile Include="OxygenStrategy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ModuleRowView.resx">
+    <EmbeddedResource Include="Views\ModuleRowView.resx">
       <DependentUpon>ModuleRowView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BedsideSystemView.resx">
+    <EmbeddedResource Include="Views\BedsideSystemView.resx">
       <DependentUpon>BedsideSystemView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -100,5 +100,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

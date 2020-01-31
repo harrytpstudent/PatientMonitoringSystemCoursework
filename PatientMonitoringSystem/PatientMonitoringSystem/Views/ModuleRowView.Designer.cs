@@ -1,4 +1,4 @@
-﻿namespace PatientMonitoringSystem
+﻿namespace PatientMonitoringSystem.Views
 {
 	partial class ModuleRowView
 	{

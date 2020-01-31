@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PatientMonitoringSystem
+namespace PatientMonitoringSystem.Models
 {
 	public interface IBedsideSystem
 	{
-		Guid Id { get; }
+		Guid BedsideSystemId { get; }
 
 		List<IModule> Modules { get; }
 	}

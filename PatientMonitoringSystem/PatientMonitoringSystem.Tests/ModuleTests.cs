@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using PatientMonitoringSystem.Models;
 
 namespace PatientMonitoringSystem.Tests
 {

@@ -16,9 +16,9 @@ namespace PatientMonitoringSystem
 	// * Want to make unit testing very easy by using mocks instead of shims.
 	// * Are afraid of making things static (single instance) in case you want there to be multiple instances later (e.g. for scalability and asynchronicity).
 
-	// TODO: Consider whether MinValue and MaxValue should be extracted into a struct.
+	// TODO: Consider whether Min and MaxValue should be extracted into a struct.
 	// The values are related, and in the UI we may want to validate after both have been specified.
-	// Currently, there are scenarios where you have to reduce MinValue before you can reduce MaxValue.
+	// Currently, there are scenarios where you have to reduce Min before you can reduce MaxValue.
 	public interface IModuleStrategy
 	{
 		int GetCurrentReading(int min, int max);
