@@ -33,11 +33,11 @@
 			this.TopPanel = new System.Windows.Forms.Panel();
 			this.Table = new System.Windows.Forms.TableLayoutPanel();
 			this.BottomPanel = new System.Windows.Forms.Panel();
+			this.label2 = new System.Windows.Forms.Label();
+			this.ModuleCombo = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.NameEntry = new System.Windows.Forms.TextBox();
 			this.AddButton = new System.Windows.Forms.Button();
-			this.ModuleCombo = new System.Windows.Forms.ComboBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.TopPanel.SuspendLayout();
 			this.BottomPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -88,6 +88,27 @@
 			this.BottomPanel.Size = new System.Drawing.Size(714, 52);
 			this.BottomPanel.TabIndex = 2;
 			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(226, 18);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(72, 13);
+			this.label2.TabIndex = 6;
+			this.label2.Text = "Module Type:";
+			// 
+			// ModuleCombo
+			// 
+			this.ModuleCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ModuleCombo.FormattingEnabled = true;
+			this.ModuleCombo.Items.AddRange(new object[] {
+            "Blood Pressure",
+            "Oxygen Level"});
+			this.ModuleCombo.Location = new System.Drawing.Point(318, 15);
+			this.ModuleCombo.Name = "ModuleCombo";
+			this.ModuleCombo.Size = new System.Drawing.Size(121, 21);
+			this.ModuleCombo.TabIndex = 5;
+			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
@@ -115,26 +136,6 @@
 			this.AddButton.TabIndex = 4;
 			this.AddButton.Text = "Add";
 			this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
-			// 
-			// ModuleCombo
-			// 
-			this.ModuleCombo.FormattingEnabled = true;
-			this.ModuleCombo.Items.AddRange(new object[] {
-            "Blood Pressure",
-            "Oxygen Level"});
-			this.ModuleCombo.Location = new System.Drawing.Point(318, 15);
-			this.ModuleCombo.Name = "ModuleCombo";
-			this.ModuleCombo.Size = new System.Drawing.Size(121, 21);
-			this.ModuleCombo.TabIndex = 5;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(226, 18);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(72, 13);
-			this.label2.TabIndex = 6;
-			this.label2.Text = "Module Type:";
 			// 
 			// BedsideSystemView
 			// 
