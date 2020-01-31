@@ -77,6 +77,8 @@ namespace PatientMonitoringSystem.Views
 		{
 			AddModule(moduleId);
 
+			NameEntry.Text = "";
+
 			AddButton.Enabled = canAddAnotherModule;
 		}
 
