@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Linq;
 using PatientMonitoringSystem.Models;
 using PatientMonitoringSystem.ViewModels;
@@ -11,10 +12,13 @@ namespace PatientMonitoringSystem.Controllers
 
 		private readonly IBedsideSystem bedsideSystem;
 
+		private readonly int maxModulesPerBedsideSystem;
+
 		public BedsideSystemController(BedsideSystemView bedsideSystemView, Guid bedsideSystemId)
 		{
 			this.bedsideSystemView = bedsideSystemView;
 			bedsideSystem = Program.BedsideSystems.Single(bs => bs.BedsideSystemId == bedsideSystemId);
+			maxModulesPerBedsideSystem = int.Parse(ConfigurationManager.AppSettings["MaxModulesPerBedsideSystem"]);
 		}
 
 		public void Initialise()
@@ -25,7 +29,9 @@ namespace PatientMonitoringSystem.Controllers
 				ModuleIds = bedsideSystem.Modules.Select(module => module.ModuleId)
 			};
 
-			bedsideSystemView.Initialise(bedsideSystemViewModel);
+			var canAddAnotherModule = bedsideSystem.Modules.Count < maxModulesPerBedsideSystem;
+
+			bedsideSystemView.Initialise(bedsideSystemViewModel, canAddAnotherModule);
 		}
 
 		public void UpdateCurrentReading()
@@ -41,7 +47,9 @@ namespace PatientMonitoringSystem.Controllers
 
 			bedsideSystem.Modules.Add(module);
 
-			bedsideSystemView.AddModule(module.ModuleId);
+			var canAddAnotherModule = bedsideSystem.Modules.Count < maxModulesPerBedsideSystem;
+
+			bedsideSystemView.AddModule(module.ModuleId, canAddAnotherModule);
 		}
 
 		public void RemoveModule(Guid moduleId)

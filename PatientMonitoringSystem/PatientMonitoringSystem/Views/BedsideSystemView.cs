@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Linq;
 using System.Windows.Forms;
 using PatientMonitoringSystem.Controllers;
@@ -36,7 +35,7 @@ namespace PatientMonitoringSystem
 			controller.AddModule(moduleName);
 		}
 
-		public void Initialise(BedsideSystemViewModel bedsideSystemViewModel)
+		public void Initialise(BedsideSystemViewModel bedsideSystemViewModel, bool canAddAnotherModule)
 		{
 			Text = bedsideSystemViewModel.BedsideSystemId;
 
@@ -48,9 +47,7 @@ namespace PatientMonitoringSystem
 				AddModule(moduleId);
 			}
 
-			var maxModulesPerBedsideSystem = int.Parse(ConfigurationManager.AppSettings["MaxModulesPerBedsideSystem"]);
-
-			AddButton.Enabled = bedsideSystemViewModel.ModuleIds.Count() < maxModulesPerBedsideSystem;
+			AddButton.Enabled = canAddAnotherModule;
 		}
 
 		public void UpdateCurrentReading()
@@ -70,6 +67,13 @@ namespace PatientMonitoringSystem
 			Table.RowCount += 1;
 
 			Table.Controls.Add(moduleRowView, 0, Table.RowCount);
+		}
+
+		public void AddModule(Guid moduleId, bool canAddAnotherModule)
+		{
+			AddModule(moduleId);
+
+			AddButton.Enabled = canAddAnotherModule;
 		}
 
 		public void OnRemoveModule(Guid moduleId)
