@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using PatientMonitoringSystem.Controllers;
-using PatientMonitoringSystem.Models;
 using PatientMonitoringSystem.ViewModels;
 
 namespace PatientMonitoringSystem.Views

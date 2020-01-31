@@ -35,6 +35,11 @@ namespace PatientMonitoringSystem
 			controller.AddModule(moduleName);
 		}
 
+		public void OnRemoveModule(Guid moduleId)
+		{
+			controller.RemoveModule(moduleId);
+		}
+
 		public void Initialise(BedsideSystemViewModel bedsideSystemViewModel, bool canAddAnotherModule)
 		{
 			Text = bedsideSystemViewModel.BedsideSystemId;
@@ -74,11 +79,6 @@ namespace PatientMonitoringSystem
 			AddModule(moduleId);
 
 			AddButton.Enabled = canAddAnotherModule;
-		}
-
-		public void OnRemoveModule(Guid moduleId)
-		{
-			controller.RemoveModule(moduleId);
 		}
 
 		public void RemoveModule(Guid moduleId)
