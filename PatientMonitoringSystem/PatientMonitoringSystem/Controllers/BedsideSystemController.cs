@@ -42,7 +42,6 @@ namespace PatientMonitoringSystem.Controllers
 
 		public void AddModule(string name, string strategyType)
 		{
-			// Create a factory for the strategy
 			IModuleStrategy strategy = CreateStrategy(strategyType);
 			var module = new Module(strategy, name, 0, 0);
 
