@@ -30,6 +30,7 @@ namespace PatientMonitoringSystem.Views
 		{
 			Text = "Control System";
 
+			Table.RowStyles.RemoveAt(0);
 			Table.RowCount = 0;
 
 			foreach (var bedsideSystemId in Program.BedsideSystems.Select(bs => bs.BedsideSystemId))
@@ -42,9 +43,8 @@ namespace PatientMonitoringSystem.Views
 		{
 			var bedsideSystemRowView = new BedsideSystemRowView(bedsideSystemId, OnViewBedsideSystem);
 
-			Table.RowCount += 1;
-
-			Table.Controls.Add(bedsideSystemRowView, 0, Table.RowCount);
+			Table.RowStyles.Add(new RowStyle());
+			Table.Controls.Add(bedsideSystemRowView, 0, Table.RowCount - 1);
 		}
 
 		public void ViewBedsideSystem(Guid bedsideSystemId)
