@@ -27,8 +27,8 @@ namespace PatientMonitoringSystem.Controllers
 
 		public void ShowLoginForm()
 		{
-			var loginForm = new LoginView();
-			loginForm.ShowDialog();
+			var loginController = new LoginSystemController(new LoginSystemView());
+			loginController.ShowLoginDialog();
 		}
 	}
 }
