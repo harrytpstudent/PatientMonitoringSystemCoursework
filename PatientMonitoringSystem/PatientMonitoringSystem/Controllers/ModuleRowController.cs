@@ -18,7 +18,7 @@ namespace PatientMonitoringSystem.Controllers
 			module = Program.Modules.Single(m => m.ModuleId == moduleId);
 		}
 
-		public void Initialise()
+		public void Initialise() 
 		{
 			var reading = module.GetCurrentReading();
 

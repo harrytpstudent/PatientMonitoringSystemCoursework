@@ -24,5 +24,11 @@ namespace PatientMonitoringSystem.Controllers
 
 			controlSystemView.ViewBedsideSystem(bedsideSystemId);
 		}
+
+		public void ShowLoginForm()
+		{
+			var loginForm = new LoginView();
+			loginForm.ShowDialog();
+		}
 	}
 }
