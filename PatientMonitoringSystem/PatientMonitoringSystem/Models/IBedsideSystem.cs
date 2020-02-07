@@ -7,6 +7,8 @@ namespace PatientMonitoringSystem.Models
 	{
 		Guid BedsideSystemId { get; }
 
+		string Name { get; }
+
 		List<IModule> Modules { get; }
 	}
 }

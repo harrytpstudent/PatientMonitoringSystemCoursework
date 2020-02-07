@@ -28,7 +28,7 @@ namespace PatientMonitoringSystem.Controllers
 		{
 			var bedsideSystemViewModel = new BedsideSystemViewModel
 			{
-				BedsideSystemId = bedsideSystem.BedsideSystemId.ToString(),
+				BedsideSystemId = bedsideSystem.BedsideSystemId,
 				ModuleIds = bedsideSystem.Modules.Select(module => module.ModuleId)
 			};
 
@@ -67,7 +67,5 @@ namespace PatientMonitoringSystem.Controllers
 
 			bedsideSystemView.RemoveModule(moduleId);
 		}
-
-		
 	}
 }

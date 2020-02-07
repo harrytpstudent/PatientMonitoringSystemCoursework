@@ -45,7 +45,6 @@ namespace PatientMonitoringSystem.Views
 			Text = $"{bedsideSystemViewModel.Name} ({bedsideSystemViewModel.BedsideSystemId})";
 
 			Table.RowCount = 0;
-			Table.RowStyles.RemoveAt(0);
 
 			foreach (var moduleId in bedsideSystemViewModel.ModuleIds)
 			{

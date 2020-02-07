@@ -50,27 +50,25 @@
 			// 
 			// TopPanel
 			// 
-			this.TopPanel.BackColor = System.Drawing.Color.Red;
 			this.TopPanel.Controls.Add(this.Table);
 			this.TopPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.TopPanel.Location = new System.Drawing.Point(0, 0);
-			this.TopPanel.Margin = new System.Windows.Forms.Padding(2);
+			this.TopPanel.Margin = new System.Windows.Forms.Padding(4);
 			this.TopPanel.Name = "TopPanel";
-			this.TopPanel.Size = new System.Drawing.Size(714, 359);
+			this.TopPanel.Size = new System.Drawing.Size(1428, 690);
 			this.TopPanel.TabIndex = 2;
 			// 
 			// Table
 			// 
-			this.Table.BackColor = System.Drawing.SystemColors.Control;
 			this.Table.ColumnCount = 1;
 			this.Table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.Table.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.Table.Location = new System.Drawing.Point(0, 0);
-			this.Table.Margin = new System.Windows.Forms.Padding(2);
+			this.Table.Margin = new System.Windows.Forms.Padding(4);
 			this.Table.Name = "Table";
 			this.Table.RowCount = 1;
 			this.Table.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.Table.Size = new System.Drawing.Size(714, 359);
+			this.Table.Size = new System.Drawing.Size(2856, 1380);
 			this.Table.TabIndex = 0;
 			// 
 			// BottomPanel
@@ -82,18 +80,19 @@
 			this.BottomPanel.Controls.Add(this.NameEntry);
 			this.BottomPanel.Controls.Add(this.AddButton);
 			this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.BottomPanel.Location = new System.Drawing.Point(0, 359);
-			this.BottomPanel.Margin = new System.Windows.Forms.Padding(2);
+			this.BottomPanel.Location = new System.Drawing.Point(0, 690);
+			this.BottomPanel.Margin = new System.Windows.Forms.Padding(4);
 			this.BottomPanel.Name = "BottomPanel";
-			this.BottomPanel.Size = new System.Drawing.Size(714, 52);
+			this.BottomPanel.Size = new System.Drawing.Size(1428, 100);
 			this.BottomPanel.TabIndex = 2;
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(226, 18);
+			this.label2.Location = new System.Drawing.Point(452, 35);
+			this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(72, 13);
+			this.label2.Size = new System.Drawing.Size(143, 25);
 			this.label2.TabIndex = 6;
 			this.label2.Text = "Module Type:";
 			// 
@@ -104,49 +103,50 @@
 			this.ModuleCombo.Items.AddRange(new object[] {
             "Blood Pressure",
             "Oxygen Level"});
-			this.ModuleCombo.Location = new System.Drawing.Point(318, 15);
+			this.ModuleCombo.Location = new System.Drawing.Point(636, 29);
+			this.ModuleCombo.Margin = new System.Windows.Forms.Padding(6);
 			this.ModuleCombo.Name = "ModuleCombo";
-			this.ModuleCombo.Size = new System.Drawing.Size(121, 21);
+			this.ModuleCombo.Size = new System.Drawing.Size(238, 33);
 			this.ModuleCombo.TabIndex = 5;
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(11, 19);
-			this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label1.Location = new System.Drawing.Point(22, 37);
+			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(38, 13);
+			this.label1.Size = new System.Drawing.Size(74, 25);
 			this.label1.TabIndex = 2;
 			this.label1.Text = "Name:";
 			// 
 			// NameEntry
 			// 
-			this.NameEntry.Location = new System.Drawing.Point(72, 16);
-			this.NameEntry.Margin = new System.Windows.Forms.Padding(2);
+			this.NameEntry.Location = new System.Drawing.Point(144, 31);
+			this.NameEntry.Margin = new System.Windows.Forms.Padding(4);
 			this.NameEntry.Name = "NameEntry";
-			this.NameEntry.Size = new System.Drawing.Size(107, 20);
+			this.NameEntry.Size = new System.Drawing.Size(210, 31);
 			this.NameEntry.TabIndex = 3;
 			// 
 			// AddButton
 			// 
-			this.AddButton.Location = new System.Drawing.Point(599, 7);
-			this.AddButton.Margin = new System.Windows.Forms.Padding(2);
+			this.AddButton.Location = new System.Drawing.Point(1198, 13);
+			this.AddButton.Margin = new System.Windows.Forms.Padding(4);
 			this.AddButton.Name = "AddButton";
-			this.AddButton.Size = new System.Drawing.Size(104, 37);
+			this.AddButton.Size = new System.Drawing.Size(208, 71);
 			this.AddButton.TabIndex = 4;
 			this.AddButton.Text = "Add";
 			this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
 			// 
 			// BedsideSystemView
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(714, 411);
+			this.ClientSize = new System.Drawing.Size(1428, 790);
 			this.Controls.Add(this.TopPanel);
 			this.Controls.Add(this.BottomPanel);
-			this.Margin = new System.Windows.Forms.Padding(2);
+			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "BedsideSystemView";
-			this.Text = "Bedside System";
+			this.Text = "BedsideSystemView";
 			this.Load += new System.EventHandler(this.BedsideSystemView_Load);
 			this.TopPanel.ResumeLayout(false);
 			this.BottomPanel.ResumeLayout(false);

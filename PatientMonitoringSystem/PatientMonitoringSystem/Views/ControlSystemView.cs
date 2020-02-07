@@ -1,5 +1,7 @@
-﻿using PatientMonitoringSystem.Controllers;
+﻿using System;
+using System.Linq;
 using System.Windows.Forms;
+using PatientMonitoringSystem.Controllers;
 
 namespace PatientMonitoringSystem.Views
 {
@@ -14,9 +16,40 @@ namespace PatientMonitoringSystem.Views
 			controller = new ControlSystemController(this);
 		}
 
+		private void ControlSystemView_Load(object sender, System.EventArgs e)
+		{
+			controller.Initialise();
+		}
+
+		public void OnViewBedsideSystem(Guid bedsideSystemId)
+		{
+			controller.ViewBedsideSystem(bedsideSystemId);
+		}
+
 		public void Initialise()
 		{
 			Text = "Control System";
+
+			Table.RowCount = 0;
+
+			foreach (var bedsideSystemId in Program.BedsideSystems.Select(bs => bs.BedsideSystemId))
+			{
+				AddBedsideSystem(bedsideSystemId);
+			}
+		}
+
+		private void AddBedsideSystem(Guid bedsideSystemId)
+		{
+			var bedsideSystemRowView = new BedsideSystemRowView(bedsideSystemId, OnViewBedsideSystem);
+
+			Table.RowCount += 1;
+
+			Table.Controls.Add(bedsideSystemRowView, 0, Table.RowCount);
+		}
+
+		public void ViewBedsideSystem(Guid bedsideSystemId)
+		{
+			new BedsideSystemView(bedsideSystemId).ShowDialog(this);
 		}
 	}
 }

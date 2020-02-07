@@ -1,4 +1,6 @@
-﻿using PatientMonitoringSystem.Views;
+﻿using System;
+using System.Linq;
+using PatientMonitoringSystem.Views;
 
 namespace PatientMonitoringSystem.Controllers
 {
@@ -14,6 +16,13 @@ namespace PatientMonitoringSystem.Controllers
 		public void Initialise()
 		{
 			controlSystemView.Initialise();
+		}
+
+		public void ViewBedsideSystem(Guid bedsideSystemId)
+		{
+			var bedsideSystem = Program.BedsideSystems.Single(bs => bs.BedsideSystemId == bedsideSystemId);
+
+			controlSystemView.ViewBedsideSystem(bedsideSystemId);
 		}
 	}
 }

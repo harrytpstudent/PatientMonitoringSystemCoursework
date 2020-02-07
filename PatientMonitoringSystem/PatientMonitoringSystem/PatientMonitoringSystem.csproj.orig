@@ -47,10 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Controllers\ControlSystemController.cs" />
-    <Compile Include="Controllers\BedsideSystemRowController.cs" />
+=======
     <Compile Include="Enums\ModuleType.cs" />
     <Compile Include="Factory\ModuleFactory.cs" />
+>>>>>>> 92dda3e70d5d8fe0defb1002994484f2a15e25c6
     <Compile Include="Models\BedsideSystem.cs" />
     <Compile Include="BloodPressureStrategy.cs" />
     <Compile Include="Models\IBedsideSystem.cs" />
@@ -58,19 +60,12 @@
     <Compile Include="Models\Module.cs" />
     <Compile Include="Controllers\BedsideSystemController.cs" />
     <Compile Include="ViewModels\BedsideSystemViewModel.cs" />
-    <Compile Include="ViewModels\BedsideSystemRowViewModel.cs" />
-    <Compile Include="ViewModels\ModuleRowViewModel.cs" />
+    <Compile Include="ViewModels\ModuleViewModel.cs" />
     <Compile Include="Views\ControlSystemView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\ControlSystemView.Designer.cs">
       <DependentUpon>ControlSystemView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\BedsideSystemRowView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\BedsideSystemRowView.Designer.cs">
-      <DependentUpon>BedsideSystemRowView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ModuleRowView.cs">
       <SubType>UserControl</SubType>
@@ -89,12 +84,6 @@
     <Compile Include="OxygenStrategy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Views\BedsideSystemRowView.resx">
-      <DependentUpon>BedsideSystemRowView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\ControlSystemView.resx">
-      <DependentUpon>ControlSystemView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\ModuleRowView.resx">
       <DependentUpon>ModuleRowView.cs</DependentUpon>
     </EmbeddedResource>
