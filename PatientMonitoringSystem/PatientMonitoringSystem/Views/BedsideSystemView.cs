@@ -42,7 +42,7 @@ namespace PatientMonitoringSystem.Views
 
 		public void Initialise(BedsideSystemViewModel bedsideSystemViewModel, bool canAddAnotherModule)
 		{
-			Text = $"{bedsideSystemViewModel.Name} ({bedsideSystemViewModel.BedsideSystemId})";
+			Text = $"{bedsideSystemViewModel.Name} ({bedsideSystemViewModel.Id})";
 
 			Table.RowCount = 0;
 

@@ -7,7 +7,7 @@ namespace PatientMonitoringSystem.ViewModels
 	{
 		public string Name { get; set; }
 
-		public Guid BedsideSystemId { get; set; }
+		public Guid Id { get; set; }
 
 		public IEnumerable<Guid> ModuleIds { get; set; }
 	}
