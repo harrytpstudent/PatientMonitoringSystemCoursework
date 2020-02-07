@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using PatientMonitoringSystem.Controllers;
 using PatientMonitoringSystem.ViewModels;
-
+using System.Drawing;
 namespace PatientMonitoringSystem.Views
 {
 	public partial class ModuleRowView : UserControl
@@ -73,8 +73,15 @@ namespace PatientMonitoringSystem.Views
 			controller.UpdateCurrentReading();
 		}
 
-		public void UpdateCurrentReading(int reading)
+		public void UpdateCurrentReading(int reading, bool breached)
 		{
+			if (breached)
+			{
+				CurrentReadingDisplay.BackColor = Color.Red;
+			}
+			else {
+				CurrentReadingDisplay.BackColor = Color.White;
+			}
 			CurrentReadingDisplay.Value = reading;
 		}
 
