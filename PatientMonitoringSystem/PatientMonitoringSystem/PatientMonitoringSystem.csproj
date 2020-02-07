@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ControlSystemController.cs" />
+    <Compile Include="Enums\ModuleType.cs" />
+    <Compile Include="Factory\ModuleFactory.cs" />
     <Compile Include="Models\BedsideSystem.cs" />
     <Compile Include="BloodPressureStrategy.cs" />
     <Compile Include="Models\IBedsideSystem.cs" />

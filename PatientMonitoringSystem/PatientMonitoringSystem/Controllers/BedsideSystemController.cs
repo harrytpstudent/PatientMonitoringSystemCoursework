@@ -4,6 +4,8 @@ using System.Linq;
 using PatientMonitoringSystem.Models;
 using PatientMonitoringSystem.ViewModels;
 using PatientMonitoringSystem.Views;
+using PatientMonitoringSystem.Enums;
+using PatientMonitoringSystem.Factory;
 
 namespace PatientMonitoringSystem.Controllers
 {
@@ -40,9 +42,10 @@ namespace PatientMonitoringSystem.Controllers
 			bedsideSystemView.UpdateCurrentReading();
 		}
 
-		public void AddModule(string name, string strategyType)
+		public void AddModule(string name, ModuleType strategyType)
 		{
-			IModuleStrategy strategy = CreateStrategy(strategyType);
+			ModuleFactory module_factory = new ModuleFactory();
+			IModuleStrategy strategy = module_factory.CreateStrategy(strategyType);
 			var module = new Module(strategy, name, 0, 0);
 
 			Program.Modules.Add(module);
@@ -65,15 +68,6 @@ namespace PatientMonitoringSystem.Controllers
 			bedsideSystemView.RemoveModule(moduleId);
 		}
 
-		private IModuleStrategy CreateStrategy(string strategyName) {
-			switch (strategyName) {
-				case "Blood Pressure":
-					return new BloodPressureStrategy();
-				case "Oxygen Level":
-					return new OxygenStrategy();
-				default:
-					return new BloodPressureStrategy();
-			}
-		}
+		
 	}
 }
