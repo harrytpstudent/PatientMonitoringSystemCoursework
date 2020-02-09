@@ -28,7 +28,8 @@ namespace PatientMonitoringSystem.Controllers
 				CurrentReading = reading,
 				MaxValue = module.MaxValue,
 				Id = module.ModuleId,
-				Name = module.Name
+				Name = module.Name,
+				Type= module.Type
 			};
 
 			moduleRowView.Initialise(moduleRowViewModel);

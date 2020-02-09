@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
+using PatientMonitoringSystem.Enums;
 using PatientMonitoringSystem.Models;
 using PatientMonitoringSystem.Views;
 
@@ -28,11 +27,8 @@ namespace PatientMonitoringSystem
 
 			var nextUniqueBedsideSystemNumber = 1;
 			var nextUniqueModuleNumber = 1;
-			var strategyTypes = Assembly
-				.GetExecutingAssembly()
-				.GetTypes()
-				.Where(type => type.GetInterfaces().Contains(typeof(IModuleStrategy)))
-				.ToArray();
+			var moduleTypes = Enum.GetValues(typeof(ModuleType));
+			var randomNumberGenerator = new Random();
 
 			IEnumerable<IBedsideSystem> getBedsideSystems()
 			{
@@ -54,9 +50,9 @@ namespace PatientMonitoringSystem
 			{
 				for (var moduleNumber = 1; moduleNumber <= initialModulesPerBedsideSystem; moduleNumber++)
 				{
-					var strategy = getStrategy();
+					var moduleType = getModuleType();
 
-					var module = new Models.Module(strategy, $"Module {nextUniqueModuleNumber}", initialMinValue, initialMaxValue);
+					var module = new Module($"Module {nextUniqueModuleNumber}", moduleType, initialMinValue, initialMaxValue);
 
 					Modules.Add(module);
 
@@ -66,13 +62,11 @@ namespace PatientMonitoringSystem
 				}
 			}
 
-			IModuleStrategy getStrategy()
+			ModuleType getModuleType()
 			{
-				var randomIndex = new Random().Next(0, strategyTypes.Length);
+				var randomIndex = randomNumberGenerator.Next(0, moduleTypes.Length);
 
-				var strategyType = strategyTypes[randomIndex];
-
-				return (IModuleStrategy)Activator.CreateInstance(strategyType);
+				return (ModuleType)moduleTypes.GetValue(randomIndex);
 			}
 
 			BedsideSystems.AddRange(getBedsideSystems());

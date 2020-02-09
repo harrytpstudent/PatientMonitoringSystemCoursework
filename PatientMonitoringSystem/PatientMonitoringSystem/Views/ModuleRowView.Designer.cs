@@ -37,6 +37,7 @@
 			this.NameDisplay = new System.Windows.Forms.Label();
 			this.RemoveButton = new System.Windows.Forms.Button();
 			this.IdDisplay = new System.Windows.Forms.Label();
+			this.TypeDisplay = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.MinValueEntry)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.CurrentReadingDisplay)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.MaxValueEntry)).BeginInit();
@@ -145,11 +146,22 @@
 			this.IdDisplay.TabIndex = 8;
 			this.IdDisplay.Text = "label5";
 			// 
+			// TypeDisplay
+			// 
+			this.TypeDisplay.AutoSize = true;
+			this.TypeDisplay.Location = new System.Drawing.Point(943, 117);
+			this.TypeDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.TypeDisplay.Name = "TypeDisplay";
+			this.TypeDisplay.Size = new System.Drawing.Size(70, 25);
+			this.TypeDisplay.TabIndex = 9;
+			this.TypeDisplay.Text = "label6";
+			// 
 			// ModuleRowView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.Controls.Add(this.TypeDisplay);
 			this.Controls.Add(this.IdDisplay);
 			this.Controls.Add(this.RemoveButton);
 			this.Controls.Add(this.NameDisplay);
@@ -182,5 +194,6 @@
 		private System.Windows.Forms.Label NameDisplay;
 		private System.Windows.Forms.Button RemoveButton;
         private System.Windows.Forms.Label IdDisplay;
-    }
+		private System.Windows.Forms.Label TypeDisplay;
+	}
 }

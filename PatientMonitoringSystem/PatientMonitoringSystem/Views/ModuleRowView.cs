@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using PatientMonitoringSystem.Controllers;
+using PatientMonitoringSystem.Enums;
 using PatientMonitoringSystem.ViewModels;
 
 namespace PatientMonitoringSystem.Views
@@ -55,6 +56,7 @@ namespace PatientMonitoringSystem.Views
 			MaxValueEntry.Value = moduleViewModel.MaxValue;
 			IdDisplay.Text = moduleViewModel.Id.ToString();
 			NameDisplay.Text = moduleViewModel.Name;
+			TypeDisplay.Text = Enum.GetName(typeof(ModuleType), moduleViewModel.Type);
 		}
 
 		public void UpdateMinValue(int value)
