@@ -147,6 +147,8 @@
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "BedsideSystemView";
 			this.Text = "BedsideSystemView";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BedsideSystemView_FormClosing);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BedsideSystemView_FormClosed);
 			this.Load += new System.EventHandler(this.BedsideSystemView_Load);
 			this.TopPanel.ResumeLayout(false);
 			this.BottomPanel.ResumeLayout(false);

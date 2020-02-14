@@ -94,5 +94,17 @@ namespace PatientMonitoringSystem.Views
 
 			AddButton.Enabled = true;
 		}
+
+		private void BedsideSystemView_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			Updater.Stop();
+			Updater.Tick -= Updater_Tick;
+		}
+
+		private void BedsideSystemView_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			Updater.Dispose();
+			Updater = null;
+		}
 	}
 }
