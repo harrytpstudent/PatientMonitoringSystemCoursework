@@ -23,7 +23,12 @@ namespace PatientMonitoringSystem.Controllers
 
         public void RegisterNewUser()
         {
+            loginView.switchView();
+        }
 
+        public void CloseLoginView()
+        {
+            loginView.closeView();
         }
     }
 }

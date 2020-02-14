@@ -28,7 +28,8 @@ namespace PatientMonitoringSystem.Views
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-
+            controller.ProcessLogin();
+            controller.CloseLoginView();
         }
 
         private void registerButton_Click(object sender, EventArgs e)
@@ -38,7 +39,17 @@ namespace PatientMonitoringSystem.Views
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
+            controller.CloseLoginView();
+        }
 
+        public void closeView()
+        {
+            onClose();
+        }
+
+        public void switchView()
+        {
+            onRegister();
         }
     }
 }

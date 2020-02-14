@@ -51,7 +51,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(95, 18);
+            this.label1.Location = new System.Drawing.Point(95, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(132, 13);
             this.label1.TabIndex = 12;
@@ -61,7 +61,7 @@
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.Location = new System.Drawing.Point(227, 34);
+            this.cancelButton.Location = new System.Drawing.Point(227, 35);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(81, 23);
             this.cancelButton.TabIndex = 11;
@@ -72,7 +72,7 @@
             // 
             this.loginButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.loginButton.Location = new System.Drawing.Point(122, 34);
+            this.loginButton.Location = new System.Drawing.Point(122, 35);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(81, 23);
             this.loginButton.TabIndex = 10;
@@ -84,7 +84,7 @@
             // 
             this.registerButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.registerButton.Location = new System.Drawing.Point(12, 34);
+            this.registerButton.Location = new System.Drawing.Point(12, 35);
             this.registerButton.Name = "registerButton";
             this.registerButton.Size = new System.Drawing.Size(81, 23);
             this.registerButton.TabIndex = 9;

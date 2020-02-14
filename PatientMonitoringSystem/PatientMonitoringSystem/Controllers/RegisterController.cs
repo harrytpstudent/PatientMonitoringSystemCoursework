@@ -21,6 +21,11 @@ namespace PatientMonitoringSystem.Controllers
             registerView.CloseRegisterView();
         }
 
+        public void ProcessRegistration()
+        {
+
+        }
+
         public void OpenLoginView()
         {
             registerView.OpenLoginView();

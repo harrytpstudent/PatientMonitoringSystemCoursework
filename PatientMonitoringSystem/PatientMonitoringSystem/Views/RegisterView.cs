@@ -28,6 +28,7 @@ namespace PatientMonitoringSystem.Views
 
         private void registerButton_Click(object sender, EventArgs e)
         {
+            controller.ProcessRegistration();
             controller.CloseView();
         }
 
