@@ -68,7 +68,7 @@
 			this.Table.Name = "Table";
 			this.Table.RowCount = 1;
 			this.Table.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.Table.Size = new System.Drawing.Size(1428, 690);
+			this.Table.Size = new System.Drawing.Size(2856, 1380);
 			this.Table.TabIndex = 0;
 			// 
 			// BottomPanel
