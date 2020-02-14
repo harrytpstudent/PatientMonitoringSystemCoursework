@@ -28,7 +28,8 @@ namespace PatientMonitoringSystem.Controllers
 		{
 			var bedsideSystemViewModel = new BedsideSystemViewModel
 			{
-				BedsideSystemId = bedsideSystem.BedsideSystemId.ToString(),
+				Name = bedsideSystem.Name,
+				Id = bedsideSystem.BedsideSystemId,
 				ModuleIds = bedsideSystem.Modules.Select(module => module.ModuleId)
 			};
 
@@ -42,11 +43,9 @@ namespace PatientMonitoringSystem.Controllers
 			bedsideSystemView.UpdateCurrentReading();
 		}
 
-		public void AddModule(string name, ModuleType strategyType)
+		public void AddModule(string name, ModuleType moduleType)
 		{
-			ModuleFactory module_factory = new ModuleFactory();
-			IModuleStrategy strategy = module_factory.CreateStrategy(strategyType);
-			var module = new Module(strategy, name, 0, 0);
+			var module = new Module(name, moduleType, 0, 0);
 
 			Program.Modules.Add(module);
 
@@ -67,7 +66,5 @@ namespace PatientMonitoringSystem.Controllers
 
 			bedsideSystemView.RemoveModule(moduleId);
 		}
-
-		
 	}
 }

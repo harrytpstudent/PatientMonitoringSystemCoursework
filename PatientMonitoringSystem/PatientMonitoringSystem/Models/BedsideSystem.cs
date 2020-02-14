@@ -7,11 +7,14 @@ namespace PatientMonitoringSystem.Models
 	{
 		public Guid BedsideSystemId { get; }
 
+		public string Name { get; }
+
 		public List<IModule> Modules { get; }
 
-		public BedsideSystem()
+		public BedsideSystem(string name)
 		{
 			BedsideSystemId = Guid.NewGuid();
+			Name = name;
 			Modules = new List<IModule>();
 		}
 	}

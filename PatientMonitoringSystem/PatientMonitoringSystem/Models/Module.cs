@@ -1,4 +1,6 @@
 ﻿using System;
+using PatientMonitoringSystem.Enums;
+using PatientMonitoringSystem.Factory;
 
 namespace PatientMonitoringSystem.Models
 {
@@ -15,6 +17,8 @@ namespace PatientMonitoringSystem.Models
 		public Guid ModuleId { get; }
 
 		public string Name { get; }
+
+		public ModuleType Type { get; }
 
 		public int MinValue
 		{
@@ -38,18 +42,17 @@ namespace PatientMonitoringSystem.Models
 			}
 		}
 
-		public Module(IModuleStrategy strategy, string name, int initialMinValue, int initialMaxValue)
+		public Module(string name, ModuleType type, int initialMinValue, int initialMaxValue)
 		{
-
 			ValidateValues(initialMinValue, initialMaxValue);
 
-			reading_strategy = strategy;
+			reading_strategy = new ModuleFactory().CreateStrategy(type);
+
 			ModuleId = Guid.NewGuid();
 			Name = name;
+			Type = type;
 			MaxValue = initialMaxValue;
 			MinValue = initialMinValue;
-
-			SetReadingStrategy(strategy);
 		}
 		public int GetCurrentReading()
 		{
@@ -57,10 +60,6 @@ namespace PatientMonitoringSystem.Models
 			return reading;
 		}
 
-		private void SetReadingStrategy(IModuleStrategy strategy)
-		{
-			this.reading_strategy = strategy;
-		}
 		private void ValidateValues(int minValue, int maxValue)
 		{
 			if (minValue > maxValue)

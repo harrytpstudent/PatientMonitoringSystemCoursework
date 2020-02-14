@@ -8,13 +8,13 @@ namespace PatientMonitoringSystem.Controllers
 {
 	public class ModuleRowController
 	{
-		private readonly ModuleRowView moduelRowView;
+		private readonly ModuleRowView moduleRowView;
 
 		private readonly IModule module;
 
-		public ModuleRowController(ModuleRowView moduelRowView, Guid moduleId)
+		public ModuleRowController(ModuleRowView moduleRowView, Guid moduleId)
 		{
-			this.moduelRowView = moduelRowView;
+			this.moduleRowView = moduleRowView;
 			module = Program.Modules.Single(m => m.ModuleId == moduleId);
 		}
 
@@ -22,41 +22,43 @@ namespace PatientMonitoringSystem.Controllers
 		{
 			var reading = module.GetCurrentReading();
 
-			var moduleViewModel = new ModuleViewModel
+			var moduleRowViewModel = new ModuleRowViewModel
 			{
 				MinValue = module.MinValue,
 				CurrentReading = reading,
 				MaxValue = module.MaxValue,
-				Name = module.Name
+				Id = module.ModuleId,
+				Name = module.Name,
+				Type= module.Type
 			};
 
-			moduelRowView.Initialise(moduleViewModel);
+			moduleRowView.Initialise(moduleRowViewModel);
 		}
 
 		public void UpdateMinValue(int value)
 		{
 			module.MinValue = value;
 
-			moduelRowView.UpdateMinValue(value);
+			moduleRowView.UpdateMinValue(value);
 		}
 
 		public void UpdateMaxValue(int value)
 		{
 			module.MaxValue = value;
 
-			moduelRowView.UpdateMaxValue(value);
+			moduleRowView.UpdateMaxValue(value);
 		}
 
 		public void UpdateCurrentReading()
 		{
 			var reading = module.GetCurrentReading();
 
-			moduelRowView.UpdateCurrentReading(reading);
+			moduleRowView.UpdateCurrentReading(reading);
 		}
 
 		public void RemoveModule()
 		{
-			moduelRowView.RemoveModule();
+			moduleRowView.RemoveModule();
 		}
 	}
 }

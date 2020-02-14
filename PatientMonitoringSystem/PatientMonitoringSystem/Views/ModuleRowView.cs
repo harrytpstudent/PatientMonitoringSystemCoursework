@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using PatientMonitoringSystem.Controllers;
+using PatientMonitoringSystem.Enums;
 using PatientMonitoringSystem.ViewModels;
 
 namespace PatientMonitoringSystem.Views
@@ -23,7 +24,7 @@ namespace PatientMonitoringSystem.Views
 			ModuleId = moduleId;
 		}
 
-		private void ModuleRow_Load(object sender, EventArgs e)
+		private void ModuleRowView_Load(object sender, EventArgs e)
 		{
 			controller.Initialise();
 		}
@@ -44,16 +45,18 @@ namespace PatientMonitoringSystem.Views
 			controller.RemoveModule();
 		}
 
-		public void Initialise(ModuleViewModel moduleViewModel)
+		public void Initialise(ModuleRowViewModel moduleViewModel)
 		{
-			MinValueEntry.Value = moduleViewModel.MinValue;
 			MinValueEntry.Minimum = -2147483648;
 			MinValueEntry.Maximum = moduleViewModel.MaxValue;
+			MinValueEntry.Value = moduleViewModel.MinValue;
 			CurrentReadingDisplay.Value = moduleViewModel.CurrentReading;
-			MaxValueEntry.Value = moduleViewModel.MaxValue;
 			MaxValueEntry.Minimum = moduleViewModel.MinValue;
 			MaxValueEntry.Maximum = 2147483647;
+			MaxValueEntry.Value = moduleViewModel.MaxValue;
+			IdDisplay.Text = moduleViewModel.Id.ToString();
 			NameDisplay.Text = moduleViewModel.Name;
+			TypeDisplay.Text = Enum.GetName(typeof(ModuleType), moduleViewModel.Type);
 		}
 
 		public void UpdateMinValue(int value)

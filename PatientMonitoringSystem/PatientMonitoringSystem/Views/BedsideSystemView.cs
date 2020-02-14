@@ -42,10 +42,10 @@ namespace PatientMonitoringSystem.Views
 
 		public void Initialise(BedsideSystemViewModel bedsideSystemViewModel, bool canAddAnotherModule)
 		{
-			Text = bedsideSystemViewModel.BedsideSystemId;
+			Text = $"{bedsideSystemViewModel.Name} ({bedsideSystemViewModel.Id})";
 
-			Table.RowCount = 0;
 			Table.RowStyles.RemoveAt(0);
+			Table.RowCount = 0;
 
 			foreach (var moduleId in bedsideSystemViewModel.ModuleIds)
 			{
@@ -70,9 +70,8 @@ namespace PatientMonitoringSystem.Views
 		{
 			var moduleRowView = new ModuleRowView(moduleId, OnRemoveModule);
 
-			Table.RowCount += 1;
-
-			Table.Controls.Add(moduleRowView, 0, Table.RowCount);
+			Table.RowStyles.Add(new RowStyle());
+			Table.Controls.Add(moduleRowView, 0, Table.RowCount - 1);
 		}
 
 		public void AddModule(Guid moduleId, bool canAddAnotherModule)
@@ -88,9 +87,10 @@ namespace PatientMonitoringSystem.Views
 		{
 			var moduleRowView = Table.Controls.OfType<ModuleRowView>().Single(mrv => mrv.ModuleId == moduleId);
 
-			Table.Controls.Remove(moduleRowView);
+			var rowIndex = Table.GetPositionFromControl(moduleRowView).Row;
 
-			Table.RowCount -= 1;
+			Table.RowStyles.RemoveAt(rowIndex);
+			Table.Controls.Remove(moduleRowView);
 
 			AddButton.Enabled = true;
 		}

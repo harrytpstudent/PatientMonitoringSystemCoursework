@@ -1,4 +1,5 @@
 ﻿using System;
+using PatientMonitoringSystem.Enums;
 
 namespace PatientMonitoringSystem.Models
 {
@@ -35,6 +36,8 @@ namespace PatientMonitoringSystem.Models
 		Guid ModuleId { get; }
 
 		string Name { get; }
+
+		ModuleType Type { get; }
 
 		int MinValue { get; set; }
 
