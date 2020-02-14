@@ -68,7 +68,7 @@
 			this.Table.Name = "Table";
 			this.Table.RowCount = 1;
 			this.Table.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.Table.Size = new System.Drawing.Size(2856, 1380);
+			this.Table.Size = new System.Drawing.Size(1428, 690);
 			this.Table.TabIndex = 0;
 			// 
 			// BottomPanel
@@ -147,6 +147,8 @@
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "BedsideSystemView";
 			this.Text = "BedsideSystemView";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BedsideSystemView_FormClosing);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BedsideSystemView_FormClosed);
 			this.Load += new System.EventHandler(this.BedsideSystemView_Load);
 			this.TopPanel.ResumeLayout(false);
 			this.BottomPanel.ResumeLayout(false);
