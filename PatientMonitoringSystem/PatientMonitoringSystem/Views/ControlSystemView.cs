@@ -49,7 +49,9 @@ namespace PatientMonitoringSystem.Views
 
 		public void ViewBedsideSystem(Guid bedsideSystemId)
 		{
-			new BedsideSystemView(bedsideSystemId).ShowDialog(this);
+			BedsideSystemView view = BedsideSystemView.Instance;
+			view.DoStuff(bedsideSystemId);
+			view.ShowDialog(this);
 		}
 	}
 }
