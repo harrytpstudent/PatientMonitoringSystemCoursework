@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PatientMonitoringSystem.Controllers;
 
@@ -15,15 +8,17 @@ namespace PatientMonitoringSystem.Views
     {
         private readonly LoginController controller;
         private readonly Action onClose;
+        private readonly Action onLogin;
         private readonly Action onRegister;
 
-        public LoginView(Action onClose, Action onRegister)
+        public LoginView(Action onClose, Action onRegister, Action onLogin)
         {
             InitializeComponent();
 
             controller = new LoginController(this);
             this.onClose = onClose;
             this.onRegister = onRegister;
+            this.onLogin = onLogin;
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -42,14 +37,19 @@ namespace PatientMonitoringSystem.Views
             controller.CloseLoginView();
         }
 
-        public void closeView()
+        public void CloseView()
         {
             onClose();
         }
 
-        public void switchView()
+        public void SwitchView()
         {
             onRegister();
+        }
+
+        public void Login()
+        {
+            onLogin();
         }
     }
 }

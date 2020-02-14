@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.passwordTextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.loginSystemPanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +49,16 @@
             this.panel1.Size = new System.Drawing.Size(320, 255);
             this.panel1.TabIndex = 0;
             // 
+            // usernameTextBox
+            // 
+            this.usernameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.usernameTextBox.Location = new System.Drawing.Point(123, 61);
+            this.usernameTextBox.Name = "usernameTextBox";
+            this.usernameTextBox.Size = new System.Drawing.Size(151, 20);
+            this.usernameTextBox.TabIndex = 15;
+            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -60,16 +70,6 @@
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 13;
             this.label2.Text = "Username";
-            // 
-            // passwordTextBox
-            // 
-            this.passwordTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.passwordTextBox.Location = new System.Drawing.Point(123, 103);
-            this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.Size = new System.Drawing.Size(151, 20);
-            this.passwordTextBox.TabIndex = 16;
             // 
             // label3
             // 
@@ -83,15 +83,16 @@
             this.label3.TabIndex = 14;
             this.label3.Text = "Password";
             // 
-            // usernameTextBox
+            // passwordTextBox
             // 
-            this.usernameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.passwordTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.usernameTextBox.Location = new System.Drawing.Point(123, 61);
-            this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.Size = new System.Drawing.Size(151, 20);
-            this.usernameTextBox.TabIndex = 15;
+            this.passwordTextBox.Location = new System.Drawing.Point(123, 103);
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.PasswordChar = '*';
+            this.passwordTextBox.Size = new System.Drawing.Size(151, 20);
+            this.passwordTextBox.TabIndex = 16;
             // 
             // loginSystemPanel
             // 

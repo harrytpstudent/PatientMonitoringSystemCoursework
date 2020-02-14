@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PatientMonitoringSystem.Controllers;
 
@@ -16,14 +9,16 @@ namespace PatientMonitoringSystem.Views
         private readonly RegisterController controller;
         private readonly Action onClose;
         private readonly Action onLogin;
+        private readonly Action onRegister;
 
-        public RegisterView(Action onClose, Action onLogin)
+        public RegisterView(Action onClose, Action onLogin, Action onRegister)
         {
             InitializeComponent();
 
             controller = new RegisterController(this);
             this.onClose = onClose;
             this.onLogin = onLogin;
+            this.onRegister = onRegister;
         }
 
         private void registerButton_Click(object sender, EventArgs e)
@@ -50,6 +45,11 @@ namespace PatientMonitoringSystem.Views
         public void CloseRegisterView()
         {
             onClose();
+        }
+
+        public void RegisterNewUser()
+        {
+            onRegister();
         }
     }
 }

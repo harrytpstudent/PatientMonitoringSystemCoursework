@@ -42,7 +42,7 @@
             this.Table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.Table.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Table.Location = new System.Drawing.Point(0, 0);
-            this.Table.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Table.Margin = new System.Windows.Forms.Padding(2);
             this.Table.Name = "Table";
             this.Table.RowCount = 1;
             this.Table.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -55,22 +55,26 @@
             this.TopPanel.Controls.Add(this.Table);
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
-            this.TopPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TopPanel.Margin = new System.Windows.Forms.Padding(2);
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Size = new System.Drawing.Size(274, 414);
             this.TopPanel.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.loginButton, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 331);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(274, 83);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
@@ -91,7 +95,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(274, 414);
             this.Controls.Add(this.TopPanel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ControlSystemView";
             this.Text = "ControlSystemView";
             this.Load += new System.EventHandler(this.ControlSystemView_Load);

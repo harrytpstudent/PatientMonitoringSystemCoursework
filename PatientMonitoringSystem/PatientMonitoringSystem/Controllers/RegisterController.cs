@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PatientMonitoringSystem.Views;
+﻿using PatientMonitoringSystem.Views;
 
 namespace PatientMonitoringSystem.Controllers
 {
@@ -23,7 +18,7 @@ namespace PatientMonitoringSystem.Controllers
 
         public void ProcessRegistration()
         {
-
+            registerView.RegisterNewUser();
         }
 
         public void OpenLoginView()

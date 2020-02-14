@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PatientMonitoringSystem.Views;
+﻿using PatientMonitoringSystem.Views;
 
 namespace PatientMonitoringSystem.Controllers
 {
@@ -14,6 +9,11 @@ namespace PatientMonitoringSystem.Controllers
         public LoginSystemController(LoginSystemView loginSystemView)
         {
             this.loginSystemView = loginSystemView;
+        }
+
+        public void CloseView()
+        {
+            loginSystemView.Close();
         }
 
         public void ShowLoginDialog()
@@ -35,6 +35,28 @@ namespace PatientMonitoringSystem.Controllers
         public void RemoveRegisterView()
         {
             loginSystemView.RemoveLoginSystemView();
+        }
+
+        public void LoginExsistingUser(string username, string password)
+        {
+            //login
+
+            //then select subscription options
+            CreateSubscriptionView(username);
+        }
+
+        public void RegisterNewUser(string username, string password)
+        {
+            //register
+
+            //then select subscription options
+            CreateSubscriptionView(username);
+        }
+
+        private void CreateSubscriptionView(string username)
+        {
+            var subscriptionSelection = new SubscriptionSelectionController(new SubscriptionSelectionView(username), username);
+            subscriptionSelection.ShowSubscriptionSelector();
         }
     }
 }

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using PatientMonitoringSystem.Controllers;
 
 namespace PatientMonitoringSystem.Views
@@ -18,24 +10,39 @@ namespace PatientMonitoringSystem.Views
         public LoginSystemView()
         {
             InitializeComponent();
+
+            controller = new LoginSystemController(this);
         }
 
         public void ShowLoginView()
         {
             loginSystemPanel.Controls.Clear();
-            loginSystemPanel.Controls.Add(new LoginView(RemoveLoginSystemView, ShowRegisterView));
+            loginSystemPanel.Controls.Add(new LoginView(RemoveLoginSystemView, ShowRegisterView, Login));
         }
 
         public void ShowRegisterView()
         {
             loginSystemPanel.Controls.Clear();
-            loginSystemPanel.Controls.Add(new RegisterView(RemoveLoginSystemView, ShowLoginView));
+            loginSystemPanel.Controls.Add(new RegisterView(RemoveLoginSystemView, ShowLoginView, Register));
         }
 
         public void RemoveLoginSystemView()
         {
-            loginSystemPanel.Controls.Clear();
+            controller.CloseView();
         }
 
+        public void Login()
+        {
+            string username = usernameTextBox.Text;
+            string password = passwordTextBox.Text;
+            controller.LoginExsistingUser(username, password);
+        }
+
+        public void Register()
+        {
+            string username = usernameTextBox.Text;
+            string password = passwordTextBox.Text;
+            controller.RegisterNewUser(username, password);
+        }
     }
 }
