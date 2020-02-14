@@ -52,12 +52,12 @@ namespace PatientMonitoringSystem.Controllers
 		public bool CheckValueBreached(int value) {
 			if (value > module.MaxValue)
 			{
-				Console.WriteLine("BREACH of MAX value {0} with new value {1}", module.MaxValue, value);
+				Console.WriteLine("(Module: {0})BREACH of MAX value {1} with new value {2}", module.Name, module.MaxValue, value);
 				return true;
 			}
 			else if (value < module.MinValue)
 			{
-				Console.WriteLine("BREACH of MIN value {0} with new value {1}", module.MinValue, value);
+				Console.WriteLine("(Module: {0})BREACH of MIN value {1} with new value {2}", module.Name, module.MinValue, value);
 				return true;
 			}
 
