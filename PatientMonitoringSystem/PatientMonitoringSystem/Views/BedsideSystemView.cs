@@ -23,11 +23,6 @@ namespace PatientMonitoringSystem.Views
 			controller.Initialise();
 		}
 
-		private void Updater_Tick(object sender, EventArgs e)
-		{
-			controller.UpdateCurrentReading();
-		}
-
 		private void AddButton_Click(object sender, EventArgs e)
 		{
 			var moduleName = NameEntry.Text;

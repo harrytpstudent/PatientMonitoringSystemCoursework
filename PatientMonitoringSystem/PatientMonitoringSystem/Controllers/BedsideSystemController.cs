@@ -6,6 +6,7 @@ using PatientMonitoringSystem.ViewModels;
 using PatientMonitoringSystem.Views;
 using PatientMonitoringSystem.Enums;
 using PatientMonitoringSystem.Factory;
+using System.Timers;
 
 namespace PatientMonitoringSystem.Controllers
 {
@@ -17,11 +18,17 @@ namespace PatientMonitoringSystem.Controllers
 
 		private readonly int maxModulesPerBedsideSystem;
 
+		private Timer poller;
+
 		public BedsideSystemController(BedsideSystemView bedsideSystemView, Guid bedsideSystemId)
 		{
 			this.bedsideSystemView = bedsideSystemView;
 			bedsideSystem = Program.BedsideSystems.Single(bs => bs.BedsideSystemId == bedsideSystemId);
 			maxModulesPerBedsideSystem = int.Parse(ConfigurationManager.AppSettings["MaxModulesPerBedsideSystem"]);
+			poller = new Timer();
+			poller.Elapsed += new ElapsedEventHandler(UpdateCurrentReading);
+			poller.Interval = 1000;
+			poller.Enabled = true;
 		}
 
 		public void Initialise()
@@ -38,7 +45,7 @@ namespace PatientMonitoringSystem.Controllers
 			bedsideSystemView.Initialise(bedsideSystemViewModel, canAddAnotherModule);
 		}
 
-		public void UpdateCurrentReading()
+		public void UpdateCurrentReading(object source, ElapsedEventArgs e)
 		{
 			bedsideSystemView.UpdateCurrentReading();
 		}

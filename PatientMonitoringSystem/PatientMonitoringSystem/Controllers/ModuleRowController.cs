@@ -49,10 +49,25 @@ namespace PatientMonitoringSystem.Controllers
 			moduleRowView.UpdateMaxValue(value);
 		}
 
+		public bool CheckValueBreached(int value) {
+			if (value > module.MaxValue)
+			{
+				Console.WriteLine("BREACH of MAX value {0} with new value {1}", module.MaxValue, value);
+				return true;
+			}
+			else if (value < module.MinValue)
+			{
+				Console.WriteLine("BREACH of MIN value {0} with new value {1}", module.MinValue, value);
+				return true;
+			}
+
+			return false;
+		}
+
 		public void UpdateCurrentReading()
 		{
 			var reading = module.GetCurrentReading();
-
+			bool breached = CheckValueBreached(reading);
 			moduleRowView.UpdateCurrentReading(reading);
 		}
 
