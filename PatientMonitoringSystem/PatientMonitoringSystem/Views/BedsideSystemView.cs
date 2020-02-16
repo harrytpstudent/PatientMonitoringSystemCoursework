@@ -16,16 +16,7 @@ namespace PatientMonitoringSystem.Views
 			InitializeComponent();
 
 			controller = new BedsideSystemController(this, bedsideSystemId);
-		}
-
-		private void BedsideSystemView_Load(object sender, EventArgs e)
-		{
 			controller.Initialise();
-		}
-
-		private void Updater_Tick(object sender, EventArgs e)
-		{
-			controller.UpdateCurrentReading();
 		}
 
 		private void AddButton_Click(object sender, EventArgs e)

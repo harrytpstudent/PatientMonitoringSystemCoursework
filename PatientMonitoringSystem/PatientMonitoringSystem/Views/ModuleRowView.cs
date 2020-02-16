@@ -12,6 +12,7 @@ namespace PatientMonitoringSystem.Views
 
 		private readonly Action<Guid> onRemoveModule;
 
+		private delegate void SafeUpdateCurrentReading(int reading);
 		public Guid ModuleId { get; }
 
 		public ModuleRowView(Guid moduleId, Action<Guid> onRemoveModule)
@@ -78,7 +79,15 @@ namespace PatientMonitoringSystem.Views
 
 		public void UpdateCurrentReading(int reading)
 		{
-			CurrentReadingDisplay.Value = reading;
+			if (CurrentReadingDisplay.InvokeRequired)
+			{
+				var dlg = new SafeUpdateCurrentReading(UpdateCurrentReading);
+				CurrentReadingDisplay.Invoke(dlg, new object[] { reading });
+			}
+			else
+			{
+				CurrentReadingDisplay.Value = reading;
+			}
 		}
 
 		public void RemoveModule()
