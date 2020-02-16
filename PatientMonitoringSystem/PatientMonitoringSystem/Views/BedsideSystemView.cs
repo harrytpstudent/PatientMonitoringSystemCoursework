@@ -9,32 +9,13 @@ namespace PatientMonitoringSystem.Views
 {
 	public partial class BedsideSystemView : Form
 	{
-		private BedsideSystemController controller;
-		private static BedsideSystemView instance = null;
+		private readonly BedsideSystemController controller;
 
-		public static BedsideSystemView Instance {
-			get
-			{
-				if (instance == null) {
-					return new BedsideSystemView();
-				}
-				else {
-					return instance;
-				}
-			}
-		}
-		BedsideSystemView()
+		public BedsideSystemView(Guid bedsideSystemId)
 		{
-			
-		}
-
-		public void DoStuff(Guid bedsideSystemId) {
 			InitializeComponent();
-			controller = new BedsideSystemController(this, bedsideSystemId);
-		}
 
-		private void BedsideSystemView_Load(object sender, EventArgs e)
-		{
+			controller = new BedsideSystemController(this, bedsideSystemId);
 			controller.Initialise();
 		}
 

@@ -45,7 +45,7 @@
 			this.TopPanel.Controls.Add(this.Table);
 			this.TopPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.TopPanel.Location = new System.Drawing.Point(0, 0);
-			this.TopPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.TopPanel.Margin = new System.Windows.Forms.Padding(2);
 			this.TopPanel.Name = "TopPanel";
 			this.TopPanel.Size = new System.Drawing.Size(714, 359);
 			this.TopPanel.TabIndex = 2;
@@ -56,7 +56,7 @@
 			this.Table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.Table.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.Table.Location = new System.Drawing.Point(0, 0);
-			this.Table.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Table.Margin = new System.Windows.Forms.Padding(2);
 			this.Table.Name = "Table";
 			this.Table.RowCount = 1;
 			this.Table.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -73,7 +73,7 @@
 			this.BottomPanel.Controls.Add(this.AddButton);
 			this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.BottomPanel.Location = new System.Drawing.Point(0, 359);
-			this.BottomPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.BottomPanel.Margin = new System.Windows.Forms.Padding(2);
 			this.BottomPanel.Name = "BottomPanel";
 			this.BottomPanel.Size = new System.Drawing.Size(714, 52);
 			this.BottomPanel.TabIndex = 2;
@@ -112,7 +112,7 @@
 			// NameEntry
 			// 
 			this.NameEntry.Location = new System.Drawing.Point(72, 16);
-			this.NameEntry.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.NameEntry.Margin = new System.Windows.Forms.Padding(2);
 			this.NameEntry.Name = "NameEntry";
 			this.NameEntry.Size = new System.Drawing.Size(107, 20);
 			this.NameEntry.TabIndex = 3;
@@ -120,7 +120,7 @@
 			// AddButton
 			// 
 			this.AddButton.Location = new System.Drawing.Point(599, 7);
-			this.AddButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.AddButton.Margin = new System.Windows.Forms.Padding(2);
 			this.AddButton.Name = "AddButton";
 			this.AddButton.Size = new System.Drawing.Size(104, 37);
 			this.AddButton.TabIndex = 4;
@@ -134,10 +134,9 @@
 			this.ClientSize = new System.Drawing.Size(714, 411);
 			this.Controls.Add(this.TopPanel);
 			this.Controls.Add(this.BottomPanel);
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "BedsideSystemView";
 			this.Text = "BedsideSystemView";
-			this.Load += new System.EventHandler(this.BedsideSystemView_Load);
 			this.TopPanel.ResumeLayout(false);
 			this.BottomPanel.ResumeLayout(false);
 			this.BottomPanel.PerformLayout();

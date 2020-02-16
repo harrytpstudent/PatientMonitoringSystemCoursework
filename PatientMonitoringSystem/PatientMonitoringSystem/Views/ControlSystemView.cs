@@ -2,13 +2,14 @@
 using System.Linq;
 using System.Windows.Forms;
 using PatientMonitoringSystem.Controllers;
+using System.Collections.Generic;
 
 namespace PatientMonitoringSystem.Views
 {
 	public partial class ControlSystemView : Form
 	{
 		private readonly ControlSystemController controller;
-
+		Dictionary<Guid, BedsideSystemView> bed_gui_map = new Dictionary<Guid, BedsideSystemView>();
 		public ControlSystemView()
 		{
 			InitializeComponent();
@@ -36,6 +37,7 @@ namespace PatientMonitoringSystem.Views
 			foreach (var bedsideSystemId in Program.BedsideSystems.Select(bs => bs.BedsideSystemId))
 			{
 				AddBedsideSystem(bedsideSystemId);
+				bed_gui_map.Add(bedsideSystemId, new BedsideSystemView(bedsideSystemId));
 			}
 		}
 
@@ -49,9 +51,7 @@ namespace PatientMonitoringSystem.Views
 
 		public void ViewBedsideSystem(Guid bedsideSystemId)
 		{
-			BedsideSystemView view = BedsideSystemView.Instance;
-			view.DoStuff(bedsideSystemId);
-			view.ShowDialog(this);
+			bed_gui_map[bedsideSystemId].ShowDialog(this);
 		}
 	}
 }
