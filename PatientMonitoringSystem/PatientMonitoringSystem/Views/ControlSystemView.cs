@@ -51,5 +51,10 @@ namespace PatientMonitoringSystem.Views
 		{
 			new BedsideSystemView(bedsideSystemId).ShowDialog(this);
 		}
+
+		private void loginButton_Click(object sender, EventArgs e)
+		{
+			controller.ShowLoginForm();
+		}
 	}
 }
