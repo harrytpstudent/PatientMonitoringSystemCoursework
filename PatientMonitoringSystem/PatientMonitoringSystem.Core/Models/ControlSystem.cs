@@ -7,7 +7,7 @@ using PatientMonitoringSystem.Core.Models;
 
 namespace PatientMonitoringSystem.Core.Models
 {
-	class ControlSystem : IControlSystem
+	public class ControlSystem : IControlSystem
 	{
 		public List<IBedsideSystem> BedsideSystems {
 			get;

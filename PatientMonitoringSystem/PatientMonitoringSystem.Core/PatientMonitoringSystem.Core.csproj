@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="Enums\ModuleType.cs" />
     <Compile Include="Models\BedsideSystem.cs" />
+    <Compile Include="Models\ControlSystem.cs" />
     <Compile Include="Models\IBedsideSystem.cs" />
+    <Compile Include="Models\IControlSystem.cs" />
     <Compile Include="Models\IModule.cs" />
     <Compile Include="Models\Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
