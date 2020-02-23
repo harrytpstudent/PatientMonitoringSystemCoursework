@@ -1,35 +1,34 @@
 ﻿using System;
-using System.Threading;
-using System.Linq;
 using System.Collections.Generic;
-using PatientMonitoringSystem.Core.Models;
+using System.Collections.ObjectModel;
+using System.Linq;
 
-namespace PatientMonitoringSystem.Models
+namespace PatientMonitoringSystem.Core.Models
 {
 	public class BedsideSystem : IBedsideSystem
 	{
-	
+		private readonly IList<IModule> modules;
+
 		public Guid BedsideSystemId { get; }
 
 		public string Name { get; }
 
-		public bool AlarmRaised {
-			get;
-			private set;
-		}
+		public bool AlarmRaised { get; private set; }
 
-		public List<IModule> Modules { get; }
+		public IReadOnlyCollection<IModule> Modules => new ReadOnlyCollection<IModule>(modules);
 
-		public event EventHandler<Guid> OnAlarmRaised;
+		public event EventHandler<Guid> OnAlarmRaised; // Yes, usually you would create an EventArgs class.
+
 		public BedsideSystem(string name)
 		{
 			BedsideSystemId = Guid.NewGuid();
 			Name = name;
-			Modules = new List<IModule>();
+			modules = new List<IModule>();
 		}
 
-		public void AddModule(IModule newModule) {
-			Modules.Add(newModule);
+		public void AddModule(IModule newModule)
+		{
+			modules.Add(newModule);
 			newModule.OnValueBreached += RaiseAlarm;
 		}
 
@@ -44,16 +43,18 @@ namespace PatientMonitoringSystem.Models
 			
 		}
 
-		public void RemoveModule(Guid moduleId) {
+		public void RemoveModule(Guid moduleId)
+		{
 			var module = Modules.Single(m => m.ModuleId == moduleId);
-			Modules.Remove(module);
+			modules.Remove(module);
 			module.OnValueBreached -= RaiseAlarm;
 			module.Dispose();
 		}
 
 		public void Dispose()
 		{
-			foreach (var module in Modules) {
+			foreach (var module in Modules)
+			{
 				module.Dispose();
 			}
 		}

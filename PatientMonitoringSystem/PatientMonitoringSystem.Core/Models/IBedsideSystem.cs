@@ -9,9 +9,8 @@ namespace PatientMonitoringSystem.Core.Models
 
 		string Name { get; }
 
-		List<IModule> Modules { get; }
+		IReadOnlyCollection<IModule> Modules { get; }
 
 		event EventHandler<Guid> OnAlarmRaised;
-
 	}
 }
