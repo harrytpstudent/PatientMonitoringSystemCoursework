@@ -7,7 +7,7 @@ using PatientMonitoringSystem.Enums;
 
 namespace PatientMonitoringSystem.Views
 {
-	public partial class BedsideSystemView : Form
+	public partial class BedsideSystemView : UserControl
 	{
 		private readonly BedsideSystemController controller;
 
@@ -54,6 +54,7 @@ namespace PatientMonitoringSystem.Views
 
 			ModuleCombo.DataSource = Enum.GetValues(typeof(ModuleType));
 			AddButton.Enabled = canAddAnotherModule;
+			Dock = DockStyle.Fill;
 		}
 
 		public void UpdateCurrentReading()

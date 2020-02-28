@@ -73,7 +73,22 @@ namespace PatientMonitoringSystem
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new ControlSystemView());
+			Application.Run(GetGenericForm());
+		}
+
+		private static Form GetGenericForm()
+		{
+			var form = new Form
+			{
+				AutoSize = true,
+				AutoSizeMode = AutoSizeMode.GrowOnly,
+				SizeGripStyle = SizeGripStyle.Show,
+				FormBorderStyle = FormBorderStyle.Sizable
+			};
+
+			form.Controls.Add(new ControlSystemView());
+
+			return form;
 		}
 	}
 }

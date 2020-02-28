@@ -68,13 +68,15 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoSize = true;
+			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
 			this.BackColor = System.Drawing.SystemColors.ControlDark;
 			this.Controls.Add(this.IdDisplay);
 			this.Controls.Add(this.ViewButton);
 			this.Controls.Add(this.NameDisplay);
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "BedsideSystemRowView";
-			this.Size = new System.Drawing.Size(522, 154);
+			this.Size = new System.Drawing.Size(495, 129);
 			this.Load += new System.EventHandler(this.BedsideSystemRowView_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();

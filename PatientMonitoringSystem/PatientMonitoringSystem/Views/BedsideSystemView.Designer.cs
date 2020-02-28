@@ -30,16 +30,16 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			this.Updater = new System.Windows.Forms.Timer(this.components);
-			this.TopPanel = new System.Windows.Forms.Panel();
-			this.Table = new System.Windows.Forms.TableLayoutPanel();
 			this.BottomPanel = new System.Windows.Forms.Panel();
+			this.Table = new System.Windows.Forms.TableLayoutPanel();
+			this.TopPanel = new System.Windows.Forms.Panel();
 			this.label2 = new System.Windows.Forms.Label();
 			this.ModuleCombo = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.NameEntry = new System.Windows.Forms.TextBox();
 			this.AddButton = new System.Windows.Forms.Button();
-			this.TopPanel.SuspendLayout();
 			this.BottomPanel.SuspendLayout();
+			this.TopPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// Updater
@@ -48,18 +48,20 @@
 			this.Updater.Interval = 1000;
 			this.Updater.Tick += new System.EventHandler(this.Updater_Tick);
 			// 
-			// TopPanel
+			// BottomPanel
 			// 
-			this.TopPanel.Controls.Add(this.Table);
-			this.TopPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.TopPanel.Location = new System.Drawing.Point(0, 0);
-			this.TopPanel.Margin = new System.Windows.Forms.Padding(4);
-			this.TopPanel.Name = "TopPanel";
-			this.TopPanel.Size = new System.Drawing.Size(1428, 690);
-			this.TopPanel.TabIndex = 2;
+			this.BottomPanel.AutoSize = true;
+			this.BottomPanel.Controls.Add(this.Table);
+			this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.BottomPanel.Location = new System.Drawing.Point(0, 100);
+			this.BottomPanel.Margin = new System.Windows.Forms.Padding(4);
+			this.BottomPanel.Name = "BottomPanel";
+			this.BottomPanel.Size = new System.Drawing.Size(0, 0);
+			this.BottomPanel.TabIndex = 2;
 			// 
 			// Table
 			// 
+			this.Table.AutoSize = true;
 			this.Table.ColumnCount = 1;
 			this.Table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.Table.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -68,23 +70,22 @@
 			this.Table.Name = "Table";
 			this.Table.RowCount = 1;
 			this.Table.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.Table.Size = new System.Drawing.Size(2856, 1380);
+			this.Table.Size = new System.Drawing.Size(0, 0);
 			this.Table.TabIndex = 0;
 			// 
-			// BottomPanel
+			// TopPanel
 			// 
-			this.BottomPanel.BackColor = System.Drawing.SystemColors.Control;
-			this.BottomPanel.Controls.Add(this.label2);
-			this.BottomPanel.Controls.Add(this.ModuleCombo);
-			this.BottomPanel.Controls.Add(this.label1);
-			this.BottomPanel.Controls.Add(this.NameEntry);
-			this.BottomPanel.Controls.Add(this.AddButton);
-			this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.BottomPanel.Location = new System.Drawing.Point(0, 690);
-			this.BottomPanel.Margin = new System.Windows.Forms.Padding(4);
-			this.BottomPanel.Name = "BottomPanel";
-			this.BottomPanel.Size = new System.Drawing.Size(1428, 100);
-			this.BottomPanel.TabIndex = 2;
+			this.TopPanel.Controls.Add(this.label2);
+			this.TopPanel.Controls.Add(this.ModuleCombo);
+			this.TopPanel.Controls.Add(this.label1);
+			this.TopPanel.Controls.Add(this.NameEntry);
+			this.TopPanel.Controls.Add(this.AddButton);
+			this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.TopPanel.Location = new System.Drawing.Point(0, 0);
+			this.TopPanel.Margin = new System.Windows.Forms.Padding(4);
+			this.TopPanel.Name = "TopPanel";
+			this.TopPanel.Size = new System.Drawing.Size(0, 100);
+			this.TopPanel.TabIndex = 2;
 			// 
 			// label2
 			// 
@@ -141,24 +142,26 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1428, 790);
-			this.Controls.Add(this.TopPanel);
+			this.AutoSize = true;
 			this.Controls.Add(this.BottomPanel);
+			this.Controls.Add(this.TopPanel);
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "BedsideSystemView";
-			this.Text = "BedsideSystemView";
+			this.Size = new System.Drawing.Size(0, 100);
 			this.Load += new System.EventHandler(this.BedsideSystemView_Load);
-			this.TopPanel.ResumeLayout(false);
 			this.BottomPanel.ResumeLayout(false);
 			this.BottomPanel.PerformLayout();
+			this.TopPanel.ResumeLayout(false);
+			this.TopPanel.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
 		private System.Windows.Forms.Timer Updater;
-		private System.Windows.Forms.Panel TopPanel;
 		private System.Windows.Forms.Panel BottomPanel;
+		private System.Windows.Forms.Panel TopPanel;
 		private System.Windows.Forms.TableLayoutPanel Table;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox NameEntry;

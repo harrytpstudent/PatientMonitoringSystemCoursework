@@ -160,6 +160,8 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoSize = true;
+			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
 			this.BackColor = System.Drawing.SystemColors.ControlDark;
 			this.Controls.Add(this.TypeDisplay);
 			this.Controls.Add(this.IdDisplay);
@@ -173,7 +175,7 @@
 			this.Controls.Add(this.MinValueEntry);
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "ModuleRowView";
-			this.Size = new System.Drawing.Size(1400, 154);
+			this.Size = new System.Drawing.Size(1400, 142);
 			this.Load += new System.EventHandler(this.ModuleRowView_Load);
 			((System.ComponentModel.ISupportInitialize)(this.MinValueEntry)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.CurrentReadingDisplay)).EndInit();
