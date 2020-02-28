@@ -67,19 +67,18 @@ namespace PatientMonitoringSystem.Core.Models
 			MinValue = minValue;
 		}
 
-
 		private async Task StartGeneratingReadings(CancellationToken cancellationToken)
 		{
 			while (!cancellationToken.IsCancellationRequested)
 			{
-				await Task.Delay(1000);
+				await Task.Delay(100);
 
-				CurrentReading = randomNumGen.Next(MinValue-1, MaxValue+2);
+				CurrentReading = randomNumGen.Next(MinValue - 1, MaxValue + 2);
 				ValueBreached = CurrentReading > MaxValue || CurrentReading < MinValue;
 
 				if (ValueBreached)
 				{
-					OnValueBreached(this, ModuleId);
+					OnValueBreached?.Invoke(this, ModuleId);
 				}
 			}
 		}
@@ -95,7 +94,11 @@ namespace PatientMonitoringSystem.Core.Models
 		public void Dispose()
 		{
 			tokenSource.Cancel();
-			readingGenerator.Wait();
+
+			if (!readingGenerator.IsCompleted)
+			{
+				readingGenerator.Wait();
+			}
 		}
 	}
 }

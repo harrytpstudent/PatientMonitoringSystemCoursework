@@ -35,9 +35,8 @@ namespace PatientMonitoringSystem.Core.Models
 			if (!AlarmRaised)
 			{
 				AlarmRaised = true;
-				OnAlarmRaised(sender, BedsideSystemId);
+				OnAlarmRaised?.Invoke(sender, BedsideSystemId);
 			}
-			
 		}
 
 		public void RemoveModule(Guid moduleId)

@@ -11,9 +11,9 @@ namespace PatientMonitoringSystem
 {
 	public static class Program
 	{
-		public static List<IBedsideSystem> BedsideSystems { get; } = new List<IBedsideSystem>();
+		public static IList<IBedsideSystem> BedsideSystems { get; } = new List<IBedsideSystem>();
 
-		public static List<IModule> Modules { get; } = new List<IModule>();
+		public static IList<IModule> Modules { get; } = new List<IModule>();
 
 		public static ModuleRowController ModuleRowController { get; } = new ModuleRowController();
 
@@ -72,13 +72,23 @@ namespace PatientMonitoringSystem
 				return (ModuleType)moduleTypes.GetValue(randomIndex);
 			}
 
-			BedsideSystems.AddRange(getBedsideSystems());
+			foreach (var bedsideSystem in getBedsideSystems())
+			{
+				BedsideSystems.Add(bedsideSystem);
+			}
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(GetGenericForm());
 
+			MessageBox.Show("About to dispose resources. Don't be surprised if it takes several seconds. Program will terminate automatically.");
+
 			ModuleRowController.Dispose();
+
+			foreach (var bedsideSystem in BedsideSystems) // TODO: Change code so can just call ControlSystem.Dispose()
+			{
+				bedsideSystem.Dispose(); // This will cascade down to the modules.
+			}
 		}
 
 		private static Form GetGenericForm()
