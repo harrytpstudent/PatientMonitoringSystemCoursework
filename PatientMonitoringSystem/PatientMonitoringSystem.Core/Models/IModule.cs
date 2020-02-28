@@ -1,5 +1,5 @@
 ﻿using System;
-using PatientMonitoringSystem.Core;
+using PatientMonitoringSystem.Core.Models.Enums;
 
 namespace PatientMonitoringSystem.Core.Models
 {
@@ -9,11 +9,14 @@ namespace PatientMonitoringSystem.Core.Models
 
 		string Name { get; }
 
+		ModuleType ModuleType { get; }
+
 		int MinValue { get; set; }
+
+		int CurrentReading { get; }
 
 		int MaxValue { get; set; }
 
 		event EventHandler<Guid> OnValueBreached;
-
 	}
 }

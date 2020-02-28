@@ -176,7 +176,6 @@
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "ModuleRowView";
 			this.Size = new System.Drawing.Size(1400, 142);
-			this.Load += new System.EventHandler(this.ModuleRowView_Load);
 			((System.ComponentModel.ISupportInitialize)(this.MinValueEntry)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.CurrentReadingDisplay)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.MaxValueEntry)).EndInit();

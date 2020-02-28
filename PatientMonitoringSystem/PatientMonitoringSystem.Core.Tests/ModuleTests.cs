@@ -1,8 +1,8 @@
 ﻿using System;
-using Moq;
 using NUnit.Framework;
 using System.Threading;
 using PatientMonitoringSystem.Core.Models;
+using PatientMonitoringSystem.Core.Models.Enums;
 
 namespace PatientMonitoringSystem.Core.Tests
 {
@@ -13,10 +13,11 @@ namespace PatientMonitoringSystem.Core.Tests
         public void Constructor_ClassMembersInitialised()
         {
             const string name = "testing";
+            const ModuleType type = ModuleType.BloodPressure;
             const int maxValue = 100;
             const int minValue = 0;
 
-            var module = new Module(name, minValue, maxValue);
+            var module = new Module(name, type, minValue, maxValue);
 
             Assert.That(module.ModuleId, Is.Not.EqualTo(Guid.Empty));
             Assert.That(module.Name, Is.EqualTo(name));
@@ -30,10 +31,11 @@ namespace PatientMonitoringSystem.Core.Tests
         public void CurrentReading_ValueIsChanging()
         {
             const string name = "testing";
+            const ModuleType type = ModuleType.BloodPressure;
             const int maxValue = 100;
             const int minValue = 0;
 
-            var module = new Module(name, minValue, maxValue);
+            var module = new Module(name, type, minValue, maxValue);
             int currentReading = module.CurrentReading;
             Thread.Sleep(1000);
 
@@ -44,10 +46,11 @@ namespace PatientMonitoringSystem.Core.Tests
         public void Dispose_IsDisposed()
         {
             const string name = "testing";
+            const ModuleType type = ModuleType.BloodPressure;
             const int maxValue = 100;
             const int minValue = 0;
 
-            var module = new Module(name, minValue, maxValue);
+            var module = new Module(name, type, minValue, maxValue);
             module.Dispose();
             int currentReading = module.CurrentReading;
             Thread.Sleep(2000);

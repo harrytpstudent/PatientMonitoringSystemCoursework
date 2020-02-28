@@ -1,89 +1,54 @@
 ﻿using System;
 using System.Windows.Forms;
-using PatientMonitoringSystem.Controllers;
-using PatientMonitoringSystem.Enums;
 using PatientMonitoringSystem.ViewModels;
+using PatientMonitoringSystem.Views.Eventing;
 
 namespace PatientMonitoringSystem.Views
 {
 	public partial class ModuleRowView : UserControl
 	{
-		private readonly ModuleRowController controller;
-
-		private readonly Action<Guid> onRemoveModule;
-
 		public Guid ModuleId { get; }
 
-		public ModuleRowView(Guid moduleId, Action<Guid> onRemoveModule)
+		public event EventHandler<OnRemoveModuleEventArgs> OnRemoveModule;
+
+		public ModuleRowView(Guid moduleId, ModuleRowViewModel viewModel)
 		{
-			InitializeComponent();
-
-			controller = new ModuleRowController(this, moduleId);
-			this.onRemoveModule = onRemoveModule;
-
 			ModuleId = moduleId;
+			InitializeComponent();
+			MinValueEntry.Minimum = -2147483648;
+			MinValueEntry.Maximum = viewModel.MaxValue;
+			MinValueEntry.Value = viewModel.MinValue;
+			CurrentReadingDisplay.Value = viewModel.CurrentReading;
+			MaxValueEntry.Minimum = viewModel.MinValue;
+			MaxValueEntry.Maximum = 2147483647;
+			MaxValueEntry.Value = viewModel.MaxValue;
+			IdDisplay.Text = viewModel.Id.ToString();
+			NameDisplay.Text = viewModel.Name;
+			TypeDisplay.Text = viewModel.Type.ToString();
 		}
 
-		private void ModuleRowView_Load(object sender, EventArgs e)
+		public void RefreshCurrentReading()
 		{
-			controller.Initialise();
+			CurrentReadingDisplay.Value = Program.ModuleRowController.GetCurrentReading(ModuleId);
 		}
 
 		private void MinValueEntry_ValueChanged(object sender, EventArgs e)
 		{
-
-			controller.UpdateMinValue((int)MinValueEntry.Value);
+			var value = (int)MinValueEntry.Value;
+			Program.ModuleRowController.NotifyMinValueChanged(ModuleId, value);
+			MaxValueEntry.Minimum = value;
 		}
 
 		private void MaxValueEntry_ValueChanged(object sender, EventArgs e)
 		{
-			controller.UpdateMaxValue((int)MaxValueEntry.Value);
+			var value = (int)MaxValueEntry.Value;
+			Program.ModuleRowController.NotifyMaxValueChanged(ModuleId, value);
+			MinValueEntry.Maximum = value;
 		}
 
 		private void RemoveButton_Click(object sender, EventArgs e)
 		{
-			controller.RemoveModule();
-		}
-
-		public void Initialise(ModuleRowViewModel moduleViewModel)
-		{
-			MinValueEntry.Minimum = -2147483648;
-			MinValueEntry.Maximum = moduleViewModel.MaxValue;
-			MinValueEntry.Value = moduleViewModel.MinValue;
-			CurrentReadingDisplay.Value = moduleViewModel.CurrentReading;
-			MaxValueEntry.Minimum = moduleViewModel.MinValue;
-			MaxValueEntry.Maximum = 2147483647;
-			MaxValueEntry.Value = moduleViewModel.MaxValue;
-			IdDisplay.Text = moduleViewModel.Id.ToString();
-			NameDisplay.Text = moduleViewModel.Name;
-			TypeDisplay.Text = Enum.GetName(typeof(ModuleType), moduleViewModel.Type);
-		}
-
-		public void UpdateMinValue(int value)
-		{
-			MinValueEntry.Value = value;
-			MaxValueEntry.Minimum = value;
-		}
-
-		public void UpdateMaxValue(int value)
-		{
-			MaxValueEntry.Value = value;
-			MinValueEntry.Maximum = value;
-		}
-
-		public void UpdateCurrentReading()
-		{
-			controller.UpdateCurrentReading();
-		}
-
-		public void UpdateCurrentReading(int reading)
-		{
-			CurrentReadingDisplay.Value = reading;
-		}
-
-		public void RemoveModule()
-		{
-			onRemoveModule(ModuleId);
+			OnRemoveModule(this, new OnRemoveModuleEventArgs(ModuleId));
 		}
 	}
 }

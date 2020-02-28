@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Windows.Forms;
-using PatientMonitoringSystem.Enums;
-using PatientMonitoringSystem.Models;
+using PatientMonitoringSystem.Controllers;
+using PatientMonitoringSystem.Core.Models;
+using PatientMonitoringSystem.Core.Models.Enums;
 using PatientMonitoringSystem.Views;
 
 namespace PatientMonitoringSystem
 {
 	public static class Program
 	{
-		public static List<IBedsideSystem> BedsideSystems;
+		public static List<IBedsideSystem> BedsideSystems { get; } = new List<IBedsideSystem>();
 
-		public static List<IModule> Modules;
+		public static List<IModule> Modules { get; } = new List<IModule>();
+
+		public static ModuleRowController ModuleRowController { get; } = new ModuleRowController();
 
 		[STAThread]
 		public static void Main()
 		{
-			BedsideSystems = new List<IBedsideSystem>();
-			Modules = new List<IModule>();
-
 			var initialBedsideSystems = int.Parse(ConfigurationManager.AppSettings["InitialBedsideSystems"]);
 			var initialModulesPerBedsideSystem = int.Parse(ConfigurationManager.AppSettings["InitialModulesPerBedsideSystem"]);
 			var initialMinValue = int.Parse(ConfigurationManager.AppSettings["InitialMinValue"]);
@@ -38,7 +38,10 @@ namespace PatientMonitoringSystem
 
 					var modules = getModules();
 
-					bedsideSystem.Modules.AddRange(modules);
+					foreach (var module in modules)
+					{
+						bedsideSystem.Modules.Add(module);
+					}
 
 					yield return bedsideSystem;
 
@@ -74,6 +77,8 @@ namespace PatientMonitoringSystem
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(GetGenericForm());
+
+			ModuleRowController.Dispose();
 		}
 
 		private static Form GetGenericForm()

@@ -1,6 +1,7 @@
-﻿using PatientMonitoringSystem.Enums;
+﻿using PatientMonitoringSystem.Core.Models.Enums;
+using PatientMonitoringSystem.Core.Strategies;
 
-namespace PatientMonitoringSystem.Factory
+namespace PatientMonitoringSystem.Core.Factories
 {
 	public class ModuleFactory
 	{

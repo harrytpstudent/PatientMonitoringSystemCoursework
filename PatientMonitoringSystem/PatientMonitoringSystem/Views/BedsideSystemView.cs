@@ -3,11 +3,12 @@ using System.Linq;
 using System.Windows.Forms;
 using PatientMonitoringSystem.Controllers;
 using PatientMonitoringSystem.ViewModels;
-using PatientMonitoringSystem.Enums;
+using PatientMonitoringSystem.Core.Models.Enums;
+using PatientMonitoringSystem.Views.Eventing;
 
 namespace PatientMonitoringSystem.Views
 {
-	public partial class BedsideSystemView : UserControl
+	public partial class BedsideSystemView : UserControl, IDisposable
 	{
 		private readonly BedsideSystemController controller;
 
@@ -16,6 +17,8 @@ namespace PatientMonitoringSystem.Views
 			InitializeComponent();
 
 			controller = new BedsideSystemController(this, bedsideSystemId);
+
+			Disposed += OnDisposed;
 		}
 
 		private void BedsideSystemView_Load(object sender, EventArgs e)
@@ -35,9 +38,9 @@ namespace PatientMonitoringSystem.Views
 			controller.AddModule(moduleName, moduleType);
 		}
 
-		public void OnRemoveModule(Guid moduleId)
+		public void OnRemoveModule(object sender, OnRemoveModuleEventArgs e)
 		{
-			controller.RemoveModule(moduleId);
+			controller.RemoveModule(e.ModuleId);
 		}
 
 		public void Initialise(BedsideSystemViewModel bedsideSystemViewModel, bool canAddAnotherModule)
@@ -61,15 +64,17 @@ namespace PatientMonitoringSystem.Views
 		{
 			var moduleRowViews = Table.Controls.OfType<ModuleRowView>();
 
+			// We want to do all of these refreshes at around the same time and avoid having lots of timers.
 			foreach (var moduleRowView in moduleRowViews)
 			{
-				moduleRowView.UpdateCurrentReading();
+				moduleRowView.RefreshCurrentReading();
 			}
 		}
 
 		public void AddModule(Guid moduleId)
 		{
-			var moduleRowView = new ModuleRowView(moduleId, OnRemoveModule);
+			var moduleRowView = Program.ModuleRowController.Initialise(moduleId);
+			moduleRowView.OnRemoveModule += OnRemoveModule;
 
 			Table.RowStyles.Add(new RowStyle());
 			Table.Controls.Add(moduleRowView, 0, Table.RowCount - 1);
@@ -94,6 +99,11 @@ namespace PatientMonitoringSystem.Views
 			Table.Controls.Remove(moduleRowView);
 
 			AddButton.Enabled = true;
+		}
+
+		public void OnDisposed(object sender, EventArgs e)
+		{
+			Updater.Dispose(); // Just in case it doesn't happen automatically.
 		}
 	}
 }

@@ -1,64 +1,41 @@
 ﻿using System;
 using System.Linq;
-using PatientMonitoringSystem.Models;
+using PatientMonitoringSystem.Core.Models;
 using PatientMonitoringSystem.ViewModels;
 using PatientMonitoringSystem.Views;
 
 namespace PatientMonitoringSystem.Controllers
 {
-	public class ModuleRowController
+	public class ModuleRowController : IDisposable
 	{
-		private readonly ModuleRowView moduleRowView;
-
-		private readonly IModule module;
-
-		public ModuleRowController(ModuleRowView moduleRowView, Guid moduleId)
+		public ModuleRowView Initialise(Guid moduleId)
 		{
-			this.moduleRowView = moduleRowView;
-			module = Program.Modules.Single(m => m.ModuleId == moduleId);
-		}
+			var module = GetModuleById(moduleId);
 
-		public void Initialise()
-		{
-			var reading = module.GetCurrentReading();
-
-			var moduleRowViewModel = new ModuleRowViewModel
+			var viewModel = new ModuleRowViewModel
 			{
 				MinValue = module.MinValue,
-				CurrentReading = reading,
+				CurrentReading = module.CurrentReading,
 				MaxValue = module.MaxValue,
 				Id = module.ModuleId,
 				Name = module.Name,
-				Type= module.Type
+				Type = module.ModuleType.ToString()
 			};
 
-			moduleRowView.Initialise(moduleRowViewModel);
+			return new ModuleRowView(module.ModuleId, viewModel);
 		}
 
-		public void UpdateMinValue(int value)
+		public int GetCurrentReading(Guid moduleId) => GetModuleById(moduleId).CurrentReading;
+
+		public void NotifyMinValueChanged(Guid moduleId, int value) => GetModuleById(moduleId).MinValue = value;
+
+		public void NotifyMaxValueChanged(Guid moduleId, int value) => GetModuleById(moduleId).MaxValue = value;
+
+		private IModule GetModuleById(Guid moduleId) => Program.Modules.Single(m => m.ModuleId == moduleId);
+
+		public void Dispose()
 		{
-			module.MinValue = value;
-
-			moduleRowView.UpdateMinValue(value);
-		}
-
-		public void UpdateMaxValue(int value)
-		{
-			module.MaxValue = value;
-
-			moduleRowView.UpdateMaxValue(value);
-		}
-
-		public void UpdateCurrentReading()
-		{
-			var reading = module.GetCurrentReading();
-
-			moduleRowView.UpdateCurrentReading(reading);
-		}
-
-		public void RemoveModule()
-		{
-			moduleRowView.RemoveModule();
+			// Dispose stuff in here if necessary.
 		}
 	}
 }

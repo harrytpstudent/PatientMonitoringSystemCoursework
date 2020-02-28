@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using PatientMonitoringSystem.Core.Models;
 using System.Threading;
+using PatientMonitoringSystem.Core.Models.Enums;
 
 namespace PatientMonitoringSystem.Core.Models
 {
-
-
 	public class Module : IModule
 	{
 		private int minValue;
@@ -15,13 +13,15 @@ namespace PatientMonitoringSystem.Core.Models
 
 		private readonly Random randomNumGen;
 
-		private readonly Task valueGenerator;
-
 		private readonly CancellationTokenSource tokenSource;
+
+		private readonly Task readingGenerator;
 
 		public Guid ModuleId { get; }
 
 		public string Name { get; }
+
+		public ModuleType ModuleType { get; }
 
 		public int MinValue
 		{
@@ -34,17 +34,11 @@ namespace PatientMonitoringSystem.Core.Models
 			}
 		}
 
-		public bool ValueBreached {
-			get;
-			private set;
-		}
+		public bool ValueBreached { get; private set; }
 
 		public event EventHandler<Guid> OnValueBreached;
 
-		public int CurrentReading {
-			get;
-			private set;
-		}
+		public int CurrentReading { get; private set; }
 
 		public int MaxValue
 		{
@@ -57,34 +51,36 @@ namespace PatientMonitoringSystem.Core.Models
 			}
 		}
 
-		public Module(string name, int initialMinValue, int initialMaxValue)
+		public Module(string name, ModuleType type, int minValue, int maxValue)
 		{
-			tokenSource = new CancellationTokenSource();
-
 			randomNumGen = new Random();
-
-			valueGenerator = GenerateValues(tokenSource.Token);
-
-			ValidateValues(initialMinValue, initialMaxValue);
+			tokenSource = new CancellationTokenSource();
+			readingGenerator = StartGeneratingReadings(tokenSource.Token);
 
 			ModuleId = Guid.NewGuid();
 			Name = name;
+			ModuleType = type;
 
-			MaxValue = initialMaxValue;
-			MinValue = initialMinValue;
+			ValidateValues(minValue, maxValue);
+
+			MaxValue = maxValue;
+			MinValue = minValue;
 		}
 
 
-		private async Task GenerateValues(CancellationToken cToken) {
-			while (!cToken.IsCancellationRequested)
+		private async Task StartGeneratingReadings(CancellationToken cancellationToken)
+		{
+			while (!cancellationToken.IsCancellationRequested)
 			{
-
 				await Task.Delay(1000);
 
 				CurrentReading = randomNumGen.Next(MinValue-1, MaxValue+2);
-				ValueBreached = (CurrentReading > MaxValue || CurrentReading < MinValue);
+				ValueBreached = CurrentReading > MaxValue || CurrentReading < MinValue;
+
 				if (ValueBreached)
+				{
 					OnValueBreached(this, ModuleId);
+				}
 			}
 		}
 
@@ -99,7 +95,7 @@ namespace PatientMonitoringSystem.Core.Models
 		public void Dispose()
 		{
 			tokenSource.Cancel();
-			valueGenerator.Wait();
+			readingGenerator.Wait();
 		}
 	}
 }
