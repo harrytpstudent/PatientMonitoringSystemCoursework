@@ -61,9 +61,9 @@ namespace PatientMonitoringSystem.Controllers
 
 			bedsideSystem.Modules.Remove(module);
 
-			Program.Modules.Remove(module);
-
 			bedsideSystemView.RemoveModule(moduleId);
+
+			Program.Modules.Remove(module);
 		}
 	}
 }
