@@ -68,7 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BedsideSystemTests.cs" />
+<<<<<<< Updated upstream
+=======
+    <Compile Include="ControlSystemTests.cs" />
     <Compile Include="ModuleTests.cs" />
+>>>>>>> Stashed changes
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
