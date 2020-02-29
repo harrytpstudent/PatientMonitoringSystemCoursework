@@ -59,9 +59,9 @@ namespace PatientMonitoringSystem.Controllers
 		{
 			var module = Program.Modules.Single(m => m.ModuleId == moduleId);
 
-			bedsideSystem.Modules.Remove(module);
-
 			bedsideSystemView.RemoveModule(moduleId);
+
+			bedsideSystem.Modules.Remove(module);
 
 			Program.Modules.Remove(module);
 		}
