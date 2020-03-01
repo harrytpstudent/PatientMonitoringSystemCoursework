@@ -2,13 +2,14 @@
 using System.Linq;
 using System.Windows.Forms;
 using PatientMonitoringSystem.Controllers;
+using System.Collections.Generic;
 
 namespace PatientMonitoringSystem.Views
 {
 	public partial class ControlSystemView : UserControl
 	{
 		private readonly ControlSystemController controller;
-
+		Dictionary<Guid, BedsideSystemView> bed_gui_map = new Dictionary<Guid, BedsideSystemView>();
 		public ControlSystemView(ControlSystemController csController)
 		{
 			InitializeComponent();
@@ -31,7 +32,8 @@ namespace PatientMonitoringSystem.Views
 
 			foreach (var bedsideSystemId in Program.BedsideSystems.Select(bs => bs.BedsideSystemId))
 			{
-				AddBedsideSystem(bedsideSystemId);
+				AddBedsideSystemView(bedsideSystemId);
+				bed_gui_map.Add(bedsideSystemId, new BedsideSystemView(bedsideSystemId));
 			}
 
 			ViewBedsideSystem(Program.BedsideSystems.First().BedsideSystemId);
@@ -39,7 +41,7 @@ namespace PatientMonitoringSystem.Views
 			Dock = DockStyle.Fill;
 		}
 
-		private void AddBedsideSystem(Guid bedsideSystemId)
+		private void AddBedsideSystemView(Guid bedsideSystemId)
 		{
 			var bedsideSystemRowView = new BedsideSystemRowView(bedsideSystemId, OnViewBedsideSystem);
 
@@ -50,7 +52,7 @@ namespace PatientMonitoringSystem.Views
 		public void ViewBedsideSystem(Guid bedsideSystemId)
 		{
 			RightPanel.Controls.Clear();
-			RightPanel.Controls.Add(new BedsideSystemView(bedsideSystemId));
+			RightPanel.Controls.Add(bed_gui_map[bedsideSystemId]);
 		}
 	}
 }
