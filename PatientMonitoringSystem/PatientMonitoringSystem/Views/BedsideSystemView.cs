@@ -16,13 +16,12 @@ namespace PatientMonitoringSystem.Views
 
 		private readonly BedsideSystemController controller;
 
-		public BedsideSystemView(Guid bedsideSystemId)
+		public BedsideSystemView(Guid bedsideSystemId, BedsideSystemController bsController)
 		{
 			GetModuleRowViewsSemaphor = new SemaphoreSlim(1, 1);
 
 			InitializeComponent();
-
-			controller = new BedsideSystemController(this, bedsideSystemId);
+			controller = bsController;
 
 			Disposed += OnDisposed;
 		}
@@ -34,19 +33,19 @@ namespace PatientMonitoringSystem.Views
 
 		private void Updater_Tick(object sender, EventArgs e)
 		{
-			controller.UpdateCurrentReading();
+			controller.UpdateCurrentReading(this);
 		}
 
 		private void AddButton_Click(object sender, EventArgs e)
 		{
 			var moduleName = NameEntry.Text;
 			ModuleType moduleType = (ModuleType)ModuleCombo.SelectedItem;
-			controller.AddModule(moduleName, moduleType);
+			controller.AddModule(this, moduleName, moduleType);
 		}
 
 		public void OnRemoveModule(object sender, OnRemoveModuleEventArgs e)
 		{
-			controller.RemoveModule(e.ModuleId);
+			controller.RemoveModule(this, e.ModuleId);
 		}
 
 		public void Initialise(BedsideSystemViewModel bedsideSystemViewModel, bool canAddAnotherModule)

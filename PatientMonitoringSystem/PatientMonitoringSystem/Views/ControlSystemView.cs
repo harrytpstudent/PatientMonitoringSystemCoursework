@@ -33,7 +33,7 @@ namespace PatientMonitoringSystem.Views
 			foreach (var bedsideSystemId in Program.BedsideSystems.Select(bs => bs.BedsideSystemId))
 			{
 				AddBedsideSystemView(bedsideSystemId);
-				bed_gui_map.Add(bedsideSystemId, new BedsideSystemView(bedsideSystemId));
+				bed_gui_map.Add(bedsideSystemId, new BedsideSystemView(bedsideSystemId, new BedsideSystemController(bedsideSystemId)));
 			}
 
 			ViewBedsideSystem(Program.BedsideSystems.First().BedsideSystemId);

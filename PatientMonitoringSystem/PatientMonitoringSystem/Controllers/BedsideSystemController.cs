@@ -16,11 +16,10 @@ namespace PatientMonitoringSystem.Controllers
 
 		private readonly int maxModulesPerBedsideSystem;
 
-		public BedsideSystemController(BedsideSystemView bedsideSystemView, Guid bedsideSystemId)
+		public BedsideSystemController(Guid bedsideSystemId)
 		{
-			this.bedsideSystemView = bedsideSystemView;
-			bedsideSystem = Program.BedsideSystems.Single(bs => bs.BedsideSystemId == bedsideSystemId);
-			maxModulesPerBedsideSystem = int.Parse(ConfigurationManager.AppSettings["MaxModulesPerBedsideSystem"]);
+			bedsideSystem = Program.BedsideSystems.Single(bs => bs.BedsideSystemId == bedsideSystemId); // TODO: We need to hold a list of the bedsideSystems in this class as a member variable instead of taking the values from program.cs
+			maxModulesPerBedsideSystem = int.Parse(ConfigurationManager.AppSettings["MaxModulesPerBedsideSystem"]); 
 		}
 
 		public void Initialise()
@@ -33,20 +32,18 @@ namespace PatientMonitoringSystem.Controllers
 			};
 
 			var canAddAnotherModule = bedsideSystem.Modules.Count < maxModulesPerBedsideSystem;
-
-			bedsideSystemView.Initialise(bedsideSystemViewModel, canAddAnotherModule);
 		}
 
-		public void UpdateCurrentReading()
+		public void UpdateCurrentReading(BedsideSystemView bedsideSystemView)
 		{
 			bedsideSystemView.UpdateCurrentReading();
 		}
 
-		public void AddModule(string name, ModuleType moduleType)
+		public void AddModule(BedsideSystemView bedsideSystemView, string name, ModuleType moduleType) //TODO: Pull out all references from program
 		{
 			var module = new Module(name, moduleType, 0, 0);
 
-			Program.Modules.Add(module);
+			Program.Modules.Add(module); // In this case we would have something like BedsideSystems[bedsideId].AddModule(module)
 
 			bedsideSystem.Modules.Add(module);
 
@@ -55,7 +52,7 @@ namespace PatientMonitoringSystem.Controllers
 			bedsideSystemView.AddModule(module.ModuleId, canAddAnotherModule);
 		}
 
-		public void RemoveModule(Guid moduleId)
+		public void RemoveModule(BedsideSystemView bedsideSystemView, Guid moduleId)
 		{
 			var module = Program.Modules.Single(m => m.ModuleId == moduleId);
 
