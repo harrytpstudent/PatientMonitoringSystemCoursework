@@ -78,7 +78,6 @@
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "ControlSystemView";
 			this.Size = new System.Drawing.Size(1616, 914);
-			this.Load += new System.EventHandler(this.ControlSystemView_Load);
 			this.LeftPanel.ResumeLayout(false);
 			this.LeftPanel.PerformLayout();
 			this.ResumeLayout(false);

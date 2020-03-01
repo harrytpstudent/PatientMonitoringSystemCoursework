@@ -16,6 +16,8 @@ namespace PatientMonitoringSystem
 		public static IList<IModule> Modules { get; } = new List<IModule>();
 
 		public static ModuleRowController ModuleRowController { get; } = new ModuleRowController();
+		public static ControlSystemController controlSystemController = new ControlSystemController();
+
 
 		[STAThread]
 		public static void Main()
@@ -101,7 +103,7 @@ namespace PatientMonitoringSystem
 				FormBorderStyle = FormBorderStyle.Sizable
 			};
 
-			form.Controls.Add(new ControlSystemView());
+			form.Controls.Add(new ControlSystemView(controlSystemController));
 
 			return form;
 		}

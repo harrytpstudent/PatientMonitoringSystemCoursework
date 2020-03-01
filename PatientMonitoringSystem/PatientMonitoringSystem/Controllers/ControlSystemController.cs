@@ -6,19 +6,11 @@ namespace PatientMonitoringSystem.Controllers
 {
 	public class ControlSystemController
 	{
-		private readonly ControlSystemView controlSystemView;
-
-		public ControlSystemController(ControlSystemView controlSystemView)
+		public ControlSystemController()
 		{
-			this.controlSystemView = controlSystemView;
 		}
 
-		public void Initialise()
-		{
-			controlSystemView.Initialise();
-		}
-
-		public void ViewBedsideSystem(Guid bedsideSystemId)
+		public void ViewBedsideSystem(Guid bedsideSystemId, ControlSystemView controlSystemView)
 		{
 			var bedsideSystem = Program.BedsideSystems.Single(bs => bs.BedsideSystemId == bedsideSystemId);
 

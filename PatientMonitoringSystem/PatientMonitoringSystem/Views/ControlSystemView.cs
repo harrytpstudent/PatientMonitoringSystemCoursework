@@ -9,21 +9,17 @@ namespace PatientMonitoringSystem.Views
 	{
 		private readonly ControlSystemController controller;
 
-		public ControlSystemView()
+		public ControlSystemView(ControlSystemController csController)
 		{
 			InitializeComponent();
 
-			controller = new ControlSystemController(this);
-		}
-
-		private void ControlSystemView_Load(object sender, System.EventArgs e)
-		{
-			controller.Initialise();
+			controller = csController;
+			Initialise();
 		}
 
 		public void OnViewBedsideSystem(Guid bedsideSystemId)
 		{
-			controller.ViewBedsideSystem(bedsideSystemId);
+			controller.ViewBedsideSystem(bedsideSystemId, this);
 		}
 
 		public void Initialise()
