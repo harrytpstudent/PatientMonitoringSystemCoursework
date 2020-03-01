@@ -49,19 +49,13 @@
   <ItemGroup>
     <Compile Include="Controllers\ControlSystemController.cs" />
     <Compile Include="Controllers\BedsideSystemRowController.cs" />
-    <Compile Include="Enums\ModuleType.cs" />
-    <Compile Include="Factory\ModuleFactory.cs" />
-    <Compile Include="Models\BedsideSystem.cs" />
-    <Compile Include="BloodPressureStrategy.cs" />
-    <Compile Include="Models\IBedsideSystem.cs" />
-    <Compile Include="Models\IModule.cs" />
-    <Compile Include="Models\Module.cs" />
     <Compile Include="Controllers\BedsideSystemController.cs" />
+    <Compile Include="Views\Eventing\OnRemoveModuleEventArgs.cs" />
     <Compile Include="ViewModels\BedsideSystemViewModel.cs" />
     <Compile Include="ViewModels\BedsideSystemRowViewModel.cs" />
     <Compile Include="ViewModels\ModuleRowViewModel.cs" />
     <Compile Include="Views\ControlSystemView.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\ControlSystemView.Designer.cs">
       <DependentUpon>ControlSystemView.cs</DependentUpon>
@@ -80,13 +74,11 @@
     </Compile>
     <Compile Include="Controllers\ModuleRowController.cs" />
     <Compile Include="Views\BedsideSystemView.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\BedsideSystemView.Designer.cs">
       <DependentUpon>BedsideSystemView.cs</DependentUpon>
     </Compile>
-    <Compile Include="IModuleStrategy.cs" />
-    <Compile Include="OxygenStrategy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Views\BedsideSystemRowView.resx">
@@ -123,6 +115,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PatientMonitoringSystem.Core\PatientMonitoringSystem.Core.csproj">
+      <Project>{70C0D056-2992-4583-BADD-B6E3130B537F}</Project>
+      <Name>PatientMonitoringSystem.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

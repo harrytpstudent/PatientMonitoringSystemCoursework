@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using PatientMonitoringSystem.Models;
+using PatientMonitoringSystem.Core.Models;
 using PatientMonitoringSystem.ViewModels;
 using PatientMonitoringSystem.Views;
 

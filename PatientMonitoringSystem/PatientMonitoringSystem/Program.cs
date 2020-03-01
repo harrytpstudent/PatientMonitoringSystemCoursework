@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Windows.Forms;
-using PatientMonitoringSystem.Enums;
-using PatientMonitoringSystem.Models;
+using PatientMonitoringSystem.Controllers;
+using PatientMonitoringSystem.Core.Models;
+using PatientMonitoringSystem.Core.Models.Enums;
 using PatientMonitoringSystem.Views;
 
 namespace PatientMonitoringSystem
 {
 	public static class Program
 	{
-		public static List<IBedsideSystem> BedsideSystems;
+		public static IList<IBedsideSystem> BedsideSystems { get; } = new List<IBedsideSystem>();
 
-		public static List<IModule> Modules;
+		public static IList<IModule> Modules { get; } = new List<IModule>();
+
+		public static ModuleRowController ModuleRowController { get; } = new ModuleRowController();
 
 		[STAThread]
 		public static void Main()
 		{
-			BedsideSystems = new List<IBedsideSystem>();
-			Modules = new List<IModule>();
-
 			var initialBedsideSystems = int.Parse(ConfigurationManager.AppSettings["InitialBedsideSystems"]);
 			var initialModulesPerBedsideSystem = int.Parse(ConfigurationManager.AppSettings["InitialModulesPerBedsideSystem"]);
 			var initialMinValue = int.Parse(ConfigurationManager.AppSettings["InitialMinValue"]);
@@ -38,7 +38,10 @@ namespace PatientMonitoringSystem
 
 					var modules = getModules();
 
-					bedsideSystem.Modules.AddRange(modules);
+					foreach (var module in modules)
+					{
+						bedsideSystem.Modules.Add(module);
+					}
 
 					yield return bedsideSystem;
 
@@ -69,11 +72,38 @@ namespace PatientMonitoringSystem
 				return (ModuleType)moduleTypes.GetValue(randomIndex);
 			}
 
-			BedsideSystems.AddRange(getBedsideSystems());
+			foreach (var bedsideSystem in getBedsideSystems())
+			{
+				BedsideSystems.Add(bedsideSystem);
+			}
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new ControlSystemView());
+			Application.Run(GetGenericForm());
+
+			MessageBox.Show("About to dispose resources. Don't be surprised if it takes several seconds. Program will terminate automatically.");
+
+			ModuleRowController.Dispose();
+
+			foreach (var bedsideSystem in BedsideSystems) // TODO: Change code so can just call ControlSystem.Dispose()
+			{
+				bedsideSystem.Dispose(); // This will cascade down to the modules.
+			}
+		}
+
+		private static Form GetGenericForm()
+		{
+			var form = new Form
+			{
+				AutoSize = true,
+				AutoSizeMode = AutoSizeMode.GrowOnly,
+				SizeGripStyle = SizeGripStyle.Show,
+				FormBorderStyle = FormBorderStyle.Sizable
+			};
+
+			form.Controls.Add(new ControlSystemView());
+
+			return form;
 		}
 	}
 }

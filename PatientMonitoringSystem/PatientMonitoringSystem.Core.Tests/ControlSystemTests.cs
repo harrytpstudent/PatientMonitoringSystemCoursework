@@ -52,5 +52,7 @@ namespace PatientMonitoringSystem.Core.Tests
 
 			mockBedside.VerifyAdd(module => module.OnAlarmRaised += It.IsAny<EventHandler<Guid>>(), Times.Once());
 		}
+
+
 	}
 }

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Configuration;
 using System.Linq;
-using PatientMonitoringSystem.Models;
+using PatientMonitoringSystem.Core.Models;
 using PatientMonitoringSystem.ViewModels;
 using PatientMonitoringSystem.Views;
-using PatientMonitoringSystem.Enums;
-using PatientMonitoringSystem.Factory;
+using PatientMonitoringSystem.Core.Models.Enums;
 
 namespace PatientMonitoringSystem.Controllers
 {
@@ -60,11 +59,11 @@ namespace PatientMonitoringSystem.Controllers
 		{
 			var module = Program.Modules.Single(m => m.ModuleId == moduleId);
 
+			bedsideSystemView.RemoveModule(moduleId);
+
 			bedsideSystem.Modules.Remove(module);
 
 			Program.Modules.Remove(module);
-
-			bedsideSystemView.RemoveModule(moduleId);
 		}
 	}
 }

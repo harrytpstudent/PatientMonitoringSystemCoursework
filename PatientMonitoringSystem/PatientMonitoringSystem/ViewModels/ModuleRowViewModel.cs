@@ -1,5 +1,4 @@
 ﻿using System;
-using PatientMonitoringSystem.Enums;
 
 namespace PatientMonitoringSystem.ViewModels
 {
@@ -15,6 +14,6 @@ namespace PatientMonitoringSystem.ViewModels
 
 		public string Name { get; set; }
 
-		public ModuleType Type { get; set; }
+		public string Type { get; set; }
 	}
 }

@@ -5,7 +5,7 @@ using PatientMonitoringSystem.Controllers;
 
 namespace PatientMonitoringSystem.Views
 {
-	public partial class ControlSystemView : Form
+	public partial class ControlSystemView : UserControl
 	{
 		private readonly ControlSystemController controller;
 
@@ -37,6 +37,10 @@ namespace PatientMonitoringSystem.Views
 			{
 				AddBedsideSystem(bedsideSystemId);
 			}
+
+			ViewBedsideSystem(Program.BedsideSystems.First().BedsideSystemId);
+
+			Dock = DockStyle.Fill;
 		}
 
 		private void AddBedsideSystem(Guid bedsideSystemId)
@@ -49,7 +53,8 @@ namespace PatientMonitoringSystem.Views
 
 		public void ViewBedsideSystem(Guid bedsideSystemId)
 		{
-			new BedsideSystemView(bedsideSystemId).ShowDialog(this);
+			RightPanel.Controls.Clear();
+			RightPanel.Controls.Add(new BedsideSystemView(bedsideSystemId));
 		}
 	}
 }

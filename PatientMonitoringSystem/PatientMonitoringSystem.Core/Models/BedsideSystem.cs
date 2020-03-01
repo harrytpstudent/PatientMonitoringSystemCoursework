@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace PatientMonitoringSystem.Core.Models
 {
 	public class BedsideSystem : IBedsideSystem
 	{
-		private readonly IList<IModule> modules;
-
 		public Guid BedsideSystemId { get; }
 
 		public string Name { get; }
 
 		public bool AlarmRaised { get; private set; }
 
-		public IReadOnlyCollection<IModule> Modules => new ReadOnlyCollection<IModule>(modules);
+		public IList<IModule> Modules { get; }
 
 		public event EventHandler<Guid> OnAlarmRaised; // Yes, usually you would create an EventArgs class.
 
@@ -23,12 +20,12 @@ namespace PatientMonitoringSystem.Core.Models
 		{
 			BedsideSystemId = Guid.NewGuid();
 			Name = name;
-			modules = new List<IModule>();
+			Modules = new List<IModule>();
 		}
 
 		public void AddModule(IModule newModule)
 		{
-			modules.Add(newModule);
+			Modules.Add(newModule);
 			newModule.OnValueBreached += RaiseAlarm;
 		}
 
@@ -38,15 +35,14 @@ namespace PatientMonitoringSystem.Core.Models
 			if (!AlarmRaised)
 			{
 				AlarmRaised = true;
-				OnAlarmRaised(sender, BedsideSystemId);
+				OnAlarmRaised?.Invoke(sender, BedsideSystemId);
 			}
-			
 		}
 
 		public void RemoveModule(Guid moduleId)
 		{
 			var module = Modules.Single(m => m.ModuleId == moduleId);
-			modules.Remove(module);
+			Modules.Remove(module);
 			module.OnValueBreached -= RaiseAlarm;
 			module.Dispose();
 		}

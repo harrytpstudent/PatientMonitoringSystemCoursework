@@ -1,21 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using PatientMonitoringSystem.Controllers;
 using PatientMonitoringSystem.ViewModels;
-using PatientMonitoringSystem.Enums;
+using PatientMonitoringSystem.Core.Models.Enums;
+using PatientMonitoringSystem.Views.Eventing;
 
 namespace PatientMonitoringSystem.Views
 {
-	public partial class BedsideSystemView : Form
+	public partial class BedsideSystemView : UserControl, IDisposable
 	{
+		private SemaphoreSlim GetModuleRowViewsSemaphor;
+
 		private readonly BedsideSystemController controller;
 
 		public BedsideSystemView(Guid bedsideSystemId)
 		{
+			GetModuleRowViewsSemaphor = new SemaphoreSlim(1, 1);
+
 			InitializeComponent();
 
 			controller = new BedsideSystemController(this, bedsideSystemId);
+
+			Disposed += OnDisposed;
 		}
 
 		private void BedsideSystemView_Load(object sender, EventArgs e)
@@ -35,9 +44,9 @@ namespace PatientMonitoringSystem.Views
 			controller.AddModule(moduleName, moduleType);
 		}
 
-		public void OnRemoveModule(Guid moduleId)
+		public void OnRemoveModule(object sender, OnRemoveModuleEventArgs e)
 		{
-			controller.RemoveModule(moduleId);
+			controller.RemoveModule(e.ModuleId);
 		}
 
 		public void Initialise(BedsideSystemViewModel bedsideSystemViewModel, bool canAddAnotherModule)
@@ -54,21 +63,24 @@ namespace PatientMonitoringSystem.Views
 
 			ModuleCombo.DataSource = Enum.GetValues(typeof(ModuleType));
 			AddButton.Enabled = canAddAnotherModule;
+			Dock = DockStyle.Fill;
 		}
 
 		public void UpdateCurrentReading()
 		{
-			var moduleRowViews = Table.Controls.OfType<ModuleRowView>();
+			var moduleRowViews = GetModuleRowViews();
 
+			// We want to do all of these refreshes at around the same time and avoid having lots of timers.
 			foreach (var moduleRowView in moduleRowViews)
 			{
-				moduleRowView.UpdateCurrentReading();
+				moduleRowView.RefreshCurrentReading();
 			}
 		}
 
 		public void AddModule(Guid moduleId)
 		{
-			var moduleRowView = new ModuleRowView(moduleId, OnRemoveModule);
+			var moduleRowView = Program.ModuleRowController.Initialise(moduleId);
+			moduleRowView.OnRemoveModule += OnRemoveModule;
 
 			Table.RowStyles.Add(new RowStyle());
 			Table.Controls.Add(moduleRowView, 0, Table.RowCount - 1);
@@ -85,7 +97,7 @@ namespace PatientMonitoringSystem.Views
 
 		public void RemoveModule(Guid moduleId)
 		{
-			var moduleRowView = Table.Controls.OfType<ModuleRowView>().Single(mrv => mrv.ModuleId == moduleId);
+			var moduleRowView = GetModuleRowViews().Single(mrv => mrv.ModuleId == moduleId);
 
 			var rowIndex = Table.GetPositionFromControl(moduleRowView).Row;
 
@@ -93,6 +105,27 @@ namespace PatientMonitoringSystem.Views
 			Table.Controls.Remove(moduleRowView);
 
 			AddButton.Enabled = true;
+		}
+
+		public void OnDisposed(object sender, EventArgs e)
+		{
+			Updater.Dispose(); // Just in case it doesn't happen automatically.
+			GetModuleRowViewsSemaphor.Dispose();
+		}
+
+		private IEnumerable<ModuleRowView> GetModuleRowViews()
+		{
+			GetModuleRowViewsSemaphor.Wait();
+
+			try
+			{
+				return Table.Controls.OfType<ModuleRowView>()
+					.ToArray(); // No lazy evaluation (deferred execution).
+			}
+			finally
+			{
+				GetModuleRowViewsSemaphor.Release();
+			}
 		}
 	}
 }

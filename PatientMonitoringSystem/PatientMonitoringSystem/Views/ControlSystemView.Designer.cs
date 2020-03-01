@@ -29,12 +29,14 @@
 		private void InitializeComponent()
 		{
 			this.Table = new System.Windows.Forms.TableLayoutPanel();
-			this.TopPanel = new System.Windows.Forms.Panel();
-			this.TopPanel.SuspendLayout();
+			this.LeftPanel = new System.Windows.Forms.Panel();
+			this.RightPanel = new System.Windows.Forms.Panel();
+			this.LeftPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// Table
 			// 
+			this.Table.AutoSize = true;
 			this.Table.ColumnCount = 1;
 			this.Table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.Table.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -43,37 +45,51 @@
 			this.Table.Name = "Table";
 			this.Table.RowCount = 1;
 			this.Table.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.Table.Size = new System.Drawing.Size(549, 678);
+			this.Table.Size = new System.Drawing.Size(0, 914);
 			this.Table.TabIndex = 0;
 			// 
-			// TopPanel
+			// LeftPanel
 			// 
-			this.TopPanel.Controls.Add(this.Table);
-			this.TopPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.TopPanel.Location = new System.Drawing.Point(0, 0);
-			this.TopPanel.Margin = new System.Windows.Forms.Padding(4);
-			this.TopPanel.Name = "TopPanel";
-			this.TopPanel.Size = new System.Drawing.Size(549, 678);
-			this.TopPanel.TabIndex = 1;
+			this.LeftPanel.AutoSize = true;
+			this.LeftPanel.Controls.Add(this.Table);
+			this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
+			this.LeftPanel.Location = new System.Drawing.Point(0, 0);
+			this.LeftPanel.Margin = new System.Windows.Forms.Padding(4);
+			this.LeftPanel.Name = "LeftPanel";
+			this.LeftPanel.Size = new System.Drawing.Size(0, 914);
+			this.LeftPanel.TabIndex = 1;
+			// 
+			// RightPanel
+			// 
+			this.RightPanel.AutoSize = true;
+			this.RightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.RightPanel.Location = new System.Drawing.Point(0, 0);
+			this.RightPanel.Name = "RightPanel";
+			this.RightPanel.Size = new System.Drawing.Size(1616, 914);
+			this.RightPanel.TabIndex = 2;
 			// 
 			// ControlSystemView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(549, 678);
-			this.Controls.Add(this.TopPanel);
+			this.AutoSize = true;
+			this.Controls.Add(this.RightPanel);
+			this.Controls.Add(this.LeftPanel);
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "ControlSystemView";
-			this.Text = "ControlSystemView";
+			this.Size = new System.Drawing.Size(1616, 914);
 			this.Load += new System.EventHandler(this.ControlSystemView_Load);
-			this.TopPanel.ResumeLayout(false);
+			this.LeftPanel.ResumeLayout(false);
+			this.LeftPanel.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
 
 		private System.Windows.Forms.TableLayoutPanel Table;
-		private System.Windows.Forms.Panel TopPanel;
+		private System.Windows.Forms.Panel LeftPanel;
+		private System.Windows.Forms.Panel RightPanel;
 	}
 }
