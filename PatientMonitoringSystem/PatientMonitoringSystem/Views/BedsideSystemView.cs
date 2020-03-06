@@ -3,33 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using System.Configuration;
 using PatientMonitoringSystem.Controllers;
+using PatientMonitoringSystem.Core.Models;
 using PatientMonitoringSystem.ViewModels;
 using PatientMonitoringSystem.Core.Models.Enums;
 using PatientMonitoringSystem.Views.Eventing;
-
 namespace PatientMonitoringSystem.Views
 {
 	public partial class BedsideSystemView : UserControl, IDisposable
 	{
 		private SemaphoreSlim GetModuleRowViewsSemaphor;
-
+		private IBedsideSystem bedsideSystem;
 		private readonly BedsideSystemController controller;
+		int maxModulesPerBedsideSystem;
 
-		public BedsideSystemView(Guid bedsideSystemId)
+		public BedsideSystemView(IBedsideSystem bedside)
 		{
+			bedsideSystem = bedside;
+			controller = new BedsideSystemController(bedside);
 			GetModuleRowViewsSemaphor = new SemaphoreSlim(1, 1);
 
 			InitializeComponent();
 
-			controller = new BedsideSystemController(this, bedsideSystemId);
+			maxModulesPerBedsideSystem = int.Parse(ConfigurationManager.AppSettings["MaxModulesPerBedsideSystem"]);
 
 			Disposed += OnDisposed;
 		}
 
 		private void BedsideSystemView_Load(object sender, EventArgs e)
 		{
-			controller.Initialise();
+
+			
+			var bedsideSystemViewModel = new BedsideSystemViewModel
+			{
+				Name = bedsideSystem.Name,
+				Id = bedsideSystem.BedsideSystemId,
+				ModuleIds = bedsideSystem.Modules.Select(module => module.ModuleId)
+			};
+
+			var canAddAnotherModule = bedsideSystem.Modules.Count < maxModulesPerBedsideSystem;
+			Initialise(bedsideSystemViewModel, canAddAnotherModule);
 		}
 
 		private void Updater_Tick(object sender, EventArgs e)
@@ -46,6 +60,7 @@ namespace PatientMonitoringSystem.Views
 
 		public void OnRemoveModule(object sender, OnRemoveModuleEventArgs e)
 		{
+			RemoveModule(e.ModuleId);
 			controller.RemoveModule(e.ModuleId);
 		}
 
@@ -97,6 +112,7 @@ namespace PatientMonitoringSystem.Views
 
 		public void RemoveModule(Guid moduleId)
 		{
+
 			var moduleRowView = GetModuleRowViews().Single(mrv => mrv.ModuleId == moduleId);
 
 			var rowIndex = Table.GetPositionFromControl(moduleRowView).Row;

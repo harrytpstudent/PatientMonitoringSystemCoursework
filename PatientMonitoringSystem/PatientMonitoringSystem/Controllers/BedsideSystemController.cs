@@ -16,26 +16,12 @@ namespace PatientMonitoringSystem.Controllers
 
 		private readonly int maxModulesPerBedsideSystem;
 
-		public BedsideSystemController(BedsideSystemView bedsideSystemView, Guid bedsideSystemId)
+		public BedsideSystemController(IBedsideSystem bedside)
 		{
-			this.bedsideSystemView = bedsideSystemView;
-			bedsideSystem = Program.BedsideSystems.Single(bs => bs.BedsideSystemId == bedsideSystemId);
+			bedsideSystem = bedside;
 			maxModulesPerBedsideSystem = int.Parse(ConfigurationManager.AppSettings["MaxModulesPerBedsideSystem"]);
 		}
 
-		public void Initialise()
-		{
-			var bedsideSystemViewModel = new BedsideSystemViewModel
-			{
-				Name = bedsideSystem.Name,
-				Id = bedsideSystem.BedsideSystemId,
-				ModuleIds = bedsideSystem.Modules.Select(module => module.ModuleId)
-			};
-
-			var canAddAnotherModule = bedsideSystem.Modules.Count < maxModulesPerBedsideSystem;
-
-			bedsideSystemView.Initialise(bedsideSystemViewModel, canAddAnotherModule);
-		}
 
 		public void UpdateCurrentReading()
 		{
@@ -46,25 +32,22 @@ namespace PatientMonitoringSystem.Controllers
 		{
 			var module = new Module(name, moduleType, 0, 0);
 
-			Program.Modules.Add(module);
-
 			bedsideSystem.Modules.Add(module);
 
-			var canAddAnotherModule = bedsideSystem.Modules.Count < maxModulesPerBedsideSystem;
+			//var canAddAnotherModule = bedsideSystem.Modules.Count < maxModulesPerBedsideSystem;
 
-			bedsideSystemView.AddModule(module.ModuleId, canAddAnotherModule);
+			//bedsideSystemView.AddModule(module.ModuleId, canAddAnotherModule);
 		}
 
 		public void RemoveModule(Guid moduleId)
 		{
-			IModule module;
-			module = Program.Modules.Single(m => m.ModuleId == moduleId);
-
-			bedsideSystemView.RemoveModule(moduleId);
-
+			IModule module = bedsideSystem.Modules.Single(m => m.ModuleId == moduleId);
 			bedsideSystem.Modules.Remove(module);
-
-			Program.Modules.Remove(module);
 		}
+
+		public bool CanAddAnotherModule() {
+			return bedsideSystem.Modules.Count < maxModulesPerBedsideSystem;
+		}
+
 	}
 }

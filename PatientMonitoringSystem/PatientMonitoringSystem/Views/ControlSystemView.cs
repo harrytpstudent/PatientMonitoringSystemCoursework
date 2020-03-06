@@ -10,7 +10,7 @@ namespace PatientMonitoringSystem.Views
 	public partial class ControlSystemView : UserControl
 	{
 		ControlSystemController controlSystemController;
-		// Dictionary<Guid, BedsideSystemController> bedside_controller_map = new Dictionary<Guid, BedsideSystemController>();
+		// Dictionary<Guid,		> bedside_controller_map = new Dictionary<Guid, BedsideSystemController>();
 		public ControlSystemView(ControlSystemController newControlSystemController)
 		{
 			controlSystemController = newControlSystemController;
@@ -58,8 +58,9 @@ namespace PatientMonitoringSystem.Views
 
 		public void ViewBedsideSystem(Guid bedsideSystemId)
 		{
+			IBedsideSystem bedside = controlSystemController.GetBedsideSystem(bedsideSystemId);
 			RightPanel.Controls.Clear();
-			RightPanel.Controls.Add(new BedsideSystemView(bedsideSystemId));
+			RightPanel.Controls.Add(new BedsideSystemView(bedside));
 		}
 	}
 }
