@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using System.Collections.Generic;
 using PatientMonitoringSystem.Controllers;
 
 namespace PatientMonitoringSystem.Views
 {
 	public partial class ControlSystemView : UserControl
 	{
-
-		public ControlSystemView()
+		ControlSystemController controlSystemController;
+		public ControlSystemView(ControlSystemController newControlSystemController)
 		{
+			controlSystemController = newControlSystemController;
 			InitializeComponent();
 
 		}
@@ -31,12 +33,14 @@ namespace PatientMonitoringSystem.Views
 			Table.RowStyles.RemoveAt(0);
 			Table.RowCount = 0;
 
-			foreach (var bedsideSystemId in Program.BedsideSystems.Select(bs => bs.BedsideSystemId))
+			List<Guid> bedsideIds = controlSystemController.GetBedsideSystemIds();
+
+			foreach (var bedsideSystemId in bedsideIds)
 			{
 				AddBedsideSystem(bedsideSystemId);
 			}
 
-			ViewBedsideSystem(Program.BedsideSystems.First().BedsideSystemId);
+			ViewBedsideSystem(controlSystemController.GetFirstBedsideSystem());
 
 			Dock = DockStyle.Fill;
 		}

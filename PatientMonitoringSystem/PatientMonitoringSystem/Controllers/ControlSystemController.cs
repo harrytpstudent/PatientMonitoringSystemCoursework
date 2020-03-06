@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 using PatientMonitoringSystem.Views;
 using PatientMonitoringSystem.Core.Models;
 
@@ -8,20 +9,38 @@ namespace PatientMonitoringSystem.Controllers
 	public class ControlSystemController
 	{
 
-		public ControlSystemController()
+		public ControlSystem controlSystem;
+		public ControlSystemController(ControlSystem newControlSystem)
 		{
+			controlSystem = newControlSystem;
 		}
 
-		public ControlSystemView Initialise()
+		public IBedsideSystem GetBedsideSystem(Guid bedsideSystemId)
 		{
-			//controlSystemView.Initialise();
-			return new ControlSystemView();
+			foreach(IBedsideSystem bedsideSystem in controlSystem.BedsideSystems) {
+				if (bedsideSystem.BedsideSystemId == bedsideSystemId) {
+					return bedsideSystem;
+				}
+			}
+
+			return null;
 		}
 
-		public IBedsideSystem ViewBedsideSystem(Guid bedsideSystemId)
+		public Guid GetFirstBedsideSystem() {
+			Guid bedsideId = controlSystem.BedsideSystems.First().BedsideSystemId;
+			return bedsideId;
+		}
+
+		public List<Guid> GetBedsideSystemIds()
 		{
-			var bedsideSystem = Program.BedsideSystems.Single(bs => bs.BedsideSystemId == bedsideSystemId);
-			return bedsideSystem;
+			List<Guid> bedsideSystemIds = new List<Guid>();
+			foreach (IBedsideSystem bedsideSystem in controlSystem.BedsideSystems)
+			{
+				bedsideSystemIds.Add(bedsideSystem.BedsideSystemId);
+			}
+
+			return bedsideSystemIds;
+
 		}
 	}
 }

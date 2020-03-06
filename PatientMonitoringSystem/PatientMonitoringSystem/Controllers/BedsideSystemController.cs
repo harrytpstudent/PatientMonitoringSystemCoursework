@@ -58,10 +58,7 @@ namespace PatientMonitoringSystem.Controllers
 		public void RemoveModule(Guid moduleId)
 		{
 			IModule module;
-			lock (Program.modules_lock)
-			{
-				module = Program.Modules.Single(m => m.ModuleId == moduleId);
-			}
+			module = Program.Modules.Single(m => m.ModuleId == moduleId);
 
 			bedsideSystemView.RemoveModule(moduleId);
 

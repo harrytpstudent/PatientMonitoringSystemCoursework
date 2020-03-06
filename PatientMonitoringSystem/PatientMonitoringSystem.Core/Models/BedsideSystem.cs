@@ -42,6 +42,7 @@ namespace PatientMonitoringSystem.Core.Models
 		public void RemoveModule(Guid moduleId)
 		{
 			var module = Modules.Single(m => m.ModuleId == moduleId);
+			
 			Modules.Remove(module);
 			module.OnValueBreached -= RaiseAlarm;
 			module.Dispose();

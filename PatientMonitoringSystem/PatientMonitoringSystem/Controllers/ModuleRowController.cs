@@ -34,10 +34,7 @@ namespace PatientMonitoringSystem.Controllers
 		private IModule GetModuleById(Guid moduleId)
 		{
 			IModule module;
-			lock (Program.modules_lock)
-			{
-				module = Program.Modules.Single(m => m.ModuleId == moduleId);
-			}
+			module = Program.Modules.Single(m => m.ModuleId == moduleId);
 			return module;
 		}
 
