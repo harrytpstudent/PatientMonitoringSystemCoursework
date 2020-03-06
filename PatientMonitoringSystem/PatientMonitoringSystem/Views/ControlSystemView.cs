@@ -10,7 +10,7 @@ namespace PatientMonitoringSystem.Views
 	public partial class ControlSystemView : UserControl
 	{
 		ControlSystemController controlSystemController;
-		// Dictionary<Guid,		> bedside_controller_map = new Dictionary<Guid, BedsideSystemController>();
+		Dictionary<Guid, BedsideSystemView> bedside_controller_map = new Dictionary<Guid, BedsideSystemView>();
 		public ControlSystemView(ControlSystemController newControlSystemController)
 		{
 			controlSystemController = newControlSystemController;
@@ -52,6 +52,8 @@ namespace PatientMonitoringSystem.Views
 			IBedsideSystem bedside = controlSystemController.GetBedsideSystem(bedsideSystemId);
 			var bedsideSystemRowView = new BedsideSystemRowView(bedside, OnViewBedsideSystem);
 
+			bedside_controller_map.Add(bedside.BedsideSystemId, new BedsideSystemView(bedside));
+
 			Table.RowStyles.Add(new RowStyle());
 			Table.Controls.Add(bedsideSystemRowView, 0, Table.RowCount - 1);
 		}
@@ -59,8 +61,16 @@ namespace PatientMonitoringSystem.Views
 		public void ViewBedsideSystem(Guid bedsideSystemId)
 		{
 			IBedsideSystem bedside = controlSystemController.GetBedsideSystem(bedsideSystemId);
-			RightPanel.Controls.Clear();
-			RightPanel.Controls.Add(new BedsideSystemView(bedside));
+			BedsideSystemView view;
+			if (bedside_controller_map.TryGetValue(bedsideSystemId, out view)) 
+			{
+				RightPanel.Controls.Clear();
+				RightPanel.Controls.Add(view);
+			}
+			else
+			{
+				MessageBox.Show("Failed to find assosiated bedside.");
+			}
 		}
 	}
 }
