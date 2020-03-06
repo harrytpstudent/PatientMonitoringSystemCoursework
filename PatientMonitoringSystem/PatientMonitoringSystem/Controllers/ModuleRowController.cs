@@ -31,7 +31,15 @@ namespace PatientMonitoringSystem.Controllers
 
 		public void NotifyMaxValueChanged(Guid moduleId, int value) => GetModuleById(moduleId).MaxValue = value;
 
-		private IModule GetModuleById(Guid moduleId) => Program.Modules.Single(m => m.ModuleId == moduleId);
+		private IModule GetModuleById(Guid moduleId)
+		{
+			IModule module;
+			lock (Program.modules_lock)
+			{
+				module = Program.Modules.Single(m => m.ModuleId == moduleId);
+			}
+			return module;
+		}
 
 		public void Dispose()
 		{

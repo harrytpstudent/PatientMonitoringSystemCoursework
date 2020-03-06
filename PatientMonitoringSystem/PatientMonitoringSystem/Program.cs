@@ -13,9 +13,11 @@ namespace PatientMonitoringSystem
 	{
 		public static IList<IBedsideSystem> BedsideSystems { get; } = new List<IBedsideSystem>();
 
+		public static readonly object modules_lock = new object();
 		public static IList<IModule> Modules { get; } = new List<IModule>();
 
 		public static ModuleRowController ModuleRowController { get; } = new ModuleRowController();
+		public static ControlSystemController ControlSystemController = new ControlSystemController();
 
 		[STAThread]
 		public static void Main()
@@ -101,7 +103,7 @@ namespace PatientMonitoringSystem
 				FormBorderStyle = FormBorderStyle.Sizable
 			};
 
-			form.Controls.Add(new ControlSystemView());
+			form.Controls.Add(ControlSystemController.Initialise());
 
 			return form;
 		}

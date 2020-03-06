@@ -7,23 +7,21 @@ namespace PatientMonitoringSystem.Views
 {
 	public partial class ControlSystemView : UserControl
 	{
-		private readonly ControlSystemController controller;
 
 		public ControlSystemView()
 		{
 			InitializeComponent();
 
-			controller = new ControlSystemController(this);
 		}
 
 		private void ControlSystemView_Load(object sender, System.EventArgs e)
 		{
-			controller.Initialise();
+			Initialise();
 		}
 
 		public void OnViewBedsideSystem(Guid bedsideSystemId)
 		{
-			controller.ViewBedsideSystem(bedsideSystemId);
+			ViewBedsideSystem(bedsideSystemId);
 		}
 
 		public void Initialise()

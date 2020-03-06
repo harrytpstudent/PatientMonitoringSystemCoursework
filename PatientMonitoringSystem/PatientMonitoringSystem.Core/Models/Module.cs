@@ -78,6 +78,7 @@ namespace PatientMonitoringSystem.Core.Models
 
 				if (ValueBreached)
 				{
+					Console.WriteLine("Module {0} breached with value {1}", Name, ValueBreached);
 					OnValueBreached?.Invoke(this, ModuleId);
 				}
 			}

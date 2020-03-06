@@ -1,28 +1,27 @@
 ﻿using System;
 using System.Linq;
 using PatientMonitoringSystem.Views;
+using PatientMonitoringSystem.Core.Models;
 
 namespace PatientMonitoringSystem.Controllers
 {
 	public class ControlSystemController
 	{
-		private readonly ControlSystemView controlSystemView;
 
-		public ControlSystemController(ControlSystemView controlSystemView)
+		public ControlSystemController()
 		{
-			this.controlSystemView = controlSystemView;
 		}
 
-		public void Initialise()
+		public ControlSystemView Initialise()
 		{
-			controlSystemView.Initialise();
+			//controlSystemView.Initialise();
+			return new ControlSystemView();
 		}
 
-		public void ViewBedsideSystem(Guid bedsideSystemId)
+		public IBedsideSystem ViewBedsideSystem(Guid bedsideSystemId)
 		{
 			var bedsideSystem = Program.BedsideSystems.Single(bs => bs.BedsideSystemId == bedsideSystemId);
-
-			controlSystemView.ViewBedsideSystem(bedsideSystemId);
+			return bedsideSystem;
 		}
 	}
 }
