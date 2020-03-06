@@ -77,7 +77,6 @@
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "BedsideSystemRowView";
 			this.Size = new System.Drawing.Size(495, 129);
-			this.Load += new System.EventHandler(this.BedsideSystemRowView_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

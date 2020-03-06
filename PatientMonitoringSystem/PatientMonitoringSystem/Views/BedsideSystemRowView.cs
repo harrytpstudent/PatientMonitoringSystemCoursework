@@ -2,39 +2,37 @@
 using System.Windows.Forms;
 using PatientMonitoringSystem.Controllers;
 using PatientMonitoringSystem.ViewModels;
+using PatientMonitoringSystem.Core.Models;
 
 namespace PatientMonitoringSystem.Views
 {
 	public partial class BedsideSystemRowView : UserControl
 	{
-		private readonly BedsideSystemRowController controller;
-
 		private readonly Action<Guid> onViewBedsideSystem;
 
-		public Guid BedsideSystemId { get; }
+		public Guid BedsideSystemId { set;  get; }
 
-		public BedsideSystemRowView(Guid bedsideSystemId, Action<Guid> onViewBedsideSystem)
+		public BedsideSystemRowView(IBedsideSystem bedside, Action<Guid> onViewBedsideSystem)
 		{
 			InitializeComponent();
-
-			controller = new BedsideSystemRowController(this, bedsideSystemId);
+			Initialise(bedside);
 			this.onViewBedsideSystem = onViewBedsideSystem;
-
-			BedsideSystemId = bedsideSystemId;
-		}
-
-		private void BedsideSystemRowView_Load(object sender, EventArgs e)
-		{
-			controller.Initialise();
 		}
 
 		private void ViewButton_Click(object sender, EventArgs e)
 		{
-			controller.ViewBedsideSystem();
+			ViewBedsideSystem();
 		}
 
-		public void Initialise(BedsideSystemRowViewModel bedsideSystemRowViewModel)
+		public void Initialise(IBedsideSystem bedside)
 		{
+			BedsideSystemId = bedside.BedsideSystemId;
+			var bedsideSystemRowViewModel = new BedsideSystemRowViewModel
+			{
+				Id = bedside.BedsideSystemId,
+				Name = bedside.Name
+			};
+
 			IdDisplay.Text = bedsideSystemRowViewModel.Id.ToString();
 			NameDisplay.Text = bedsideSystemRowViewModel.Name;
 		}
