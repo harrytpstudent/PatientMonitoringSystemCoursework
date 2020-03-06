@@ -46,7 +46,9 @@ namespace PatientMonitoringSystem
 
 					ModuleType moduleType = getModuleType();
 					IModule newModule = new Module($"Module {nextModuleNumber}", moduleType, initialMinValue, initialMaxValue);
+
 					nextModuleNumber++;
+
 					Modules.Add(newModule);
 					bedsideSystem.Modules.Add(newModule);
 				}

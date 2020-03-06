@@ -52,7 +52,8 @@ namespace PatientMonitoringSystem.Views
 			IBedsideSystem bedside = controlSystemController.GetBedsideSystem(bedsideSystemId);
 			var bedsideSystemRowView = new BedsideSystemRowView(bedside, OnViewBedsideSystem);
 
-			bedside_controller_map.Add(bedside.BedsideSystemId, new BedsideSystemView(bedside));
+			BedsideSystemController bedsideSystemController = new BedsideSystemController(bedside);
+			bedside_controller_map.Add(bedside.BedsideSystemId, new BedsideSystemView(bedsideSystemController));
 
 			Table.RowStyles.Add(new RowStyle());
 			Table.Controls.Add(bedsideSystemRowView, 0, Table.RowCount - 1);

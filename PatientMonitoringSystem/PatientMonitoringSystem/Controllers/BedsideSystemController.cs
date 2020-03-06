@@ -5,6 +5,7 @@ using PatientMonitoringSystem.Core.Models;
 using PatientMonitoringSystem.ViewModels;
 using PatientMonitoringSystem.Views;
 using PatientMonitoringSystem.Core.Models.Enums;
+using System.Collections.Generic;
 
 namespace PatientMonitoringSystem.Controllers
 {
@@ -20,11 +21,11 @@ namespace PatientMonitoringSystem.Controllers
 			maxModulesPerBedsideSystem = int.Parse(ConfigurationManager.AppSettings["MaxModulesPerBedsideSystem"]);
 		}
 
-		public void AddModule(string name, ModuleType moduleType)
+		public Guid AddModule(string name, ModuleType moduleType)
 		{
 			var module = new Module(name, moduleType, 0, 0);
-
 			bedsideSystem.Modules.Add(module);
+			return module.ModuleId;
 		}
 
 		public void RemoveModule(Guid moduleId)
@@ -37,6 +38,21 @@ namespace PatientMonitoringSystem.Controllers
 
 		public bool CanAddAnotherModule() {
 			return bedsideSystem.Modules.Count < maxModulesPerBedsideSystem;
+		}
+
+		public string GetBedsideName()
+		{
+			return $"{bedsideSystem.Name} ({bedsideSystem.BedsideSystemId})";
+		}
+
+		public List<Guid> GetModuleIds()
+		{
+			List<Guid> moduleIds = new List<Guid>();
+			foreach (IModule module in bedsideSystem.Modules) {
+				moduleIds.Add(module.ModuleId);
+			}
+
+			return moduleIds;
 		}
 	}
 }

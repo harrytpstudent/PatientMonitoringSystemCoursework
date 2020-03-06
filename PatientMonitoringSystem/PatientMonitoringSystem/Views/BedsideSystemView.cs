@@ -14,14 +14,12 @@ namespace PatientMonitoringSystem.Views
 	public partial class BedsideSystemView : UserControl, IDisposable
 	{
 		private SemaphoreSlim GetModuleRowViewsSemaphor;
-		private IBedsideSystem bedsideSystem;
-		private readonly BedsideSystemController controller;
+		private readonly BedsideSystemController bedsideController;
 		int maxModulesPerBedsideSystem;
 
-		public BedsideSystemView(IBedsideSystem bedside)
+		public BedsideSystemView(BedsideSystemController newBedsideController)
 		{
-			bedsideSystem = bedside;
-			controller = new BedsideSystemController(bedside);
+			bedsideController = newBedsideController;
 			GetModuleRowViewsSemaphor = new SemaphoreSlim(1, 1);
 
 			InitializeComponent();
@@ -33,17 +31,8 @@ namespace PatientMonitoringSystem.Views
 
 		private void BedsideSystemView_Load(object sender, EventArgs e)
 		{
-
-			
-			var bedsideSystemViewModel = new BedsideSystemViewModel
-			{
-				Name = bedsideSystem.Name,
-				Id = bedsideSystem.BedsideSystemId,
-				ModuleIds = bedsideSystem.Modules.Select(module => module.ModuleId)
-			};
-
-			var canAddAnotherModule = bedsideSystem.Modules.Count < maxModulesPerBedsideSystem;
-			Initialise(bedsideSystemViewModel, canAddAnotherModule);
+			var canAddAnotherModule = bedsideController.CanAddAnotherModule();
+			Initialise(canAddAnotherModule);
 		}
 
 		private void Updater_Tick(object sender, EventArgs e)
@@ -55,23 +44,24 @@ namespace PatientMonitoringSystem.Views
 		{
 			var moduleName = NameEntry.Text;
 			ModuleType moduleType = (ModuleType)ModuleCombo.SelectedItem;
-			controller.AddModule(moduleName, moduleType);
+			Guid moduleId = bedsideController.AddModule(moduleName, moduleType);
+			AddModule(moduleId);
 		}
 
 		public void OnRemoveModule(object sender, OnRemoveModuleEventArgs e)
 		{
 			RemoveModule(e.ModuleId);
-			controller.RemoveModule(e.ModuleId);
+			bedsideController.RemoveModule(e.ModuleId);
 		}
 
-		public void Initialise(BedsideSystemViewModel bedsideSystemViewModel, bool canAddAnotherModule)
+		public void Initialise(bool canAddAnotherModule)
 		{
-			Text = $"{bedsideSystemViewModel.Name} ({bedsideSystemViewModel.Id})";
+			Text = bedsideController.GetBedsideName();
 
 			Table.RowStyles.RemoveAt(0);
 			Table.RowCount = 0;
 
-			foreach (var moduleId in bedsideSystemViewModel.ModuleIds)
+			foreach (var moduleId in bedsideController.GetModuleIds())
 			{
 				AddModule(moduleId);
 			}
@@ -94,7 +84,8 @@ namespace PatientMonitoringSystem.Views
 
 		public void AddModule(Guid moduleId)
 		{
-			var moduleRowView = Program.ModuleRowController.Initialise(moduleId);
+			//var moduleRowView = Program.ModuleRowController.Initialise(moduleId);
+			ModuleRowController moduleRowView = new ModuleRowView();
 			moduleRowView.OnRemoveModule += OnRemoveModule;
 
 			Table.RowStyles.Add(new RowStyle());
