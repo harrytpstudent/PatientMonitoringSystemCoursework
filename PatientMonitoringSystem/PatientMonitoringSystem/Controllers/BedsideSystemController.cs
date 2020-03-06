@@ -10,8 +10,6 @@ namespace PatientMonitoringSystem.Controllers
 {
 	public class BedsideSystemController
 	{
-		private readonly BedsideSystemView bedsideSystemView;
-
 		private readonly IBedsideSystem bedsideSystem;
 
 		private readonly int maxModulesPerBedsideSystem;
@@ -22,32 +20,24 @@ namespace PatientMonitoringSystem.Controllers
 			maxModulesPerBedsideSystem = int.Parse(ConfigurationManager.AppSettings["MaxModulesPerBedsideSystem"]);
 		}
 
-
-		public void UpdateCurrentReading()
-		{
-			bedsideSystemView.UpdateCurrentReading();
-		}
-
 		public void AddModule(string name, ModuleType moduleType)
 		{
 			var module = new Module(name, moduleType, 0, 0);
 
 			bedsideSystem.Modules.Add(module);
-
-			//var canAddAnotherModule = bedsideSystem.Modules.Count < maxModulesPerBedsideSystem;
-
-			//bedsideSystemView.AddModule(module.ModuleId, canAddAnotherModule);
 		}
 
 		public void RemoveModule(Guid moduleId)
 		{
 			IModule module = bedsideSystem.Modules.Single(m => m.ModuleId == moduleId);
 			bedsideSystem.Modules.Remove(module);
+			Program.Modules.Remove(module);
+			module.Dispose();
 		}
 
 		public bool CanAddAnotherModule() {
 			return bedsideSystem.Modules.Count < maxModulesPerBedsideSystem;
 		}
-
 	}
 }
+

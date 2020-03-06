@@ -48,7 +48,7 @@ namespace PatientMonitoringSystem.Views
 
 		private void Updater_Tick(object sender, EventArgs e)
 		{
-			controller.UpdateCurrentReading();
+			UpdateCurrentReading();
 		}
 
 		private void AddButton_Click(object sender, EventArgs e)
