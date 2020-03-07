@@ -23,7 +23,7 @@ namespace PatientMonitoringSystem.Controllers
 
 		public Guid AddModule(string name, ModuleType moduleType)
 		{
-			var module = new Module(name, moduleType, 0, 0);
+			var module = new Module(name, moduleType, -5, 5);
 			bedsideSystem.Modules.Add(module);
 			return module.ModuleId;
 		}

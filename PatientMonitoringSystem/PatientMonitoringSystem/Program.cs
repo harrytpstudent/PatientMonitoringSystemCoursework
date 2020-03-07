@@ -49,7 +49,7 @@ namespace PatientMonitoringSystem
 
 					nextModuleNumber++;
 
-					Modules.Add(newModule);
+					//Modules.Add(newModule);
 					bedsideSystem.Modules.Add(newModule);
 				}
 				// Add the newly created bedside system to the list

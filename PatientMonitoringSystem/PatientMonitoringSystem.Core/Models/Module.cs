@@ -100,7 +100,7 @@ namespace PatientMonitoringSystem.Core.Models
 			{
 				Console.WriteLine("Waiting started");
 				readingGenerator.Wait();
-				Console.WriteLine("Waiting finished");
+				//Console.WriteLine("Waiting finished");
 			}
 		}
 	}

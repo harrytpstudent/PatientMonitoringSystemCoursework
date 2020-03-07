@@ -15,6 +15,8 @@ namespace PatientMonitoringSystem.Views
 	{
 		private SemaphoreSlim GetModuleRowViewsSemaphor;
 		private readonly BedsideSystemController bedsideController;
+		private List<ModuleRowView> moduleRowViewList = new List<ModuleRowView>();
+
 		int maxModulesPerBedsideSystem;
 
 		public BedsideSystemView(BedsideSystemController newBedsideController)
@@ -73,10 +75,9 @@ namespace PatientMonitoringSystem.Views
 
 		public void UpdateCurrentReading()
 		{
-			var moduleRowViews = GetModuleRowViews();
 
 			// We want to do all of these refreshes at around the same time and avoid having lots of timers.
-			foreach (var moduleRowView in moduleRowViews)
+			foreach (var moduleRowView in moduleRowViewList)
 			{
 				moduleRowView.RefreshCurrentReading();
 			}
@@ -87,6 +88,7 @@ namespace PatientMonitoringSystem.Views
 			IModule module = bedsideController.GetModule(moduleId);//var moduleRowView = Program.ModuleRowController.Initialise(moduleId);
 			ModuleController moduleController = new ModuleController(module);
 			ModuleRowView moduleRowView = new ModuleRowView(moduleController);
+			moduleRowViewList.Add(moduleRowView);
 
 			moduleRowView.OnRemoveModule += OnRemoveModule;
 
@@ -106,7 +108,7 @@ namespace PatientMonitoringSystem.Views
 		public void RemoveModule(Guid moduleId)
 		{
 
-			var moduleRowView = GetModuleRowViews().Single(mrv => mrv.ModuleId == moduleId);
+			ModuleRowView moduleRowView = moduleRowViewList.Single(mrv => mrv.ModuleId == moduleId);
 
 			var rowIndex = Table.GetPositionFromControl(moduleRowView).Row;
 
@@ -122,19 +124,5 @@ namespace PatientMonitoringSystem.Views
 			GetModuleRowViewsSemaphor.Dispose();
 		}
 
-		private IEnumerable<ModuleRowView> GetModuleRowViews()
-		{
-			GetModuleRowViewsSemaphor.Wait();
-
-			try
-			{
-				return Table.Controls.OfType<ModuleRowView>()
-					.ToArray(); // No lazy evaluation (deferred execution).
-			}
-			finally
-			{
-				GetModuleRowViewsSemaphor.Release();
-			}
-		}
 	}
 }
