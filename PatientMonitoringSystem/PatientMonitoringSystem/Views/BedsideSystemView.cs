@@ -13,7 +13,6 @@ namespace PatientMonitoringSystem.Views
 {
 	public partial class BedsideSystemView : UserControl, IDisposable
 	{
-		private SemaphoreSlim GetModuleRowViewsSemaphor;
 		private readonly BedsideSystemController bedsideController;
 		private List<ModuleRowView> moduleRowViewList = new List<ModuleRowView>();
 
@@ -22,7 +21,6 @@ namespace PatientMonitoringSystem.Views
 		public BedsideSystemView(BedsideSystemController newBedsideController)
 		{
 			bedsideController = newBedsideController;
-			GetModuleRowViewsSemaphor = new SemaphoreSlim(1, 1);
 
 			InitializeComponent();
 
@@ -75,6 +73,7 @@ namespace PatientMonitoringSystem.Views
 
 		public void UpdateCurrentReading()
 		{
+			//var moduleRowViews = GetModuleRowViews();
 
 			// We want to do all of these refreshes at around the same time and avoid having lots of timers.
 			foreach (var moduleRowView in moduleRowViewList)
@@ -94,6 +93,8 @@ namespace PatientMonitoringSystem.Views
 
 			Table.RowStyles.Add(new RowStyle());
 			Table.Controls.Add(moduleRowView, 0, Table.RowCount - 1);
+
+			AddButton.Enabled = bedsideController.CanAddAnotherModule();
 		}
 
 		public void AddModule(Guid moduleId, bool canAddAnotherModule)
@@ -121,8 +122,6 @@ namespace PatientMonitoringSystem.Views
 		public void OnDisposed(object sender, EventArgs e)
 		{
 			Updater.Dispose(); // Just in case it doesn't happen automatically.
-			GetModuleRowViewsSemaphor.Dispose();
 		}
-
 	}
 }

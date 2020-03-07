@@ -6,6 +6,7 @@ namespace PatientMonitoringSystem.Core.Models
 {
 	public class ControlSystem : IControlSystem
 	{
+		public event EventHandler<Guid> NotifyBedsideAlarmRaised;
 		public List<IBedsideSystem> BedsideSystems {
 			get;
 		}
@@ -40,6 +41,7 @@ namespace PatientMonitoringSystem.Core.Models
 			{
 				AlarmRaised = true;
 			}
+			NotifyBedsideAlarmRaised(this, bedsideId);
 		}
 
 		public void Dispose()

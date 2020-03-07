@@ -12,5 +12,7 @@ namespace PatientMonitoringSystem.Core.Models
 		IList<IModule> Modules { get; }
 
 		event EventHandler<Guid> OnAlarmRaised;
+
+		void AddModule(IModule module);
 	}
 }

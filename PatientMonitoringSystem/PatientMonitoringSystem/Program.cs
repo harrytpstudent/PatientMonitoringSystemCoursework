@@ -41,16 +41,13 @@ namespace PatientMonitoringSystem
 			for (var bedsideSystemNumber = 1; bedsideSystemNumber <= initialBedsideSystems; bedsideSystemNumber++) {
 
 				IBedsideSystem bedsideSystem = new BedsideSystem($"Bedside System {bedsideSystemNumber}");
-
 				for (var moduleNumber = 1; moduleNumber < initialModulesPerBedsideSystem+1; moduleNumber++) {
 
 					ModuleType moduleType = getModuleType();
 					IModule newModule = new Module($"Module {nextModuleNumber}", moduleType, initialMinValue, initialMaxValue);
 
 					nextModuleNumber++;
-
-					//Modules.Add(newModule);
-					bedsideSystem.Modules.Add(newModule);
+					bedsideSystem.AddModule(newModule);
 				}
 				// Add the newly created bedside system to the list
 				BedsideSystems.Add(bedsideSystem);

@@ -8,11 +8,12 @@ namespace PatientMonitoringSystem.Controllers
 {
 	public class ControlSystemController
 	{
-
+		public event EventHandler<Guid> NotifyUiAlarmRaised;
 		public ControlSystem controlSystem;
 		public ControlSystemController(ControlSystem newControlSystem)
 		{
 			controlSystem = newControlSystem;
+			controlSystem.NotifyBedsideAlarmRaised += NotifyUI;
 		}
 
 		public IBedsideSystem GetBedsideSystem(Guid bedsideSystemId)
@@ -41,6 +42,11 @@ namespace PatientMonitoringSystem.Controllers
 
 			return bedsideSystemIds;
 
+		}
+
+		public void NotifyUI(object sender, Guid bedsideId)
+		{
+			NotifyUiAlarmRaised(this, bedsideId);
 		}
 	}
 }

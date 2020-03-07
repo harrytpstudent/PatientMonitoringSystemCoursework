@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Forms.Design;
 using System.Collections.Generic;
 using PatientMonitoringSystem.Controllers;
 using PatientMonitoringSystem.Core.Models;
+using System.Drawing;
 
 namespace PatientMonitoringSystem.Views
 {
@@ -14,6 +16,7 @@ namespace PatientMonitoringSystem.Views
 		public ControlSystemView(ControlSystemController newControlSystemController)
 		{
 			controlSystemController = newControlSystemController;
+			controlSystemController.NotifyUiAlarmRaised += SignalBedsideAlarm;
 			InitializeComponent();
 
 		}
@@ -72,6 +75,17 @@ namespace PatientMonitoringSystem.Views
 			{
 				MessageBox.Show("Failed to find assosiated bedside.");
 			}
+		}
+
+		public void SignalBedsideAlarm(object sender, Guid bedsideId)
+		{
+			foreach (BedsideSystemRowView bedsideRowView in Table.Controls) {
+				if (bedsideRowView.BedsideSystemId == bedsideId) {
+					bedsideRowView.BackColor = Color.Red;
+				}
+				//Console.WriteLine(bedsideRowView.BedsideSystemId);
+			}
+			//bedside_controller_map[bedsideId].BackColor = Color.Red;
 		}
 	}
 }

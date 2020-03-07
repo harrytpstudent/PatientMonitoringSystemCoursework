@@ -71,7 +71,7 @@ namespace PatientMonitoringSystem.Core.Models
 		{
 			while (!cancellationToken.IsCancellationRequested)
 			{
-				await Task.Delay(100);
+				await Task.Delay(500);
 
 				CurrentReading = randomNumGen.Next(MinValue - 1, MaxValue + 2);
 				ValueBreached = CurrentReading > MaxValue || CurrentReading < MinValue;
@@ -79,7 +79,7 @@ namespace PatientMonitoringSystem.Core.Models
 				if (ValueBreached)
 				{
 					Console.WriteLine("Module {0} breached with value {1}", Name, ValueBreached);
-					OnValueBreached?.Invoke(this, ModuleId);
+					OnValueBreached.Invoke(this, ModuleId);
 				}
 			}
 		}
@@ -99,8 +99,8 @@ namespace PatientMonitoringSystem.Core.Models
 			if (!readingGenerator.IsCompleted)
 			{
 				Console.WriteLine("Waiting started");
-				readingGenerator.Wait();
-				//Console.WriteLine("Waiting finished");
+				//readingGenerator.Wait();
+				Console.WriteLine("Waiting finished");
 			}
 		}
 	}

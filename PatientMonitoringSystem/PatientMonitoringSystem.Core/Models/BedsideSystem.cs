@@ -32,10 +32,11 @@ namespace PatientMonitoringSystem.Core.Models
 		private void RaiseAlarm(object sender, Guid moduleId)
 		{
 			// Don't trigger again if the alarm has already been raised
+			Console.WriteLine("test");
 			if (!AlarmRaised)
 			{
 				AlarmRaised = true;
-				OnAlarmRaised?.Invoke(sender, BedsideSystemId);
+				OnAlarmRaised(sender, BedsideSystemId);
 			}
 		}
 
