@@ -98,7 +98,9 @@ namespace PatientMonitoringSystem.Core.Models
 
 			if (!readingGenerator.IsCompleted)
 			{
+				Console.WriteLine("Waiting started");
 				readingGenerator.Wait();
+				Console.WriteLine("Waiting finished");
 			}
 		}
 	}

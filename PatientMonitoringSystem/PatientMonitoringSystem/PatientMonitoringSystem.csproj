@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ControlSystemController.cs" />
     <Compile Include="Controllers\BedsideSystemController.cs" />
+    <Compile Include="Controllers\ModuleController.cs" />
     <Compile Include="Views\Eventing\OnRemoveModuleEventArgs.cs" />
     <Compile Include="ViewModels\BedsideSystemViewModel.cs" />
     <Compile Include="ViewModels\BedsideSystemRowViewModel.cs" />
@@ -71,7 +72,6 @@
     <Compile Include="Views\ModuleRowView.Designer.cs">
       <DependentUpon>ModuleRowView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\ModuleRowController.cs" />
     <Compile Include="Views\BedsideSystemView.cs">
       <SubType>UserControl</SubType>
     </Compile>

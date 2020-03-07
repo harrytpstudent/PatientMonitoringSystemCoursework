@@ -16,7 +16,7 @@ namespace PatientMonitoringSystem
 		public static readonly object modules_lock = new object();
 		public static IList<IModule> Modules { get; } = new List<IModule>();
 
-		public static ModuleRowController ModuleRowController { get; } = new ModuleRowController();
+		//public static ModuleRowController ModuleRowController { get; } = new ModuleRowController();
 
 		public static Array moduleTypes = Enum.GetValues(typeof(ModuleType));
 		public static Random randomNumberGenerator = new Random();
@@ -66,14 +66,9 @@ namespace PatientMonitoringSystem
 			Application.EnableVisualStyles();
 			Application.Run(CreateControlForm(controlSystemView));
 
-			MessageBox.Show("About to dispose resources. Don't be surprised if it takes several seconds. Program will terminate automatically.");
+			//MessageBox.Show("About to dispose resources. Don't be surprised if it takes several seconds. Program will terminate automatically.");
 
-			ModuleRowController.Dispose();
-
-			foreach (var bedsideSystem in BedsideSystems) // TODO: Change code so can just call ControlSystem.Dispose()
-			{
-				bedsideSystem.Dispose(); // This will cascade down to the modules.
-			}
+			controlSystem.Dispose();
 		}
 
 		private static Form CreateControlForm(ControlSystemView view)

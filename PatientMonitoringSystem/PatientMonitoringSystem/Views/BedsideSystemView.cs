@@ -84,8 +84,10 @@ namespace PatientMonitoringSystem.Views
 
 		public void AddModule(Guid moduleId)
 		{
-			//var moduleRowView = Program.ModuleRowController.Initialise(moduleId);
-			ModuleRowController moduleRowView = new ModuleRowView();
+			IModule module = bedsideController.GetModule(moduleId);//var moduleRowView = Program.ModuleRowController.Initialise(moduleId);
+			ModuleController moduleController = new ModuleController(module);
+			ModuleRowView moduleRowView = new ModuleRowView(moduleController);
+
 			moduleRowView.OnRemoveModule += OnRemoveModule;
 
 			Table.RowStyles.Add(new RowStyle());

@@ -32,7 +32,6 @@ namespace PatientMonitoringSystem.Controllers
 		{
 			IModule module = bedsideSystem.Modules.Single(m => m.ModuleId == moduleId);
 			bedsideSystem.Modules.Remove(module);
-			Program.Modules.Remove(module);
 			module.Dispose();
 		}
 
@@ -53,6 +52,16 @@ namespace PatientMonitoringSystem.Controllers
 			}
 
 			return moduleIds;
+		}
+
+		public IModule GetModule(Guid moduleId)
+		{
+			foreach (IModule module in bedsideSystem.Modules) {
+				if (module.ModuleId == moduleId) {
+					return module;
+				}
+			}
+			return null;
 		}
 	}
 }
