@@ -73,8 +73,6 @@ namespace PatientMonitoringSystem.Views
 
 		public void UpdateCurrentReading()
 		{
-			//var moduleRowViews = GetModuleRowViews();
-
 			// We want to do all of these refreshes at around the same time and avoid having lots of timers.
 			foreach (var moduleRowView in moduleRowViewList)
 			{
@@ -84,11 +82,11 @@ namespace PatientMonitoringSystem.Views
 
 		public void AddModule(Guid moduleId)
 		{
-			IModule module = bedsideController.GetModule(moduleId);//var moduleRowView = Program.ModuleRowController.Initialise(moduleId);
+			IModule module = bedsideController.GetModule(moduleId);
 			ModuleController moduleController = new ModuleController(module);
 			ModuleRowView moduleRowView = new ModuleRowView(moduleController);
-			moduleRowViewList.Add(moduleRowView);
 
+			moduleRowViewList.Add(moduleRowView);
 			moduleRowView.OnRemoveModule += OnRemoveModule;
 
 			Table.RowStyles.Add(new RowStyle());

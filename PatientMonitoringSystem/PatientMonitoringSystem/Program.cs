@@ -13,11 +13,6 @@ namespace PatientMonitoringSystem
 	{
 		public static IList<IBedsideSystem> BedsideSystems { get; } = new List<IBedsideSystem>();
 
-		public static readonly object modules_lock = new object();
-		public static IList<IModule> Modules { get; } = new List<IModule>();
-
-		//public static ModuleRowController ModuleRowController { get; } = new ModuleRowController();
-
 		public static Array moduleTypes = Enum.GetValues(typeof(ModuleType));
 		public static Random randomNumberGenerator = new Random();
 		public static ModuleType getModuleType()
@@ -56,15 +51,18 @@ namespace PatientMonitoringSystem
 			// Create the Control System
 			ControlSystem controlSystem = new ControlSystem(BedsideSystems);
 			ControlSystemController controlSytemController = new ControlSystemController(controlSystem);
+
+			// Now create the view for the Control System
 			Application.SetCompatibleTextRenderingDefault(false);
 			ControlSystemView controlSystemView = new ControlSystemView(controlSytemController);
 
 
+			// Start the view for the Control System
 			Application.EnableVisualStyles();
 			Application.Run(CreateControlForm(controlSystemView));
 
-			//MessageBox.Show("About to dispose resources. Don't be surprised if it takes several seconds. Program will terminate automatically.");
-
+			// Closing the control system view form causes the controlSystem to dispose, which then cascades to
+			// disposing bedside systems and their associated modules.
 			controlSystem.Dispose();
 		}
 
