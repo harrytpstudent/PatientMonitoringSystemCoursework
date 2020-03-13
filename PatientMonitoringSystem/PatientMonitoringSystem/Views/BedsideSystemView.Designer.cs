@@ -128,10 +128,10 @@
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(599, 7);
+            this.AddButton.Location = new System.Drawing.Point(599, 6);
             this.AddButton.Margin = new System.Windows.Forms.Padding(2);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(104, 37);
+            this.AddButton.Size = new System.Drawing.Size(100, 40);
             this.AddButton.TabIndex = 4;
             this.AddButton.Text = "Add";
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);

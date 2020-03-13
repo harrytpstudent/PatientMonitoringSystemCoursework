@@ -35,7 +35,7 @@ namespace PatientMonitoringSystem.Views
 		{
 			Text = "Control System";
 
-			Size = new Size(300, 570);
+			Size = new Size(300, 600);
 			Table.RowStyles.RemoveAt(0);
 			Table.RowCount = 0;
 
