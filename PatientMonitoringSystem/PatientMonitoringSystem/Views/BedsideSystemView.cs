@@ -61,6 +61,8 @@ namespace PatientMonitoringSystem.Views
 			Table.RowStyles.RemoveAt(0);
 			Table.RowCount = 0;
 
+			Table.Controls.Add(new LoginSystemView());
+
 			foreach (var moduleId in bedsideController.GetModuleIds())
 			{
 				AddModule(moduleId);
