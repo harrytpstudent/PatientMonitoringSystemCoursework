@@ -66,6 +66,12 @@
     <Compile Include="Views\BedsideSystemRowView.Designer.cs">
       <DependentUpon>BedsideSystemRowView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\LoginSystemView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\LoginSystemView.Designer.cs">
+      <DependentUpon>LoginSystemView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ModuleRowView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ControlSystemView.resx">
       <DependentUpon>ControlSystemView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LoginSystemView.resx">
+      <DependentUpon>LoginSystemView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ModuleRowView.resx">
       <DependentUpon>ModuleRowView.cs</DependentUpon>
