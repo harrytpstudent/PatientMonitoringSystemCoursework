@@ -32,7 +32,7 @@ namespace PatientMonitoringSystem.Views
 
 		public void RefreshCurrentReading()
 		{
-			CurrentReadingDisplay.Value = moduleController.GetCurrentReading();//Program.ModuleRowController.GetCurrentReading(ModuleId);
+			CurrentReadingDisplay.Value = moduleController.GetCurrentReading();
 		}
 
 		private void MinValueEntry_ValueChanged(object sender, EventArgs e)

@@ -9,6 +9,6 @@ namespace PatientMonitoringSystem.Core.Models
 {
 	public interface IControlSystem : IDisposable
 	{
-
+		void Dispose();
 	}
 }
