@@ -61,6 +61,8 @@ namespace PatientMonitoringSystem.Views
 			Table.RowStyles.RemoveAt(0);
 			Table.RowCount = 0;
 
+			Table.Controls.Add(new LoginSystemView(ShowNotificationOptions));
+
 			foreach (var moduleId in bedsideController.GetModuleIds())
 			{
 				AddModule(moduleId);
@@ -69,6 +71,12 @@ namespace PatientMonitoringSystem.Views
 			ModuleCombo.DataSource = Enum.GetValues(typeof(ModuleType));
 			AddButton.Enabled = canAddAnotherModule;
 			Dock = DockStyle.Fill;
+		}
+
+		public void ShowNotificationOptions()
+		{
+			SubscriptionSystemView subscriptionView = new SubscriptionSystemView();
+			Table.Controls.Add(subscriptionView);
 		}
 
 		public void UpdateCurrentReading()

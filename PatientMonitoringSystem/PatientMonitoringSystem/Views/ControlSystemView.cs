@@ -35,18 +35,18 @@ namespace PatientMonitoringSystem.Views
 		{
 			Text = "Control System";
 
+			Size = new Size(300, 600);
 			Table.RowStyles.RemoveAt(0);
 			Table.RowCount = 0;
 
-			List<Guid> bedsideIds = controlSystemController.GetBedsideSystemIds();
+			List <Guid> bedsideIds = controlSystemController.GetBedsideSystemIds();
 
 			foreach (var bedsideSystemId in bedsideIds)
 			{
 				AddBedsideSystem(bedsideSystemId);
 			}
-
 			ViewBedsideSystem(controlSystemController.GetFirstBedsideSystem());
-
+						
 			Dock = DockStyle.Fill;
 		}
 
