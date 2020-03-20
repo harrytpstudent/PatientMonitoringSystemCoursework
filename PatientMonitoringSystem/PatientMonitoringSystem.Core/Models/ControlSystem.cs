@@ -27,7 +27,7 @@ namespace PatientMonitoringSystem.Core.Models
 			bedsideSystem.OnAlarmRaised += NotifyAlarmRaised;
 		}
 
-		private void RemoveBedsideSystem(Guid bedsideId)
+		public void RemoveBedsideSystem(Guid bedsideId)
 		{
 			var bedsideSystem = BedsideSystems.Single(b => b.BedsideSystemId == bedsideId);
 			BedsideSystems.Remove(bedsideSystem);

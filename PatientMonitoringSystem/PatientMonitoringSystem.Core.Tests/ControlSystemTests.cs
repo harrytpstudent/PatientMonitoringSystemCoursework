@@ -44,13 +44,20 @@ namespace PatientMonitoringSystem.Core.Tests
 			List<IBedsideSystem> bedsideList = new List<IBedsideSystem>();
 
 			var mockBedside = new Mock<IBedsideSystem>();
-			mockBedside.SetupAdd(bedside => bedside.OnAlarmRaised += It.IsAny<EventHandler<Guid>>());
+			Guid guid = Guid.NewGuid();
+			mockBedside.SetupGet(b => b.BedsideSystemId).Returns(guid);
+			mockBedside.SetupRemove(bedside => bedside.OnAlarmRaised -= It.IsAny<EventHandler<Guid>>());
+
 			bedsideList.Add(mockBedside.Object);
 
 			ControlSystem controlSystem = new ControlSystem(bedsideList);
 			Assert.That(controlSystem.BedsideSystems, Does.Contain(mockBedside.Object));
+			controlSystem.RemoveBedsideSystem(guid);
 
-			mockBedside.VerifyAdd(bedside => bedside.OnAlarmRaised += It.IsAny<EventHandler<Guid>>(), Times.Once());
+			Assert.That(controlSystem.BedsideSystems, Does.Not.Contain(mockBedside.Object));
+
+			mockBedside.VerifyRemove(bedside => bedside.OnAlarmRaised -= It.IsAny<EventHandler<Guid>>(), Times.Once());
+			mockBedside.Verify(bedside => bedside.Dispose());
 		}
 
 
