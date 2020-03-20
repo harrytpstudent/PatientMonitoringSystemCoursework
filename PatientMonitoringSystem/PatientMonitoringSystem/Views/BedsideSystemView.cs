@@ -108,11 +108,8 @@ namespace PatientMonitoringSystem.Views
 
 		public void RemoveModule(Guid moduleId)
 		{
-
 			ModuleRowView moduleRowView = moduleRowViewList.Single(mrv => mrv.ModuleId == moduleId);
-
-			var rowIndex = Table.GetPositionFromControl(moduleRowView).Row;
-
+			var rowIndex = Table.GetPositionFromControl(moduleRowView).Row -1;
 			Table.RowStyles.RemoveAt(rowIndex);
 			Table.Controls.Remove(moduleRowView);
 
