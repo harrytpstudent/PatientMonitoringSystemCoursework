@@ -14,12 +14,10 @@ namespace PatientMonitoringSystem.Views
     {
         private string username;
         private string password;
-        private readonly Action onLogin;
 
-        public LoginSystemView(Action onLogin)
+        public LoginSystemView()
         {
             InitializeComponent();
-            this.onLogin = onLogin;
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
@@ -30,9 +28,7 @@ namespace PatientMonitoringSystem.Views
             PasswordTextbox.Clear();
 
             //query username + password in db
-
-            //disable email check box if only medical staff
-            onLogin.Invoke();
+            //log notificaion settings in db
         }
     }
 }
