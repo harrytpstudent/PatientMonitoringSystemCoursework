@@ -41,7 +41,7 @@ namespace PatientMonitoringSystem.Core.Models
 			{
 				AlarmRaised = true;
 			}
-			NotifyBedsideAlarmRaised(this, bedsideId);
+			NotifyBedsideAlarmRaised?.Invoke(this, bedsideId);
 		}
 
 		public void Dispose()

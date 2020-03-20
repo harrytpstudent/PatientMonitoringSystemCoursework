@@ -34,7 +34,7 @@ namespace PatientMonitoringSystem.Core.Tests
 			ControlSystem controlSystem = new ControlSystem(bedsideList);
 			Assert.That(controlSystem.BedsideSystems, Does.Contain(mockBedside.Object));
 
-			mockBedside.VerifyAdd(module => module.OnAlarmRaised += It.IsAny<EventHandler<Guid>>(), Times.Once());
+			mockBedside.VerifyAdd(bedside => bedside.OnAlarmRaised += It.IsAny<EventHandler<Guid>>(), Times.Once());
 		}
 
 		[Test]
@@ -50,7 +50,7 @@ namespace PatientMonitoringSystem.Core.Tests
 			ControlSystem controlSystem = new ControlSystem(bedsideList);
 			Assert.That(controlSystem.BedsideSystems, Does.Contain(mockBedside.Object));
 
-			mockBedside.VerifyAdd(module => module.OnAlarmRaised += It.IsAny<EventHandler<Guid>>(), Times.Once());
+			mockBedside.VerifyAdd(bedside => bedside.OnAlarmRaised += It.IsAny<EventHandler<Guid>>(), Times.Once());
 		}
 
 
