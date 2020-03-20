@@ -52,8 +52,8 @@ namespace PatientMonitoringSystem.Core.Tests
 
 			ControlSystem controlSystem = new ControlSystem(bedsideList);
 			Assert.That(controlSystem.BedsideSystems, Does.Contain(mockBedside.Object));
-			controlSystem.RemoveBedsideSystem(guid);
 
+			controlSystem.RemoveBedsideSystem(guid);
 			Assert.That(controlSystem.BedsideSystems, Does.Not.Contain(mockBedside.Object));
 
 			mockBedside.VerifyRemove(bedside => bedside.OnAlarmRaised -= It.IsAny<EventHandler<Guid>>(), Times.Once());
