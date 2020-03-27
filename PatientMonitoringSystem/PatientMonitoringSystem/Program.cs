@@ -22,6 +22,8 @@ namespace PatientMonitoringSystem
 			return (ModuleType)moduleTypes.GetValue(randomIndex);
 		}
 
+		public static User CurrentUser { get; set; }
+
 		[STAThread]
 		public static void Main()
 		{

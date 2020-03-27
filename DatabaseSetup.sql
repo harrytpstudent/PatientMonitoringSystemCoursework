@@ -27,9 +27,10 @@ CREATE TABLE [dbo].[User]
 	[UserId] BIGINT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	[RoleId] BIGINT NOT NULL, -- No need to normalise this at the moment.
 	[Name] NVARCHAR(MAX) NOT NULL,
-	[Username] NVARCHAR(MAX) NOT NULL,
+	[Username] NVARCHAR(450) NOT NULL,
 	[PasswordHash] CHAR(64) NOT NULL,
-	CONSTRAINT [FK_User_Role_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [Role]([RoleId])
+	CONSTRAINT [FK_User_Role_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [Role]([RoleId]),
+	CONSTRAINT [IXU_User_Username] UNIQUE (Username)
 );
 
 CREATE TABLE [dbo].[NotificationType]
