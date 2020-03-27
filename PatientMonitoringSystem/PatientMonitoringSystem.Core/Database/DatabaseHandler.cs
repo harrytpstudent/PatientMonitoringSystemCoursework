@@ -9,17 +9,15 @@ using System.Data;
 
 namespace PatientMonitoringSystem.Core.Database
 {
-	class DatabaseHandler
+	public class DatabaseHandler
 	{
 
 		private static DatabaseHandler db_instance = null;
-		private static SqlConnection connection;
 		private static readonly object _lock = new object();
 		private static String connection_str;
 		private DatabaseHandler()
 		{
-			string connection_str = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database\Database1.mdf;Integrated Security=True";
-			connection = new SqlConnection(connection_str);
+			connection_str = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=Database\PatientMonitoringSystemDatabase.mdf;Integrated Security=True";
 		}
 
 		public static DatabaseHandler Instance
@@ -38,16 +36,20 @@ namespace PatientMonitoringSystem.Core.Database
 			}
 		}
 
-		public static void ExecuteStatement(SqlCommand command)
+		public void ExecuteStatement(String cmdText, SqlParameter[] parameters)
 		{
 			using (SqlConnection conn = new SqlConnection(connection_str))
 			{
-				conn.Open();
-				command.ExecuteNonQuery();
+				using (SqlCommand cmd = new SqlCommand(cmdText, conn)) {
+					cmd.Parameters.AddRange(parameters);
+					conn.Open();
+					cmd.ExecuteNonQuery();
+				}
+				conn.Close();
 			}
 		}
 
-		public static SqlDataReader ExecuteQuery(String commandText, CommandType type, params SqlParameter[] parameters)
+		public SqlDataReader ExecuteQuery(String commandText, CommandType type, params SqlParameter[] parameters)
 		{
 			SqlConnection connection = new SqlConnection(connection_str);
 			using (SqlCommand command = new SqlCommand(commandText, connection))
@@ -64,4 +66,4 @@ namespace PatientMonitoringSystem.Core.Database
 		}
 	}
 }
-}
+
