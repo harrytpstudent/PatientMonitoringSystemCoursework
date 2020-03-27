@@ -2,19 +2,12 @@
 {
 	public class User
 	{
-		public long UserId { get; }
+		public long UserId { get; set; }
 
-		public Role Role { get; }
+		public Role Role { get; set; }
 
-		public string Name { get; }
+		public string Name { get; set; }
 
 		// Username and PasswordHash deliberately excluded to prevent in-memory exposure.
-
-		public User(long userId, Role role, string name)
-		{
-			UserId = userId;
-			Role = role;
-			Name = name;
-		}
 	}
 }

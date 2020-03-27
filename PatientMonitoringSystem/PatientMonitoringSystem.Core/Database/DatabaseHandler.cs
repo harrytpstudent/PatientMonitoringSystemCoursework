@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Data;
+using System.IO;
 
 namespace PatientMonitoringSystem.Core.Database
 {
@@ -17,7 +13,8 @@ namespace PatientMonitoringSystem.Core.Database
 		private static String connection_str;
 		private DatabaseHandler()
 		{
-			connection_str = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=Database\PatientMonitoringSystemDatabase.mdf;Integrated Security=True";
+			var mdfFileLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Database\PatientMonitoringSystemDatabase.mdf");
+			connection_str = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={mdfFileLocation};Integrated Security=True";
 		}
 
 		public static DatabaseHandler Instance
@@ -63,6 +60,23 @@ namespace PatientMonitoringSystem.Core.Database
 				SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
 				return reader;
 			}
+		}
+
+		public DataSet Execute(SqlCommand sqlCommand)
+		{
+			var dataSet = new DataSet();
+
+			using (var connection = new SqlConnection(connection_str))
+			{
+				sqlCommand.Connection = connection;
+
+				using (var adapter = new SqlDataAdapter(sqlCommand))
+				{
+					adapter.Fill(dataSet);
+				}
+			}
+
+			return dataSet;
 		}
 	}
 }

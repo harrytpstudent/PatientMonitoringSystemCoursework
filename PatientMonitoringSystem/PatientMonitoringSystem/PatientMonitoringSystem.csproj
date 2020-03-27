@@ -49,7 +49,9 @@
   <ItemGroup>
     <Compile Include="Controllers\ControlSystemController.cs" />
     <Compile Include="Controllers\BedsideSystemController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
+    <Compile Include="Views\Eventing\OnLoginSuccessEventArgs.cs" />
     <Compile Include="Views\Eventing\OnRemoveModuleEventArgs.cs" />
     <Compile Include="ViewModels\BedsideSystemViewModel.cs" />
     <Compile Include="ViewModels\BedsideSystemRowViewModel.cs" />
@@ -66,11 +68,17 @@
     <Compile Include="Views\BedsideSystemRowView.Designer.cs">
       <DependentUpon>BedsideSystemRowView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\LoginSystemView.cs">
+    <Compile Include="Views\UserView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\LoginSystemView.Designer.cs">
-      <DependentUpon>LoginSystemView.cs</DependentUpon>
+    <Compile Include="Views\UserView.Designer.cs">
+      <DependentUpon>UserView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ModuleRowView.cs">
       <SubType>UserControl</SubType>
@@ -92,8 +100,11 @@
     <EmbeddedResource Include="Views\ControlSystemView.resx">
       <DependentUpon>ControlSystemView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\LoginSystemView.resx">
-      <DependentUpon>LoginSystemView.cs</DependentUpon>
+    <EmbeddedResource Include="Views\UserView.resx">
+      <DependentUpon>UserView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ModuleRowView.resx">
       <DependentUpon>ModuleRowView.cs</DependentUpon>

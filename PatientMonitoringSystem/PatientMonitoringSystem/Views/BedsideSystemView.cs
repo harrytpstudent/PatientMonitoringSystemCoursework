@@ -61,7 +61,9 @@ namespace PatientMonitoringSystem.Views
 			Table.RowStyles.RemoveAt(0);
 			Table.RowCount = 0;
 
-			Table.Controls.Add(new LoginSystemView());
+			var loginView = new LoginView(new LoginController());
+			loginView.OnLoginSuccess += OnLoginSuccess;
+			Table.Controls.Add(loginView);
 
 			foreach (var moduleId in bedsideController.GetModuleIds())
 			{
@@ -114,6 +116,11 @@ namespace PatientMonitoringSystem.Views
 			Table.Controls.Remove(moduleRowView);
 
 			AddButton.Enabled = true;
+		}
+
+		public void OnLoginSuccess(object sender, OnLoginSuccessEventArgs e)
+		{
+			MessageBox.Show($"Login success! Show the UserView so that the user can subscribe to notifications.\nName: {e.User.Name}, Role: {e.User.Role.Name}");
 		}
 
 		public void OnDisposed(object sender, EventArgs e)

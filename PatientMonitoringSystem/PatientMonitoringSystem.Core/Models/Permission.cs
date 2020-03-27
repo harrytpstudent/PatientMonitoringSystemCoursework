@@ -2,14 +2,8 @@
 {
 	public class Permission
 	{
-		public long PermissionId { get; }
+		public long PermissionId { get; set; }
 
-		public string Name { get; }
-
-		public Permission(long permissionId, string name)
-		{
-			PermissionId = permissionId;
-			Name = name;
-		}
+		public string Name { get; set; }
 	}
 }

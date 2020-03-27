@@ -4,17 +4,10 @@ namespace PatientMonitoringSystem.Core.Models
 {
 	public class Role
 	{
-		public long RoleId { get; }
+		public long RoleId { get; set; }
 
-		public string Name { get; }
+		public string Name { get; set; }
 
-		public IEnumerable<Permission> Permissions { get; }
-
-		public Role(long roleId, IEnumerable<Permission> permissions, string name)
-		{
-			RoleId = roleId;
-			Name = name;
-			Permissions = permissions;
-		}
+		public IEnumerable<Permission> Permissions { get; set; }
 	}
 }
