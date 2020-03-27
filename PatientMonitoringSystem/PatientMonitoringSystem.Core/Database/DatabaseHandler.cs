@@ -17,6 +17,15 @@ namespace PatientMonitoringSystem.Core.Database
 			connection_str = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={mdfFileLocation};Integrated Security=True";
 		}
 
+		/* There is no need to use the singleton pattern here,
+		 * since we are always spinning up new instances of all our dependencies,
+		 * as opposed to sharing the same instances between different calls.
+		 * Also, there is no need to use thread synchronization here,
+		 * since this is a stateless class (ignoring the fields set during construction, which is a thread-safe operation).
+		 * The only reason I could imagine employing a singleton is for caching,
+		 * but dependency injection, IoC containers, and automated lifecycle management do a much better job and allow for unit testing
+		 * (see Castle Windsor, and the 'D' in the SOLID principle).
+		 */
 		public static DatabaseHandler Instance
 		{
 			get
@@ -48,7 +57,7 @@ namespace PatientMonitoringSystem.Core.Database
 
 		public SqlDataReader ExecuteQuery(String commandText, CommandType type, params SqlParameter[] parameters)
 		{
-			SqlConnection connection = new SqlConnection(connection_str);
+			SqlConnection connection = new SqlConnection(connection_str); // This needs disposing.
 			using (SqlCommand command = new SqlCommand(commandText, connection))
 			{
 

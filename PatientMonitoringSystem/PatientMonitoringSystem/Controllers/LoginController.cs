@@ -1,5 +1,4 @@
-﻿using PatientMonitoringSystem.Core;
-using PatientMonitoringSystem.Core.Database;
+﻿using PatientMonitoringSystem.Core.Database;
 using PatientMonitoringSystem.Core.Models;
 using System.Data;
 using System.Data.SqlClient;
