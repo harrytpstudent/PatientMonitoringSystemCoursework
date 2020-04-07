@@ -61,6 +61,7 @@ namespace PatientMonitoringSystem.Views
 			Table.RowStyles.RemoveAt(0);
 			Table.RowCount = 0;
 
+			// TODO: Check Program.CurrentUser and render either LoginView or UserView.
 			var loginView = new LoginView(new LoginController());
 			loginView.OnLoginSuccess += OnLoginSuccess;
 			Table.Controls.Add(loginView);
@@ -118,10 +119,14 @@ namespace PatientMonitoringSystem.Views
 			AddButton.Enabled = true;
 		}
 
-		public void OnLoginSuccess(object sender, OnLoginSuccessEventArgs e)
+		public void OnLoginSuccess(object sender, EventArgs e) 
 		{
-			MessageBox.Show($"Login success! Show the UserView so that the user can subscribe to notifications.\nName: {e.User.Name}, Role: {e.User.Role.Name}");
+			MessageBox.Show($"Login success! Show the UserView so that the user can subscribe to notifications.\nName: {Program.CurrentUser.Name}, Role: {Program.CurrentUser.Role.Name}");
+
+			// TODO: Replace LoginView with UserView.
 		}
+
+		// TODO: Make event handler for OnLogout.
 
 		public void OnDisposed(object sender, EventArgs e)
 		{

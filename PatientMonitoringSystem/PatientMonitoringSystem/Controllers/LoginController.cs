@@ -1,4 +1,5 @@
-﻿using PatientMonitoringSystem.Core.Database;
+﻿using System;
+using PatientMonitoringSystem.Core.Database;
 using PatientMonitoringSystem.Core.Models;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,7 +11,7 @@ namespace PatientMonitoringSystem.Controllers
 {
 	public class LoginController
 	{
-		public User Login(string username, string password)
+		public void Login(string username, string password)
 		{
 			var passwordHash = SHA256.Create().ComputeHash(Encoding.Default.GetBytes(password))
 				.Aggregate(new StringBuilder(), (builder, nextByte) => builder.Append(nextByte.ToString("X2"))).ToString().ToLower();
@@ -26,7 +27,7 @@ namespace PatientMonitoringSystem.Controllers
 
 			if (dataSet.Tables.Count == 0)
 			{
-				return null;
+				throw new ArgumentException("Username and/or password are unrecognized.");
 			}
 
 			var userRow = dataSet.Tables[0].Rows[0];
@@ -49,7 +50,7 @@ namespace PatientMonitoringSystem.Controllers
 				Name = (string)userRow["Name"]
 			};
 
-			return user;
+			Program.CurrentUser = user;
 		}
 	}
 }
