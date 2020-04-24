@@ -11,7 +11,7 @@ namespace PatientMonitoringSystem.Controllers
 {
 	public class LoginController
 	{
-		public void Login(string username, string password)
+		public void LogIn(string username, string password)
 		{
 			var passwordHash = SHA256.Create().ComputeHash(Encoding.Default.GetBytes(password))
 				.Aggregate(new StringBuilder(), (builder, nextByte) => builder.Append(nextByte.ToString("X2"))).ToString().ToLower();

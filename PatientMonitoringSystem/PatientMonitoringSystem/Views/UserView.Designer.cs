@@ -29,9 +29,9 @@
 		private void InitializeComponent()
 		{
 			this.label1 = new System.Windows.Forms.Label();
-			this.UsernameDisplay = new System.Windows.Forms.TextBox();
+			this.NameDisplay = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.RoleDisplay = new System.Windows.Forms.TextBox();
 			this.LogOutButton = new System.Windows.Forms.Button();
 			this.PagerNotificationsEnabledInput = new System.Windows.Forms.CheckBox();
 			this.SmsNotificationsEnabledInput = new System.Windows.Forms.CheckBox();
@@ -53,17 +53,17 @@
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(3, 6);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(58, 13);
+			this.label1.Size = new System.Drawing.Size(38, 13);
 			this.label1.TabIndex = 1;
-			this.label1.Text = "Username:";
+			this.label1.Text = "Name:";
 			// 
-			// UsernameDisplay
+			// NameDisplay
 			// 
-			this.UsernameDisplay.Location = new System.Drawing.Point(67, 3);
-			this.UsernameDisplay.Name = "UsernameDisplay";
-			this.UsernameDisplay.ReadOnly = true;
-			this.UsernameDisplay.Size = new System.Drawing.Size(100, 20);
-			this.UsernameDisplay.TabIndex = 3;
+			this.NameDisplay.Location = new System.Drawing.Point(67, 3);
+			this.NameDisplay.Name = "NameDisplay";
+			this.NameDisplay.ReadOnly = true;
+			this.NameDisplay.Size = new System.Drawing.Size(100, 20);
+			this.NameDisplay.TabIndex = 3;
 			// 
 			// label2
 			// 
@@ -74,13 +74,13 @@
 			this.label2.TabIndex = 4;
 			this.label2.Text = "Role:";
 			// 
-			// textBox1
+			// RoleDisplay
 			// 
-			this.textBox1.Location = new System.Drawing.Point(211, 3);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.ReadOnly = true;
-			this.textBox1.Size = new System.Drawing.Size(100, 20);
-			this.textBox1.TabIndex = 5;
+			this.RoleDisplay.Location = new System.Drawing.Point(211, 3);
+			this.RoleDisplay.Name = "RoleDisplay";
+			this.RoleDisplay.ReadOnly = true;
+			this.RoleDisplay.Size = new System.Drawing.Size(100, 20);
+			this.RoleDisplay.TabIndex = 5;
 			// 
 			// LogOutButton
 			// 
@@ -90,6 +90,7 @@
 			this.LogOutButton.TabIndex = 9;
 			this.LogOutButton.Text = "Log Out";
 			this.LogOutButton.UseVisualStyleBackColor = true;
+			this.LogOutButton.Click += new System.EventHandler(this.LogOutButton_Click);
 			// 
 			// PagerNotificationsEnabledInput
 			// 
@@ -149,6 +150,7 @@
 			this.CancelButton.TabIndex = 20;
 			this.CancelButton.Text = "Cancel";
 			this.CancelButton.UseVisualStyleBackColor = true;
+			this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
 			// 
 			// ApplyButton
 			// 
@@ -158,6 +160,7 @@
 			this.ApplyButton.TabIndex = 14;
 			this.ApplyButton.Text = "Apply";
 			this.ApplyButton.UseVisualStyleBackColor = true;
+			this.ApplyButton.Click += new System.EventHandler(this.ApplyButton_Click);
 			// 
 			// label5
 			// 
@@ -216,12 +219,13 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.LogOutButton);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.RoleDisplay);
 			this.Controls.Add(this.label2);
-			this.Controls.Add(this.UsernameDisplay);
+			this.Controls.Add(this.NameDisplay);
 			this.Controls.Add(this.label1);
 			this.Name = "UserView";
 			this.Size = new System.Drawing.Size(399, 155);
+			this.Load += new System.EventHandler(this.UserView_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
@@ -232,9 +236,9 @@
 		#endregion
 
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox UsernameDisplay;
+		private System.Windows.Forms.TextBox NameDisplay;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox RoleDisplay;
 		private System.Windows.Forms.Button LogOutButton;
 		private System.Windows.Forms.CheckBox PagerNotificationsEnabledInput;
 		private System.Windows.Forms.CheckBox SmsNotificationsEnabledInput;

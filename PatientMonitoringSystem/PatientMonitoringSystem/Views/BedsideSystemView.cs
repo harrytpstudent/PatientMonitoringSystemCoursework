@@ -61,10 +61,14 @@ namespace PatientMonitoringSystem.Views
 			Table.RowStyles.RemoveAt(0);
 			Table.RowCount = 0;
 
-			// TODO: Check Program.CurrentUser and render either LoginView or UserView.
-			var loginView = new LoginView(new LoginController());
-			loginView.OnLoginSuccess += OnLoginSuccess;
-			Table.Controls.Add(loginView);
+			if (Program.CurrentUser == null)
+			{
+				ShowLoginView();
+			}
+			else
+			{
+				ShowUserView();
+			}
 
 			foreach (var moduleId in bedsideController.GetModuleIds())
 			{
@@ -123,14 +127,39 @@ namespace PatientMonitoringSystem.Views
 		{
 			MessageBox.Show($"Login success! Show the UserView so that the user can subscribe to notifications.\nName: {Program.CurrentUser.Name}, Role: {Program.CurrentUser.Role.Name}");
 
-			// TODO: Replace LoginView with UserView.
+			ShowUserView();
 		}
 
-		// TODO: Make event handler for OnLogout.
+		public void OnLogout(object sender, EventArgs e)
+		{
+			ShowLoginView();
+		}
 
 		public void OnDisposed(object sender, EventArgs e)
 		{
 			Updater.Dispose(); // Just in case it doesn't happen automatically.
+		}
+
+		private void ShowLoginView()
+		{
+			Table.Controls.OfType<UserView>().ToList().ForEach(userView => Table.Controls.Remove(userView));
+
+			var loginView = new LoginView(new LoginController());
+
+			loginView.OnLoginSuccess += OnLoginSuccess;
+
+			Table.Controls.Add(loginView);
+		}
+
+		private void ShowUserView()
+		{
+			Table.Controls.OfType<LoginView>().ToList().ForEach(loginView => Table.Controls.Remove(loginView));
+
+			var userView = new UserView(new UserController());
+
+			userView.OnLogout += OnLogout;
+
+			Table.Controls.Add(userView);
 		}
 	}
 }

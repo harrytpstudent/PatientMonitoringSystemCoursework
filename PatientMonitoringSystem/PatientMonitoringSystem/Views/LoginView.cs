@@ -21,7 +21,7 @@ namespace PatientMonitoringSystem.Views
         {
 	        try
 	        {
-		        controller.Login(UsernameInput.Text, PasswordInput.Text);
+		        controller.LogIn(UsernameInput.Text, PasswordInput.Text);
 
 		        OnLoginSuccess?.Invoke(this, EventArgs.Empty);
 			}

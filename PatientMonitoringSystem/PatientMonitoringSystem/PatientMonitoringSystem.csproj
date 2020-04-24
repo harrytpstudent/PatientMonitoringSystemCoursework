@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Controllers\ControlSystemController.cs" />
     <Compile Include="Controllers\BedsideSystemController.cs" />
     <Compile Include="Controllers\LoginController.cs" />

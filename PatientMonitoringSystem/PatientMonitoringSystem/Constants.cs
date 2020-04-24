@@ -1,4 +1,4 @@
-﻿namespace PatientMonitoringSystem.Core
+﻿namespace PatientMonitoringSystem
 {
 	public static class Constants
 	{
@@ -9,6 +9,15 @@
 			public const string ReceiveSmsNotifications = "ReceiveSmsNotifications";
 
 			public const string ReceiveEmailNotifications = "ReceiveEmailNotifications";
+		}
+
+		public static class NotificationTypeNames
+		{
+			public const string Pager = "Pager";
+
+			public const string Sms = "Sms";
+
+			public const string Email = "Email";
 		}
 	}
 }

@@ -56,7 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants.cs" />
     <Compile Include="Database\DatabaseHandler.cs" />
     <Compile Include="Models\Enums\ModuleType.cs" />
     <Compile Include="Models\BedsideSystem.cs" />
@@ -65,8 +64,10 @@
     <Compile Include="Models\IControlSystem.cs" />
     <Compile Include="Models\IModule.cs" />
     <Compile Include="Models\Module.cs" />
+    <Compile Include="Models\NotificationType.cs" />
     <Compile Include="Models\Permission.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Subscription.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,5 +92,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

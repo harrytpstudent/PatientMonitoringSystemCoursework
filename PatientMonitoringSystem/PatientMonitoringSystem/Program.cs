@@ -24,6 +24,8 @@ namespace PatientMonitoringSystem
 
 		public static User CurrentUser { get; set; }
 
+		public static IEnumerable<Subscription> CurrentUserSubscriptions { get; set; }
+
 		[STAThread]
 		public static void Main()
 		{
